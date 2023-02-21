@@ -5,6 +5,7 @@ import Link from "next/link";
 import Logo from "@/app/Logo";
 import { ColorTheme } from "../ColorTheme";
 import { links } from "./links";
+import LoginModal from "../LoginModal";
 
 const Header = () => {
   return (
@@ -46,9 +47,7 @@ const Header = () => {
 
           <ColorTheme />
 
-          <button className="ghost-round-button">
-            <UserIcon className="w-5 h-5" />
-          </button>
+          <LoginModal />
         </div>
       </nav>
     </header>
