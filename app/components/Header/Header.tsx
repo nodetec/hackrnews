@@ -9,7 +9,7 @@ import LoginModal from "../LoginModal";
 
 const Header = () => {
   return (
-    <header className="z-30 py-3 px-4 txt-color bg-bg-accent shadow-lg sticky top-0 dark:bg-zinc-700">
+    <header className="z-30 py-1 px-4 txt-color bg-bg-accent shadow-lg top-0 dark:bg-zinc-700">
       <nav className="flex items-center body-content justify-evenly">
         {/* Logo */}
         <div className="h-full flex grow ">
@@ -33,6 +33,11 @@ const Header = () => {
           ))}
         </div>
 
+        <Link href={"/post"} className="flex gap-2 ghost-button items-center">
+          <button className="border-2 border-orange-600 rounded-md px-3 py-1 text-orange-600 ml-2 hover:bg-orange-600 hover:text-white">
+            post
+          </button>
+        </Link>
         <div className="flex gap-4 items-center grow justify-end">
           <form className="relative">
             <span className="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none">
@@ -55,4 +60,3 @@ const Header = () => {
 };
 
 export default Header;
-

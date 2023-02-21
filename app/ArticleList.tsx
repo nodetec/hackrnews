@@ -33,10 +33,10 @@ export default function ArticleList() {
   }, [relayUrl, activeRelay]);
 
   return (
-      <ul className="space-y-4">
-        {events.map((event: any, index: number) => {
-          return <Article key={event.id} event={event} index={index} />;
-        })}
-      </ul>
+    <ul className="space-y-4">
+      {events.map((event: any, index: number) => {
+        return <Article key={event.id} event={event} index={index} />;
+      })}
+    </ul>
   );
 }

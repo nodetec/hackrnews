@@ -37,7 +37,8 @@
   }
 
   .ghost-button {
-    @apply rounded-md hover:bg-gray-400/60 px-4 py-2 outline-primary outline-offset-2 transition-all ease-in-out;
+    /* @apply rounded-md hover:bg-gray-400/60 px-4 py-2 outline-primary outline-offset-2 transition-all ease-in-out; */
+    @apply rounded-md px-4 py-2 outline-primary outline-offset-2 transition-all ease-in-out;
   }
 
   .fill-round-button {
@@ -79,9 +80,9 @@
     @apply max-w-screen-2xl mx-auto px-4 lg:px-0;
   }
 
-  .link {
-    @apply text-[10px] font-semibold uppercase text-gray-500 dark:text-gray-400 hover:underline cursor-pointer;
-  }
+  /* .link { */
+  /*   @apply text-[10px] font-semibold uppercase text-gray-500 dark:text-gray-400 hover:underline cursor-pointer; */
+  /* } */
 
   .bordered-crumb {
     @apply text-sm border px-2 text-primary border-primary rounded-lg;
