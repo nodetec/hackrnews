@@ -1,19 +1,27 @@
-import "../styles/globals.css";
+import { cookies } from "next/headers";
+import Header from "./components/Header/Header";
 import Providers from "./context/providers";
-import Header from "./Header";
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  let theme = "";
+  const cookieStore = cookies();
+
+  if (cookieStore.has("theme")) theme = cookieStore.get("theme")?.value || ""
+  if (theme === "system") theme = cookieStore.get("themePreference")?.value || ""
+
+
   return (
-    <html lang="en">
+    <html lang="en" className={theme}>
       <head />
       <Providers>
-        <body className="container relative flex flex-col px-80 mx-auto min-h-screen">
+        <body className="min-h-screen txt-color relative">
           <Header />
-          {children}
+          {/* <body className="container relative flex flex-col mx-auto min-h-screen"> */}
+          <main className="container body-content mx-auto h-full pt-6 px-4">{children}</main>
         </body>
       </Providers>
     </html>
