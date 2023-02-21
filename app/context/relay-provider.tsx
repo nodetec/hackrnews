@@ -134,11 +134,11 @@ const RelayProvider: React.FC<{ children: React.ReactNode }> = ({
         onOk();
       });
 
-      pub.on("seen", () => {
-        console.log(`we saw the event on ${url}`);
-        onSeen();
-        // relay.close();
-      });
+      // pub.on("seen", () => {
+      //   console.log(`we saw the event on ${url}`);
+      //   onSeen();
+      //   // relay.close();
+      // });
 
       pub.on("failed", (reason: any) => {
         console.log(`failed to publish to ${url}: ${reason}`);
