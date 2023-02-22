@@ -5,9 +5,9 @@ import {
   ComputerDesktopIcon,
   MoonIcon,
   SunIcon,
-  SwatchIcon
+  SwatchIcon,
 } from "@heroicons/react/24/outline";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { getCookie, setCookie, themeResolver } from "../lib/theme";
 
 export const ColorTheme = () => {
@@ -15,6 +15,7 @@ export const ColorTheme = () => {
   const [selectedTheme, setSelectedTheme] = useState(
     theme === "" ? "System" : theme
   );
+  let themePreference: string;
 
   const themeOptions = [
     { name: "System", icon: <ComputerDesktopIcon className="h-5 w-5" /> },
@@ -22,25 +23,24 @@ export const ColorTheme = () => {
     { name: "Dark", icon: <MoonIcon className="h-5 w-5" /> },
   ];
 
-  // TODO: Figure out why themeInit is being called on the server.
-  const themePreference = window.matchMedia("dark") ? "dark" : "light";
-  setCookie("themePreference", themePreference, 1);
+  useEffect(() => {
+    themePreference = window.matchMedia("dark") ? "dark" : "light";
+    setCookie("themePreference", themePreference, 1);
 
-  if (!theme) {
-    setCookie("theme", "system", 20);
-    console.log("setting cookie");
-  }
-
-  // useEffect(() => {
-  //   themeResolver(defaultTheme);
-  // }, [defaultTheme]);
+    if (!theme) {
+      setCookie("theme", "system", 20);
+      console.log("setting cookie");
+    }
+  });
 
   return (
     <Menu as={"div"} className="relative inline-block text-left max-w-sm">
       {({ open }) => (
         <>
           <Menu.Button
-            className={`ghost-round-button ${open ? "bg-black/30" : "bg-transparent"}`}
+            className={`ghost-round-button ${
+              open ? "bg-black/30" : "bg-transparent"
+            }`}
           >
             <SwatchIcon className="h-5 w-5" />
           </Menu.Button>

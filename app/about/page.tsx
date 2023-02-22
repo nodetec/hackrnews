@@ -1,9 +1,6 @@
 import { CogIcon, HeartIcon, UserIcon } from "@heroicons/react/24/solid";
 import React from "react";
 
-function alerto() {
-  alert("hello");
-}
 export default function About() {
   return (
     <div className="space-y-2 h-full p-4 relative space-x-2">
