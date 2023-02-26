@@ -17,7 +17,7 @@ const Header = () => {
         </div>
 
         {/* links */}
-        <div className="flex items-center justify-center grow-0">
+        <div className="hidden md:flex  items-center justify-center grow-0">
           {links.map((link) => (
             <Link
               key={link.href}

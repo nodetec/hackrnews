@@ -1,42 +1,42 @@
 "use client";
 
 import { useContext, useEffect, useState } from "react";
-import Article from "./Article";
+import Article from "./components/ArticleCard/Article";
 import { RelayContext } from "./context/relay-provider";
 
 export default function ArticleList() {
-  const { subscribe, relayUrl, activeRelay } = useContext(RelayContext);
+	const { subscribe, relayUrl, activeRelay } = useContext(RelayContext);
 
-  const [events, setEvents] = useState<any[]>([]);
+	const [events, setEvents] = useState<any[]>([]);
 
-  const getEvents = () => {
-    const filter = {
-      kinds: [30023],
-      limit: 10,
-    };
+	const getEvents = () => {
+		const filter = {
+			kinds: [30023],
+			limit: 10,
+		};
 
-    let newEvents: any[] = [];
+		let newEvents: any[] = [];
 
-    const onEvent = (event: any) => {
-      newEvents.push(event);
-    };
+		const onEvent = (event: any) => {
+			newEvents.push(event);
+		};
 
-    const onEOSE = () => {
-      setEvents(newEvents);
-    };
+		const onEOSE = () => {
+			setEvents(newEvents);
+		};
 
-    subscribe([relayUrl], filter, onEvent, onEOSE);
-  };
+		subscribe([relayUrl], filter, onEvent, onEOSE);
+	};
 
-  useEffect(() => {
-    getEvents();
-  }, [relayUrl, activeRelay]);
+	useEffect(() => {
+		getEvents();
+	}, [relayUrl, activeRelay]);
 
-  return (
-    <ul className="space-y-4">
-      {events.map((event: any, index: number) => {
-        return <Article key={event.id} event={event} index={index} />;
-      })}
-    </ul>
-  );
+	return (
+		<ul className="space-y-2">
+			{events.map((event: any, index: number) => {
+				return <Article key={event.id} event={event} index={index} />;
+			})}
+		</ul>
+	);
 }

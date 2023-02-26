@@ -11,7 +11,7 @@ module.exports = {
     extend: {
       colors: {
         primary: "#ea580c",
-        
+
         ["bg-light"]: "#f1f5f9",
         ["bg-dark"]: "#292524",
         // to use on button hoover or cards
@@ -32,5 +32,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/line-clamp")],
 };
