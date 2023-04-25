@@ -1,5 +1,8 @@
 // import PostButton from "./PostButton";
-import { UserIcon, MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import {
+  MagnifyingGlassIcon,
+  PencilSquareIcon,
+} from "@heroicons/react/24/solid";
 import "@/styles/globals.css";
 import Link from "next/link";
 import Logo from "@/app/Logo";
@@ -17,7 +20,7 @@ const Header = () => {
         </div>
 
         {/* links */}
-        <div className="hidden md:flex  items-center justify-center grow-0">
+        <div className="hidden md:flex space-x-1  items-center justify-center grow-0">
           {links.map((link) => (
             <Link
               key={link.href}
@@ -31,13 +34,12 @@ const Header = () => {
               {link.name}
             </Link>
           ))}
+          <Link href={"/post"} className="bordered-button">
+            <PencilSquareIcon className="h-5 w-5" />
+            Post
+          </Link>
         </div>
 
-        <Link href={"/post"} className="flex gap-2 ghost-button items-center">
-          <button className="border-2 border-orange-600 rounded-md px-3 py-1 text-orange-600 ml-2 hover:bg-orange-600 hover:text-white">
-            post
-          </button>
-        </Link>
         <div className="flex gap-4 items-center grow justify-end">
           <form className="relative">
             <span className="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none">

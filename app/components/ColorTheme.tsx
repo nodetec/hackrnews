@@ -5,7 +5,6 @@ import {
   ComputerDesktopIcon,
   MoonIcon,
   SunIcon,
-  SwatchIcon,
 } from "@heroicons/react/24/outline";
 import React, { Fragment, useEffect, useState } from "react";
 import { getCookie, setCookie, themeResolver } from "../lib/theme";
@@ -14,6 +13,9 @@ export const ColorTheme = () => {
   const theme = getCookie("theme");
   const [selectedTheme, setSelectedTheme] = useState(
     theme === "" ? "System" : theme
+  );
+  const [displayIcon, setDisplayIcon] = useState(
+    <ComputerDesktopIcon className="h-5 w-5" />
   );
   let themePreference: string;
 
@@ -33,6 +35,19 @@ export const ColorTheme = () => {
     }
   });
 
+  useEffect(() => {
+    switch (selectedTheme) {
+      case "light":
+        setDisplayIcon(<SunIcon className="h-5 w-5" />);
+        break;
+      case "dark":
+        setDisplayIcon(<MoonIcon className="h-5 w-5" />);
+        break;
+      default:
+        setDisplayIcon(<ComputerDesktopIcon className="h-5 w-5" />);
+    }
+  }, [selectedTheme]);
+
   return (
     <Menu as={"div"} className="relative inline-block text-left max-w-sm">
       {({ open }) => (
@@ -42,7 +57,8 @@ export const ColorTheme = () => {
               open ? "bg-black/30" : "bg-transparent"
             }`}
           >
-            <SwatchIcon className="h-5 w-5" />
+            {/* <SwatchIcon className="h-5 w-5" /> */}
+            {displayIcon}
           </Menu.Button>
 
           <Transition
