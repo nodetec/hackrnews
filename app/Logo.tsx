@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { FC } from "react";
-// import { FaBlog } from "react-icons/fa";
 
 const Logo: FC = () => (
   <Link className="text-xl md:text-2xl font-bold" href="/">

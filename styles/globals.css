@@ -32,7 +32,7 @@
 	}
 
 	.bordered-button {
-		@apply ring-0 flex gap-2 items-center border border-primary outline-primary outline-offset-4 text-primary 
+		@apply ring-0 text-sm flex gap-2 items-center border border-primary outline-primary outline-offset-4 text-primary 
       rounded-md hover:bg-primary/10 py-2 px-4 active:bg-primary/30 transition-all ease-in-out;
 	}
 
@@ -58,7 +58,7 @@
   | "Floats", or so i call them
   --------*/
 	.popup {
-		@apply bg-bg-secondary dark:bg-bg-secondary-dark rounded-md absolute shadow-lg ring-1 ring-black/5
+		@apply bg-bg-secondary z-50 dark:bg-bg-secondary-dark rounded-md absolute shadow-lg ring-1 ring-black/5
     dark:ring-slate-50/5 p-1 txt-color focus:outline-none;
 	}
 
