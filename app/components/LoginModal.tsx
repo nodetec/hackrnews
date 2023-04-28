@@ -5,10 +5,27 @@ import {
   UserIcon,
   XMarkIcon,
 } from "@heroicons/react/24/solid";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 export default function MyModal() {
   let [isOpen, setIsOpen] = useState(false);
+  let [keys, setKeys] = useState({ privateKey: "", publicKey: "" });
+  let [isLightningConnected, setIsLightningConnected] = useState(false);
+
+  async function loginHandler() {
+    if (typeof window.nostr !== "undefined") {
+      const publicKey = await window.nostr.getPublicKey();
+      console.log("public key", publicKey);
+      setKeys({ privateKey: "", publicKey: publicKey });
+      localStorage.setItem("shouldReconnect", "true");
+    }
+
+    if (typeof window.webln !== "undefined") {
+      console.log("webln enabled");
+      await window.webln.enable();
+    }
+    console.log("connected ");
+  }
 
   function closeModal() {
     setIsOpen(false);
@@ -18,13 +35,46 @@ export default function MyModal() {
     setIsOpen(true);
   }
 
+  useEffect(() => {
+    const shouldReconnect = localStorage.getItem("shouldReconnect");
+
+    const getConnected = async (shouldReconnect: string) => {
+      let enabled = false;
+
+      if (typeof window.nostr === "undefined") {
+        console.log("no nostr");
+        return;
+      }
+
+      if (shouldReconnect === "true") {
+        const publicKey = await nostr.getPublicKey();
+        console.log("public key", publicKey);
+        setKeys({ privateKey: "", publicKey: publicKey });
+      }
+
+      if (typeof window.webln === "undefined") {
+        return;
+      }
+
+      if (shouldReconnect === "true" && !webln.executing) {
+        try {
+          enabled = await window.webln.enable();
+          setIsLightningConnected(true);
+        } catch (e: any) {
+          console.log(e.message);
+        }
+      }
+      return enabled;
+    };
+
+    if (shouldReconnect === "true") {
+      getConnected(shouldReconnect);
+    }
+  }, [setKeys]);
+
   return (
     <>
-      <button
-        type="button"
-        onClick={openModal}
-        className="fill-round-button"
-      >
+      <button type="button" onClick={openModal} className="fill-round-button">
         <UserIcon className="w-5 h-5" />
       </button>
 
@@ -77,7 +127,7 @@ export default function MyModal() {
                     <button
                       type="button"
                       className="fill-button ml-auto"
-                      onClick={closeModal}
+                      onClick={loginHandler}
                     >
                       login <ArrowRightOnRectangleIcon className="h-5 w-5" />
                     </button>

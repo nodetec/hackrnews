@@ -9,6 +9,7 @@ import {
 } from "@heroicons/react/24/solid";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 // definitions missing like sats, upvotes, author (author link etc etc)
 type PostDetails = {
@@ -36,7 +37,7 @@ export default function Article({ event, index }: any) {
     // setTitle(getTagValue("title", tags));
     setPostDetails({
       title: getTagValue("title", tags),
-      source: "www.insert-link-here.org",
+      source: "https://www.insert-link-here.org",
       createdAt: "2023/02/28 10:37",
     });
     console.log("EVENT:", event);
@@ -56,23 +57,25 @@ export default function Article({ event, index }: any) {
         <h3 className="subtitle line-clamp-2">{postDetails?.title}</h3>
 
         {/* URL */}
-        <div className="flex items-center cursor-pointer">
-          <LinkIcon className="h-3 w-3 mr-1" />[
-          <span className="link text-clip inline-block align-bottom uppercase">
-            {postDetails?.source}
-          </span>
-          ]
-        </div>
+        {postDetails?.source && (
+          <Link className="flex items-center" href={postDetails.source}>
+            <LinkIcon className="h-3 w-3 mr-1" />[
+            <span className="link text-clip inline-block align-bottom uppercase">
+              {postDetails.source}
+            </span>
+            ]
+          </Link>
+        )}
 
         <div className="flex text-xs pt-1 align-top text-gray-500 dark:text-gray-400 gap-1 lg:gap-4">
           {/* Views */}
-          <div className="flex items-center">
+          <div className="flex items-center ">
             <EyeIcon className="h-3 w-3 mr-1" />
             <span>35</span>
           </div>
 
           {/* sats */}
-          <div className="flex items-center">
+          <div className="flex items-center hover:underline cursor-pointer">
             {/* <IconBitcoin className="mr-1"></IconBitcoin> */}
             <button>
               <BoltIcon className="h-3 w-3 mr-1" />
@@ -81,7 +84,7 @@ export default function Article({ event, index }: any) {
           </div>
 
           {/* Upvotes */}
-          <div className="flex items-center">
+          <div className="flex items-center hover:underline cursor-pointer">
             {/* <IconBitcoin className="mr-1"></IconBitcoin> */}
             <ArrowUpIcon className="h-3 w-3 mr-1" />
             237 upvotes

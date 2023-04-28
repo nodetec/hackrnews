@@ -11,6 +11,7 @@ import { getCookie, setCookie, themeResolver } from "../lib/theme";
 
 export const ColorTheme = () => {
   const theme = getCookie("theme");
+  console.log("Theme: ", theme);
   const [selectedTheme, setSelectedTheme] = useState(
     theme === "" ? "System" : theme
   );
@@ -26,7 +27,7 @@ export const ColorTheme = () => {
   ];
 
   useEffect(() => {
-    themePreference = window.matchMedia("dark") ? "dark" : "light";
+    themePreference = window.matchMedia("dark").matches ? "dark" : "light";
     setCookie("themePreference", themePreference, 1);
 
     if (!theme) {
