@@ -10,6 +10,7 @@ import {
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { getRelativeTime } from "@/app/lib/utils";
 
 // definitions missing like sats, upvotes, author (author link etc etc)
 type PostDetails = {
@@ -38,11 +39,12 @@ export default function Article({ event, index }: any) {
     setPostDetails({
       title: getTagValue("title", tags),
       source: "https://www.insert-link-here.org",
-      createdAt: "2023/02/28 10:37",
+      createdAt: event.created_at,
     });
     console.log("EVENT:", event);
   }, []);
 
+  console.log({ postDetails });
   // for now this will use mockdata
   return (
     <li className="card lg:gap-4 relative flex py-1 items-center group">
@@ -113,7 +115,7 @@ export default function Article({ event, index }: any) {
             by: <span className="txt-color">UserX_Y</span>
           </div>
           <div className="text-xs font-semibold text-gray-500 dark:text-gray-400">
-            created at: <span>{postDetails?.createdAt}</span>
+            created at: <span>{getRelativeTime(parseInt(postDetails?.createdAt!))}</span>
           </div>
         </div>
       </div>
