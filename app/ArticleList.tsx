@@ -4,12 +4,15 @@ import { ArrowPathIcon } from "@heroicons/react/24/solid";
 import { useContext, useEffect, useState } from "react";
 import Article from "./components/ArticleCard/Article";
 import { RelayContext } from "./context/relay-provider";
+import { userStore } from "./stores/user";
 
 export default function ArticleList() {
 	const { subscribe, relayUrl, activeRelay } = useContext(RelayContext);
 
 	const [events, setEvents] = useState<any[]>([]);
 	const [loading, isLoading] = useState<boolean>(false);
+
+  const pubkey = userStore((state) => state.pubkey);
 
 	const loader = () => {
 		isLoading(true);
@@ -43,6 +46,9 @@ export default function ArticleList() {
 		<>
 			{/* Posts list */}
 			<ul className="space-y-2">
+        <div>
+          {pubkey}
+        </div>
 				{events.map((event: any, index: number) => {
 					return <Article key={event.id} event={event} index={index} />;
 				})}

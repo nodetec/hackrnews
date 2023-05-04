@@ -5,26 +5,37 @@ import {
   UserIcon,
   XMarkIcon,
 } from "@heroicons/react/24/solid";
+import { nip05 } from "nostr-tools";
 import { Fragment, useEffect, useState } from "react";
+import { detectWebLNProvider } from "../lib/detectWebLn";
+import { userStore } from "../stores/user";
 
 export default function MyModal() {
   let [isOpen, setIsOpen] = useState(false);
   let [keys, setKeys] = useState({ privateKey: "", publicKey: "" });
   let [isLightningConnected, setIsLightningConnected] = useState(false);
+  let [hasExt, setHasExt] = useState(false);
+  const pubkey = userStore((state) => state.pubkey);
+  const setPubkey = userStore((state) => state.setPubkey);
 
   async function loginHandler() {
     if (typeof window.nostr !== "undefined") {
       const publicKey = await window.nostr.getPublicKey();
       console.log("public key", publicKey);
+      setPubkey(publicKey);
+      console.log("pubkey =>", pubkey);
+
       setKeys({ privateKey: "", publicKey: publicKey });
       localStorage.setItem("shouldReconnect", "true");
     }
 
     if (typeof window.webln !== "undefined") {
-      console.log("webln enabled");
       await window.webln.enable();
+      setHasExt(true);
+      console.log("webln enabled");
     }
-    console.log("connected ");
+    console.log("connected");
+    setIsOpen(false);
   }
 
   function closeModal() {
@@ -72,6 +83,18 @@ export default function MyModal() {
     }
   }, [setKeys]);
 
+  useEffect(() => {
+    const checker = async () => {
+      await detectWebLNProvider().then(
+        (promise: any) => promise.enabled && setHasExt(true)
+      );
+      let profile = await nip05.queryProfile("lcarv@kollider.me");
+      console.log("profile", profile);
+    };
+
+    checker();
+  });
+
   return (
     <>
       <button type="button" onClick={openModal} className="fill-round-button">
@@ -104,34 +127,41 @@ export default function MyModal() {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden align-middle text-left p-6 popup shadow-xl transition-all">
-                  <Dialog.Title
-                    as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900"
-                  >
-                    LOGIN
-                  </Dialog.Title>
+                  {isLightningConnected ? (
+                    <>
+                      <Dialog.Title
+                        as="h3"
+                        className="text-lg font-medium leading-6 text-gray-900"
+                      >
+                        LOGIN
+                      </Dialog.Title>
 
-                  <button
-                    onClick={closeModal}
-                    className="fill-round-button bg-red-600 text-white p-1 absolute top-2 right-2"
-                  >
-                    <XMarkIcon className="h-4 w-4" />
-                  </button>
-                  <div className="mt-2">
-                    <p className="text-sm text-gray-500">
-                      inputs go here, styles needed
-                    </p>
-                  </div>
+                      <button
+                        onClick={closeModal}
+                        className="fill-round-button bg-red-600 text-white p-1 absolute top-2 right-2"
+                      >
+                        <XMarkIcon className="h-4 w-4" />
+                      </button>
+                      <div className="mt-2">
+                        <p className="text-sm text-gray-500">
+                          inputs go here, styles needed
+                        </p>
+                      </div>
 
-                  <div className="mt-4">
-                    <button
-                      type="button"
-                      className="fill-button ml-auto"
-                      onClick={loginHandler}
-                    >
-                      login <ArrowRightOnRectangleIcon className="h-5 w-5" />
-                    </button>
-                  </div>
+                      <div className="mt-4">
+                        <button
+                          type="button"
+                          className="fill-button ml-auto"
+                          onClick={loginHandler}
+                        >
+                          login{" "}
+                          <ArrowRightOnRectangleIcon className="h-5 w-5" />
+                        </button>
+                      </div>
+                    </>
+                  ) : (
+                    <LoginWithExtension />
+                  )}
                 </Dialog.Panel>
               </Transition.Child>
             </div>
@@ -141,3 +171,20 @@ export default function MyModal() {
     </>
   );
 }
+
+const LoginWithExtension = () => {
+  return (
+    <>
+      <Dialog.Title
+        as="h3"
+        className="text-lg font-medium leading-6 text-gray-900"
+      >
+        Oops!
+      </Dialog.Title>
+      <p className="text-sm text-gray-500">
+        It seems you don't have a supported extension.
+      </p>
+      <p>Consult here for more information</p>
+    </>
+  );
+};
