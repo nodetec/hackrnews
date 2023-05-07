@@ -1,3 +1,11 @@
+export const shortenHash = (hash: string, length = 4 as number) => {
+  if (hash) {
+    return (
+      hash.substring(0, length) + "..." + hash.substring(hash.length - length)
+    );
+  }
+};
+
 export const getRelativeTime = (timestamp: number) => {
   const currentTimeInSeconds = Math.floor(new Date().getTime() / 1000);
   const oldTimestamp = new Date(timestamp).getTime();
