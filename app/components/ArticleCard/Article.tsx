@@ -7,14 +7,17 @@ import {
   EyeIcon,
   LinkIcon,
 } from "@heroicons/react/24/solid";
-import { useEffect, useState } from "react";
-import Image from "next/image";
+import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
+import { getRelativeTime, shortenHash } from "@/app/lib/utils";
+import { RelayContext } from "@/app/context/relay-provider";
+import { Event, nip19 } from "nostr-tools";
+import { ProfilesContext } from "@/app/context/profiles-provider";
 
 // definitions missing like sats, upvotes, author (author link etc etc)
 type PostDetails = {
   title: string;
-  createdAt: string;
+  createdAt: number;
   source: string;
 };
 
@@ -24,11 +27,59 @@ export default function Article({ event, index }: any) {
   // const [createdAt, setCreatedAt] = useState("")
   // const [client, setClient] = useState("")
   const [postDetails, setPostDetails] = useState<PostDetails | null>(null);
+  const { activeRelay } = useContext(RelayContext);
+
+  // @ts-ignore
+  const { profiles, reload } = useContext(ProfilesContext);
 
   const getTagValue = (name: string, tags: string[][]) => {
     const [itemTag] = tags.filter((tag: string[]) => tag[0] === name);
     const [, item] = itemTag || [, undefined];
     return item;
+  };
+  const [author, setAuthor] = useState<{ name: string, picture: string }>({ name: "", picture: "" });
+  const npub = nip19.npubEncode(event.pubkey);
+
+  useEffect(() => {
+    setAuthor({
+      name: getName(event),
+      picture: getPicture(event),
+    })
+  }, [activeRelay, reload]);
+
+  const getName = (event: Event) => {
+    if (!activeRelay) return shortenHash(npub);
+
+    const relayUrl = activeRelay.url.replace("wss://", "");
+    const profileKey = `profile_${relayUrl}_${event.pubkey}`;
+    const profile = profiles[profileKey];
+
+    if (profile && profile.content) {
+      const profileContent = JSON.parse(profile.content);
+      return profileContent.name || shortenHash(npub);
+    }
+
+    return shortenHash(npub);
+  };
+
+  const getPicture = (event: Event) => {
+    if (!activeRelay) return;
+
+    const relayUrl = activeRelay.url.replace("wss://", "");
+    const profileKey = `profile_${relayUrl}_${event.pubkey}`;
+    const profile = profiles[profileKey];
+
+    if (profile && profile.content) {
+      // TODO: check if this exists
+      const profileContent = JSON.parse(profile.content);
+      if (profileContent.picture === "") {
+        return;
+      }
+
+      return profileContent.picture;
+    }
+
+    return;
   };
 
   // NOTE: Use temporal api for date
@@ -38,7 +89,7 @@ export default function Article({ event, index }: any) {
     setPostDetails({
       title: getTagValue("title", tags),
       source: "https://www.insert-link-here.org",
-      createdAt: "2023/02/28 10:37",
+      createdAt: event.created_at,
     });
     console.log("EVENT:", event);
   }, []);
@@ -100,20 +151,20 @@ export default function Article({ event, index }: any) {
 
       <div className="py-1 flex items-center shrink-0 basis-1/4">
         {/* User Avatar */}
-        <Image
+        <img
           className="w-10 h-10 rounded-full mx-2"
           width={10}
           height={10}
-          src="/avatar.png"
-          alt="Rounded avatar"
+          src={author.picture || "/avatar.png"}
+          alt=""
         />
         {/* Post details*/}
         <div className="">
           <div className="text-xs text-gray-500 dark:text-gray-400 font-bold hover:underline cursor-pointer">
-            by: <span className="txt-color">UserX_Y</span>
+            by: <span className="txt-color">{author.name}</span>
           </div>
           <div className="text-xs font-semibold text-gray-500 dark:text-gray-400">
-            created at: <span>{postDetails?.createdAt}</span>
+            created <span>{getRelativeTime(postDetails?.createdAt!)}</span>
           </div>
         </div>
       </div>
