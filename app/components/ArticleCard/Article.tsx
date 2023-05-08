@@ -152,7 +152,7 @@ export default function Article({ event, index }: any) {
         </div>
       </div>
 
-      <div className="py-1 flex items-center shrink-0 basis-1/4">
+      <div className="py-1 flex items-center shrink-0 basis-1/3">
         {/* User Avatar */}
         <img
           className="w-10 h-10 rounded-full mx-2"
