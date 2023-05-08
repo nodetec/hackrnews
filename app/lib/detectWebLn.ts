@@ -1,4 +1,4 @@
-export async function detectWebLNProvider(timeoutParam? : number) {
+export async function detectWebLNProvider(timeoutParam?: number) {
   const timeout = timeoutParam ?? 3000;
   const interval = 100;
   let handled = false;
@@ -8,10 +8,10 @@ export async function detectWebLNProvider(timeoutParam? : number) {
       handleWebLN();
     } else {
       document.addEventListener("webln:ready", handleWebLN, { once: true });
-      
+
       let i = 0;
-      const checkInterval = setInterval(function() {
-        if (window.webln || i >= timeout/interval) {
+      const checkInterval = setInterval(function () {
+        if (window.webln || i >= timeout / interval) {
           handleWebLN();
           clearInterval(checkInterval);
         }

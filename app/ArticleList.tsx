@@ -17,10 +17,10 @@ export default function ArticleList() {
 
   const pubkey = userStore((state: any) => state.pubkey);
 
-	const loader = () => {
-		isLoading(true);
-		setTimeout(() => isLoading(false), 3000);
-	};
+  const loader = () => {
+    isLoading(true);
+    setTimeout(() => isLoading(false), 3000);
+  };
 
   const getEvents = () => {
     let pubkeysSet = new Set<string>();
@@ -51,24 +51,22 @@ export default function ArticleList() {
     getEvents();
   }, [relayUrl, activeRelay]);
 
-	return (
-		<>
-			{/* Posts list */}
-			<ul className="space-y-2">
-        <div>
-          {pubkey}
-        </div>
-				{events.map((event: any, index: number) => {
-					return <Article key={event.id} event={event} index={index} />;
-				})}
-        
-			</ul>
+  return (
+    <>
+      {/* Posts list */}
+      <ul className="space-y-2">
+        <div>{pubkey}</div>
+        {events.map((event: any, index: number) => {
+          return <Article key={event.id} event={event} index={index} />;
+        })}
+      </ul>
 
       {/* Load more button */}
       <button
         onClick={loader}
         className="fill-button my-5 disabled:cursor-not-allowed disabled:hover:bg-primary disabled:active:bg-primary"
-        disabled={loading}>
+        disabled={loading}
+      >
         <ArrowPathIcon className={`h-5 w-5 ${loading && "animate-spin"}`} />
         load more
       </button>

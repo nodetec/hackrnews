@@ -37,14 +37,17 @@ export default function Article({ event, index }: any) {
     const [, item] = itemTag || [, undefined];
     return item;
   };
-  const [author, setAuthor] = useState<{ name: string, picture: string }>({ name: "", picture: "" });
+  const [author, setAuthor] = useState<{ name: string; picture: string }>({
+    name: "",
+    picture: "",
+  });
   const npub = nip19.npubEncode(event.pubkey);
 
   useEffect(() => {
     setAuthor({
       name: getName(event),
       picture: getPicture(event),
-    })
+    });
   }, [activeRelay, reload]);
 
   const getName = (event: Event) => {

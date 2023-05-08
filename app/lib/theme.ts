@@ -1,13 +1,13 @@
-"use client"
+"use client";
 function mediaListner(ev: MediaQueryListEvent) {
-  if (typeof document === "undefined") return
+  if (typeof document === "undefined") return;
   const htmlEl = document.documentElement;
   const resolver = ev.matches ? "dark" : "light";
   htmlEl.className = resolver;
 }
 
 export function themeResolver(theme: string) {
-  if (typeof document === "undefined") return
+  if (typeof document === "undefined") return;
   const htmlEl = document.documentElement;
   const darkMedia = window.matchMedia("(prefers-color-scheme: dark)");
   if (theme !== "system") {
@@ -19,12 +19,12 @@ export function themeResolver(theme: string) {
     darkMedia.addEventListener("change", mediaListner);
     htmlEl.className = resolver;
   }
-  setCookie("theme", theme, 20)
+  setCookie("theme", theme, 20);
 }
 
 // These two functions below are just copied from w3schools
 export function getCookie(cname: string) {
-  if (typeof document === "undefined") return
+  if (typeof document === "undefined") return;
   let name = cname + "=";
   let decodedCookie = decodeURIComponent(document.cookie);
   let ca = decodedCookie.split(";");
@@ -41,7 +41,7 @@ export function getCookie(cname: string) {
 }
 
 export function setCookie(cname: string, cvalue: string, exdays: number) {
-  if (typeof document === "undefined") return
+  if (typeof document === "undefined") return;
   const d = new Date();
   d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
   let expires = "expires=" + d.toUTCString();

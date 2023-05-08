@@ -3,91 +3,91 @@
 @tailwind utilities;
 
 @layer base {
-	body {
-		@apply font-mono bg-bg-light dark:bg-bg-dark transition-colors ease-out;
-	}
+  body {
+    @apply font-mono bg-bg-light dark:bg-bg-dark transition-colors ease-out;
+  }
 }
 
 @layer components {
-	/*------
+  /*------
   | Text
   -------*/
-	.title {
-		@apply text-2xl font-mono font-semibold text-heading1 dark:text-heading1-dark;
-	}
-	.subtitle {
-		@apply font-sans font-semibold text-neutral-800  dark:text-neutral-300;
-	}
+  .title {
+    @apply text-2xl font-mono font-semibold text-heading1 dark:text-heading1-dark;
+  }
+  .subtitle {
+    @apply font-sans font-semibold text-neutral-800  dark:text-neutral-300;
+  }
 
-	.txt-color {
-		@apply text-txt dark:text-txt-dark;
-	}
+  .txt-color {
+    @apply text-txt dark:text-txt-dark;
+  }
 
-	/*------
+  /*------
   | Buttons
   --------*/
-	.fill-button {
-		@apply flex gap-2 items-center bg-primary outline-primary outline-offset-2 text-white 
+  .fill-button {
+    @apply flex gap-2 items-center bg-primary outline-primary outline-offset-2 text-white 
       rounded-md hover:bg-opacity-70 py-2 px-4 active:bg-primary/50 transition-all ease-in-out;
-	}
+  }
 
-	.bordered-button {
-		@apply ring-0 text-sm flex gap-2 items-center border border-primary outline-primary outline-offset-4 text-primary 
+  .bordered-button {
+    @apply ring-0 text-sm flex gap-2 items-center border border-primary outline-primary outline-offset-4 text-primary 
       rounded-md hover:bg-primary/10 py-2 px-4 active:bg-primary/30 transition-all ease-in-out;
-	}
+  }
 
-	.ghost-button {
-		@apply text-sm font-semibold rounded-md hover:bg-gray-400/60 px-4 py-2 outline-primary outline-offset-2 transition-all ease-in-out;
-	}
+  .ghost-button {
+    @apply text-sm font-semibold rounded-md hover:bg-gray-400/60 px-4 py-2 outline-primary outline-offset-2 transition-all ease-in-out;
+  }
 
-	.fill-round-button {
-		@apply bg-primary outline-primary outline-offset-2 text-white rounded-full hover:bg-opacity-70 p-2 
+  .fill-round-button {
+    @apply bg-primary outline-primary outline-offset-2 text-white rounded-full hover:bg-opacity-70 p-2 
       active:bg-primary/50 transition-all ease-in-out;
-	}
+  }
 
-	.bordered-round-button {
-		@apply ring-0 border border-primary outline-primary outline-offset-4 text-primary rounded-full 
+  .bordered-round-button {
+    @apply ring-0 border border-primary outline-primary outline-offset-4 text-primary rounded-full 
       hover:bg-primary/10 p-2 active:bg-primary/30 transition-all ease-in-out;
-	}
+  }
 
-	.ghost-round-button {
-		@apply rounded-full hover:bg-gray-400/60 p-2 outline-primary outline-offset-2 transition-all ease-in-out;
-	}
+  .ghost-round-button {
+    @apply rounded-full hover:bg-gray-400/60 p-2 outline-primary outline-offset-2 transition-all ease-in-out;
+  }
 
-	/*------
+  /*------
   | "Floats", or so i call them
   --------*/
-	.popup {
-		@apply bg-bg-secondary z-50 dark:bg-bg-secondary-dark rounded-md absolute shadow-lg ring-1 ring-black/5
+  .popup {
+    @apply bg-bg-secondary z-50 dark:bg-bg-secondary-dark rounded-md absolute shadow-lg ring-1 ring-black/5
     dark:ring-slate-50/5 p-1 txt-color focus:outline-none;
-	}
+  }
 
-	.card {
-		@apply hover:bg-bg-secondary hover:dark:bg-bg-secondary-dark rounded-md ring-1 ring-black/5
+  .card {
+    @apply hover:bg-bg-secondary hover:dark:bg-bg-secondary-dark rounded-md ring-1 ring-black/5
     dark:ring-neutral-50/5 px-4 hover:shadow dark:shadow-slate-300/5 transition-all ease-in-out;
-	}
+  }
 
-	/*------
+  /*------
   | Misc
   --------*/
-	.input {
-		@apply py-1 px-2 rounded-md bg-transparent cursor-pointer focus:cursor-auto;
-	}
+  .input {
+    @apply py-1 px-2 rounded-md bg-transparent cursor-pointer focus:cursor-auto;
+  }
 
-	/* To limit content size -> not sure if needed */
-	.body-content {
-		@apply max-w-screen-2xl mx-auto px-4 lg:px-0;
-	}
+  /* To limit content size -> not sure if needed */
+  .body-content {
+    @apply max-w-screen-2xl mx-auto px-4 lg:px-0;
+  }
 
-	.link {
-		@apply text-[10px] font-semibold text-gray-500 dark:text-gray-400 hover:underline cursor-pointer;
-	}
+  .link {
+    @apply text-[10px] font-semibold text-gray-500 dark:text-gray-400 hover:underline cursor-pointer;
+  }
 
-	.bordered-crumb {
-		@apply text-sm border px-2 text-primary border-primary rounded-lg;
-	}
+  .bordered-crumb {
+    @apply text-sm border px-2 text-primary border-primary rounded-lg;
+  }
 
-	.fill-crumb {
-		@apply text-sm py-[1px] px-2 text-white bg-primary rounded-lg;
-	}
+  .fill-crumb {
+    @apply text-sm py-[1px] px-2 text-white bg-primary rounded-lg;
+  }
 }
