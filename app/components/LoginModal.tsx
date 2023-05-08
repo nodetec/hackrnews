@@ -5,95 +5,38 @@ import {
   UserIcon,
   XMarkIcon,
 } from "@heroicons/react/24/solid";
-import { nip05 } from "nostr-tools";
 import { Fragment, useEffect, useState } from "react";
-import { detectWebLNProvider } from "../lib/detectWebLn";
-import { userStore } from "../stores/user";
+import { setCookie } from "../lib/cookieHandlers";
+import { fetchProfileData, getProviders, getPubkey } from "../lib/loginUtils";
 
-export default function MyModal() {
+export default function LoginModal() {
   let [isOpen, setIsOpen] = useState(false);
-  let [keys, setKeys] = useState({ privateKey: "", publicKey: "" });
-  let [isLightningConnected, setIsLightningConnected] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   let [hasExt, setHasExt] = useState(false);
-  const pubkey = userStore((state) => state.pubkey);
-  const setPubkey = userStore((state) => state.setPubkey);
+  // const pubkey = userStore((state) => state.pubkey);
 
-  async function loginHandler() {
-    if (typeof window.nostr !== "undefined") {
-      const publicKey = await window.nostr.getPublicKey();
-      console.log("public key", publicKey);
-      setPubkey(publicKey);
-      console.log("pubkey =>", pubkey);
+  const openModal = async () => {
+    // Verify webln and nostr availability
+    if (!hasExt) {
+      const { webln, nostr } = await getProviders();
 
-      setKeys({ privateKey: "", publicKey: publicKey });
-      localStorage.setItem("shouldReconnect", "true");
+      if (webln && nostr) {
+        setHasExt(true);
+      } else {
+        setHasExt(false);
+      }
     }
-
-    if (typeof window.webln !== "undefined") {
-      await window.webln.enable();
-      setHasExt(true);
-      console.log("webln enabled");
-    }
-    console.log("connected");
-    setIsOpen(false);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-
-  function openModal() {
     setIsOpen(true);
-  }
+  };
+
+  const loginHandler = async () => {
+    getPubkey();
+    fetchProfileData();
+  };
 
   useEffect(() => {
-    const shouldReconnect = localStorage.getItem("shouldReconnect");
-
-    const getConnected = async (shouldReconnect: string) => {
-      let enabled = false;
-
-      if (typeof window.nostr === "undefined") {
-        console.log("no nostr");
-        return;
-      }
-
-      if (shouldReconnect === "true") {
-        const publicKey = await nostr.getPublicKey();
-        console.log("public key", publicKey);
-        setKeys({ privateKey: "", publicKey: publicKey });
-      }
-
-      if (typeof window.webln === "undefined") {
-        return;
-      }
-
-      if (shouldReconnect === "true" && !webln.executing) {
-        try {
-          enabled = await window.webln.enable();
-          setIsLightningConnected(true);
-        } catch (e: any) {
-          console.log(e.message);
-        }
-      }
-      return enabled;
-    };
-
-    if (shouldReconnect === "true") {
-      getConnected(shouldReconnect);
-    }
-  }, [setKeys]);
-
-  useEffect(() => {
-    const checker = async () => {
-      await detectWebLNProvider().then(
-        (promise: any) => promise.enabled && setHasExt(true)
-      );
-      let profile = await nip05.queryProfile("lcarv@kollider.me");
-      console.log("profile", profile);
-    };
-
-    checker();
-  });
+    setCookie("rememberMe", rememberMe.toString(), 7);
+  }, [rememberMe]);
 
   return (
     <>
@@ -102,7 +45,11 @@ export default function MyModal() {
       </button>
 
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+        <Dialog
+          as="div"
+          className="relative z-10"
+          onClose={() => setIsOpen(false)}
+        >
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -127,7 +74,7 @@ export default function MyModal() {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden align-middle text-left p-6 popup shadow-xl transition-all">
-                  {isLightningConnected ? (
+                  {hasExt ? (
                     <>
                       <Dialog.Title
                         as="h3"
@@ -137,7 +84,7 @@ export default function MyModal() {
                       </Dialog.Title>
 
                       <button
-                        onClick={closeModal}
+                        onClick={() => setIsOpen(false)}
                         className="fill-round-button bg-red-600 text-white p-1 absolute top-2 right-2"
                       >
                         <XMarkIcon className="h-4 w-4" />
@@ -148,7 +95,20 @@ export default function MyModal() {
                         </p>
                       </div>
 
-                      <div className="mt-4">
+                      <div className="mt-4 flex justify-between items-center">
+                        <div className="flex items-center text-gray-500">
+                          <input
+                            type="checkbox"
+                            name="remember-me"
+                            onClick={(ev) =>
+                              setRememberMe(ev.currentTarget.checked)
+                            }
+                          />
+                          <label className="ml-2 text-sm" htmlFor="remember-me">
+                            Remember me.
+                          </label>
+                        </div>
+
                         <button
                           type="button"
                           className="fill-button ml-auto"
@@ -160,7 +120,7 @@ export default function MyModal() {
                       </div>
                     </>
                   ) : (
-                    <LoginWithExtension />
+                    <DownloadExtension />
                   )}
                 </Dialog.Panel>
               </Transition.Child>
@@ -172,7 +132,7 @@ export default function MyModal() {
   );
 }
 
-const LoginWithExtension = () => {
+const DownloadExtension = () => {
   return (
     <>
       <Dialog.Title
@@ -184,7 +144,11 @@ const LoginWithExtension = () => {
       <p className="text-sm text-gray-500">
         It seems you don't have a supported extension.
       </p>
-      <p>Consult here for more information</p>
+      <p>
+        Consult{" "}
+        <a href="https://www.webln.guide/ressources/webln-providers">here</a>{" "}
+        for more information
+      </p>
     </>
   );
 };
