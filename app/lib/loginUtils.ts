@@ -4,12 +4,13 @@ import { detectWebLNProvider } from "./detectWebLn";
 export async function getProviders() {
   const webln = await detectWebLNProvider();
   const nostr = typeof window.nostr ? window.nostr : null;
+  // const setPubkey = userStore(state => sta)
 
   return { webln, nostr };
 }
 
-export async function getPubkey() {
-  const setPubkey = userStore((state) => state.setPubkey);
+export async function getPubkey(setPubkeyFn : (pkey : string) => void) {
+  // const setPubkey = userStore((state) => state.setPubkey);
   try {
     const { webln, nostr } = await getProviders();
     // Enabling the lightning network
@@ -21,7 +22,7 @@ export async function getPubkey() {
     // Get publicKey
     const publickey = await nostr.getPublicKey();
     // set to global store
-    setPubkey(publickey);
+    setPubkeyFn(publickey);
   } catch (error) {
     console.error("There was an error while loggin in -> ", error);
   }
