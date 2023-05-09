@@ -8,12 +8,14 @@ import {
 import { Fragment, useEffect, useState } from "react";
 import { setCookie } from "../lib/cookieHandlers";
 import { fetchProfileData, getProviders, getPubkey } from "../lib/loginUtils";
+import { userStore } from "../stores/user";
 
 export default function LoginModal() {
   let [isOpen, setIsOpen] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   let [hasExt, setHasExt] = useState(false);
-  // const pubkey = userStore((state) => state.pubkey);
+  const setPubkey = userStore(state => state.setPubkey)
+  const user = userStore(state => state)
 
   const openModal = async () => {
     // Verify webln and nostr availability
@@ -30,12 +32,13 @@ export default function LoginModal() {
   };
 
   const loginHandler = async () => {
-    getPubkey();
+    getPubkey(setPubkey);
+    console.log("pubkey:", user.pubkey);
     fetchProfileData();
   };
 
   useEffect(() => {
-    setCookie("rememberMe", rememberMe.toString(), 7);
+    setCookie("rememberMe", rememberMe.toString(), 30);
   }, [rememberMe]);
 
   return (
@@ -105,7 +108,7 @@ export default function LoginModal() {
                             }
                           />
                           <label className="ml-2 text-sm" htmlFor="remember-me">
-                            Remember me.
+                            Remember me for 30 days.
                           </label>
                         </div>
 
