@@ -1,4 +1,4 @@
-// import PostButton from "./PostButton";
+"use client";
 import {
   MagnifyingGlassIcon,
   PencilSquareIcon,
@@ -9,10 +9,15 @@ import Logo from "@/app/Logo";
 import { ColorTheme } from "../ColorTheme";
 import { links } from "./links";
 import LoginModal from "../LoginModal";
+import { userStore } from "@/app/stores/user";
+import { Avatar } from "../Avatar";
 
 const Header = () => {
+  const pubkey = userStore((state) => state.pubkey);
+
   return (
     <header className="z-30 py-1 px-4 txt-color bg-bg-accent shadow-lg top-0 dark:bg-zinc-700">
+      
       <nav className="flex items-center body-content justify-evenly">
         {/* Logo */}
         <div className="h-full flex grow ">
@@ -40,7 +45,7 @@ const Header = () => {
           </Link>
         </div>
 
-        <div className="flex gap-4 items-center grow justify-end">
+        <div className="flex gap-4 items-center grow justify-end relative">
           <form className="relative">
             <span className="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none">
               <MagnifyingGlassIcon className="h-6 w-6" />
@@ -54,7 +59,11 @@ const Header = () => {
 
           <ColorTheme />
 
+          {pubkey ?
+          <Avatar /> : 
           <LoginModal />
+          }
+
         </div>
       </nav>
     </header>
