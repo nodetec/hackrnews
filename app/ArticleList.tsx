@@ -12,7 +12,7 @@ export default function ArticleList() {
 	const [events, setEvents] = useState<any[]>([]);
 	const [loading, isLoading] = useState<boolean>(false);
 
-  const pubkey = userStore((state) => state.pubkey);
+  const user2 = userStore()
 
 	const loader = () => {
 		isLoading(true);
@@ -46,9 +46,7 @@ export default function ArticleList() {
 		<>
 			{/* Posts list */}
 			<ul className="space-y-2">
-        <div>
-          {pubkey}
-        </div>
+        <div>{user2.pubkey}</div>
 				{events.map((event: any, index: number) => {
 					return <Article key={event.id} event={event} index={index} />;
 				})}

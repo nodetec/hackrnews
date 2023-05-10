@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import Header from "./components/Header/Header";
 import Providers from "./context/providers";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -11,8 +11,11 @@ export default function RootLayout({
   const cookieStore = cookies();
 
   if (cookieStore.has("theme")) theme = cookieStore.get("theme")?.value || "";
-  if (theme === "system")
+  if (theme === "system") {
+    // WARNING: this is wrong ..
     theme = cookieStore.get("themePreference")?.value || "";
+
+  }
 
   return (
     <html lang="en" className={theme}>

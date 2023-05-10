@@ -7,11 +7,11 @@ import {
   SunIcon,
 } from "@heroicons/react/24/outline";
 import React, { Fragment, useEffect, useState } from "react";
-import { getCookie, setCookie, themeResolver } from "../lib/theme";
+import { getCookie, setCookie } from "../lib/cookieHandlers";
+import { themeResolver } from "../lib/theme";
 
 export const ColorTheme = () => {
   const theme = getCookie("theme");
-  console.log("Theme: ", theme);
   const [selectedTheme, setSelectedTheme] = useState(
     theme === "" ? "System" : theme
   );
@@ -32,7 +32,6 @@ export const ColorTheme = () => {
 
     if (!theme) {
       setCookie("theme", "system", 20);
-      console.log("setting cookie");
     }
   });
 

@@ -40,7 +40,7 @@ export default function Article({ event, index }: any) {
       source: "https://www.insert-link-here.org",
       createdAt: "2023/02/28 10:37",
     });
-    console.log("EVENT:", event);
+    // console.log("EVENT:", event);
   }, []);
 
   // for now this will use mockdata
