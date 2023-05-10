@@ -9,7 +9,7 @@ export async function getProviders() {
   return { webln, nostr };
 }
 
-export async function getPubkey(setPubkeyFn : (pkey : string) => void) {
+export async function getPubkey(setPubkeyFn: (pkey: string) => void) {
   // const setPubkey = userStore((state) => state.setPubkey);
   try {
     const { webln, nostr } = await getProviders();

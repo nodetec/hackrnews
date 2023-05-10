@@ -14,8 +14,8 @@ export default function LoginModal() {
   let [isOpen, setIsOpen] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   let [hasExt, setHasExt] = useState(false);
-  const setPubkey = userStore(state => state.setPubkey)
-  const user = userStore(state => state)
+  const setPubkey = userStore((state) => state.setPubkey);
+  const user = userStore((state) => state);
 
   const openModal = async () => {
     // Verify webln and nostr availability

@@ -17,7 +17,6 @@ const Header = () => {
 
   return (
     <header className="z-30 py-1 px-4 txt-color bg-bg-accent shadow-lg top-0 dark:bg-zinc-700">
-      
       <nav className="flex items-center body-content justify-evenly">
         {/* Logo */}
         <div className="h-full flex grow ">
@@ -59,11 +58,7 @@ const Header = () => {
 
           <ColorTheme />
 
-          {pubkey ?
-          <Avatar /> : 
-          <LoginModal />
-          }
-
+          {pubkey ? <Avatar /> : <LoginModal />}
         </div>
       </nav>
     </header>

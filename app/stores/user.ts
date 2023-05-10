@@ -8,7 +8,7 @@ export type User = {
   lud06: string;
   lud16: string;
   banner: string;
-  pubkey : string;
+  pubkey: string;
 };
 
 export interface UserState extends User {
@@ -24,7 +24,7 @@ export const userStore = create<UserState>((set) => ({
   lud06: "",
   lud16: "",
   banner: "",
-  pubkey : "",
+  pubkey: "",
   setUser: (user: User) => {
     return set({
       name: user.name,

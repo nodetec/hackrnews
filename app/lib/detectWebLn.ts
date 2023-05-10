@@ -1,4 +1,6 @@
-export async function detectWebLNProvider(timeoutParam? : number) : Promise<Window["webln"] | null> {
+export async function detectWebLNProvider(
+  timeoutParam?: number
+): Promise<Window["webln"] | null> {
   const timeout = timeoutParam ?? 3000;
   let resolved = false;
 
@@ -25,4 +27,3 @@ export async function detectWebLNProvider(timeoutParam? : number) : Promise<Wind
     }
   });
 }
-
