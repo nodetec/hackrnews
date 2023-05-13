@@ -1,14 +1,14 @@
 "use client";
 
-import { createContext, useState, useContext, useEffect } from "react";
-import { RelayContext } from "./relay-provider";
+import { createContext, useState } from "react";
+import { useRelays } from "@/app/stores/relays";
 
 export const ProfilesContext = createContext([]);
 
 export default function ProfilesProvider({ children }) {
   const [profiles, setProfiles] = useState({});
   const [reload, setReload] = useState(false);
-  const { relayUrl, subscribe } = useContext(RelayContext);
+  const { relayUrl, subscribe } = useRelays((state) => state);
 
   const addProfiles = async (pubkeys) => {
     if (!relayUrl) return;

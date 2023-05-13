@@ -3,12 +3,12 @@
 import { ArrowPathIcon } from "@heroicons/react/24/solid";
 import { useContext, useEffect, useState } from "react";
 import Article from "./components/ArticleCard/Article";
-import { RelayContext } from "./context/relay-provider";
 import { userStore } from "./stores/user";
 import { ProfilesContext } from "@/app/context/profiles-provider";
+import { useRelays } from "@/app/stores/relays";
 
 export default function ArticleList() {
-  const { subscribe, relayUrl, activeRelay } = useContext(RelayContext);
+  const { subscribe, relayUrl, activeRelay } = useRelays((state) => state);
   // @ts-ignore
   const { addProfiles } = useContext(ProfilesContext);
 

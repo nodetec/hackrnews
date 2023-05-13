@@ -10,9 +10,9 @@ import {
 import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { getRelativeTime, shortenHash } from "@/app/lib/utils";
-import { RelayContext } from "@/app/context/relay-provider";
 import { Event, nip19 } from "nostr-tools";
 import { ProfilesContext } from "@/app/context/profiles-provider";
+import { useRelays } from "@/app/stores/relays";
 
 // definitions missing like sats, upvotes, author (author link etc etc)
 type PostDetails = {
@@ -27,7 +27,7 @@ export default function Article({ event, index }: any) {
   // const [createdAt, setCreatedAt] = useState("")
   // const [client, setClient] = useState("")
   const [postDetails, setPostDetails] = useState<PostDetails | null>(null);
-  const { activeRelay } = useContext(RelayContext);
+  const { activeRelay } = useRelays((state) => state);
 
   // @ts-ignore
   const { profiles, reload } = useContext(ProfilesContext);
