@@ -11,10 +11,8 @@ import { getCookie, setCookie } from "../lib/cookieHandlers";
 import { themeResolver } from "../lib/theme";
 
 export const ColorTheme = () => {
-  const theme = getCookie("theme");
-  const [selectedTheme, setSelectedTheme] = useState(
-    theme === "" ? "system" : theme
-  );
+  const theme = getCookie("theme") || "system";
+  const [selectedTheme, setSelectedTheme] = useState(theme);
   const [displayIcon, setDisplayIcon] = useState(
     <ComputerDesktopIcon className="h-5 w-5" />
   );

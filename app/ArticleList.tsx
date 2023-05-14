@@ -54,7 +54,7 @@ export default function ArticleList() {
     <>
       {/* Posts list */}
       <ul className="space-y-2">
-        <div>{pubkey}</div>
+        {/* <div>{pubkey}</div> */}
         {events.map((event: any, index: number) => {
           return <Article key={event.id} event={event} index={index} />;
         })}

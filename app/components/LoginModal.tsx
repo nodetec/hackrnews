@@ -6,7 +6,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/solid";
 import { Fragment, useEffect, useState } from "react";
-import { setCookie } from "../lib/cookieHandlers";
+import { getCookie, setCookie } from "../lib/cookieHandlers";
 import { fetchProfileData, getProviders, getPubkey } from "../lib/loginUtils";
 import { userStore } from "../stores/user";
 
@@ -35,11 +35,17 @@ export default function LoginModal() {
     getPubkey(setPubkey);
     console.log("pubkey:", user.pubkey);
     fetchProfileData();
+    setCookie("rememberMe", rememberMe.toString(), 30);
   };
 
   useEffect(() => {
-    setCookie("rememberMe", rememberMe.toString(), 30);
-  }, [rememberMe]);
+    // console.log("cookie", getCookie("rememberMe"));
+    const cookie = getCookie("rememberMe") || "false"
+    if (getCookie("rememberMe") === "true") {
+      loginHandler();
+    }
+    setCookie("rememberMe", cookie);
+  });
 
   return (
     <>
@@ -79,10 +85,7 @@ export default function LoginModal() {
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden align-middle text-left p-6 popup shadow-xl transition-all">
                   {hasExt ? (
                     <>
-                      <Dialog.Title
-                        as="h3"
-                        className="title"
-                      >
+                      <Dialog.Title as="h3" className="title">
                         LOGIN
                       </Dialog.Title>
 
