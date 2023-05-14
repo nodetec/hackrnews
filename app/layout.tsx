@@ -1,4 +1,3 @@
-import { cookies } from "next/headers";
 import Header from "./components/Header/Header";
 
 export default async function RootLayout({
@@ -6,17 +5,9 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  let theme = "";
-  const cookieStore = cookies();
-
-  if (cookieStore.has("theme")) theme = cookieStore.get("theme")?.value || "";
-  if (theme === "system") {
-    // WARNING: this is wrong ..
-    theme = cookieStore.get("themePreference")?.value || "";
-  }
 
   return (
-    <html lang="en" className={theme}>
+    <html lang="en">
       <head />
       <body className="min-h-screen txt-color relative">
         <Header />

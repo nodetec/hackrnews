@@ -13,12 +13,11 @@ import { themeResolver } from "../lib/theme";
 export const ColorTheme = () => {
   const theme = getCookie("theme");
   const [selectedTheme, setSelectedTheme] = useState(
-    theme === "" ? "System" : theme
+    theme === "" ? "system" : theme
   );
   const [displayIcon, setDisplayIcon] = useState(
     <ComputerDesktopIcon className="h-5 w-5" />
   );
-  let themePreference: string;
 
   const themeOptions = [
     { name: "System", icon: <ComputerDesktopIcon className="h-5 w-5" /> },
@@ -27,24 +26,18 @@ export const ColorTheme = () => {
   ];
 
   useEffect(() => {
-    themePreference = window.matchMedia("dark").matches ? "dark" : "light";
-    setCookie("themePreference", themePreference, 1);
-
-    if (!theme) {
-      setCookie("theme", "system", 20);
-    }
-  });
-
-  useEffect(() => {
     switch (selectedTheme) {
       case "light":
         setDisplayIcon(<SunIcon className="h-5 w-5" />);
+        themeResolver("light");
         break;
       case "dark":
         setDisplayIcon(<MoonIcon className="h-5 w-5" />);
+        themeResolver("dark");
         break;
       default:
         setDisplayIcon(<ComputerDesktopIcon className="h-5 w-5" />);
+        themeResolver("system");
     }
   }, [selectedTheme]);
 
@@ -57,7 +50,6 @@ export const ColorTheme = () => {
               open ? "bg-black/30" : "bg-transparent"
             }`}
           >
-            {/* <SwatchIcon className="h-5 w-5" /> */}
             {displayIcon}
           </Menu.Button>
 
@@ -79,7 +71,6 @@ export const ColorTheme = () => {
                       <button
                         onClick={() => {
                           setSelectedTheme(theme.name.toLowerCase());
-                          themeResolver(theme.name.toLowerCase());
                         }}
                         className={` border flex w-full items-center rounded-md px-2 py-2 text-sm ${
                           active
