@@ -11,8 +11,8 @@ import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { getRelativeTime, shortenHash } from "@/app/lib/utils";
 import { Event, nip19 } from "nostr-tools";
-import { ProfilesContext } from "@/app/context/profiles-provider";
 import { useRelays } from "@/app/stores/relays";
+import { useProfiles } from "@/app/stores/profiles";
 
 // definitions missing like sats, upvotes, author (author link etc etc)
 type PostDetails = {
@@ -29,8 +29,7 @@ export default function Article({ event, index }: any) {
   const [postDetails, setPostDetails] = useState<PostDetails | null>(null);
   const { activeRelay } = useRelays((state) => state);
 
-  // @ts-ignore
-  const { profiles, reload } = useContext(ProfilesContext);
+  const { profiles, reload } = useProfiles();
 
   const getTagValue = (name: string, tags: string[][]) => {
     const [itemTag] = tags.filter((tag: string[]) => tag[0] === name);
