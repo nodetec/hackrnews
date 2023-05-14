@@ -1,16 +1,15 @@
 "use client";
 
 import { ArrowPathIcon } from "@heroicons/react/24/solid";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Article from "./components/ArticleCard/Article";
 import { userStore } from "./stores/user";
-import { ProfilesContext } from "@/app/context/profiles-provider";
 import { useRelays } from "@/app/stores/relays";
+import { useProfiles } from "@/app/stores/profiles";
 
 export default function ArticleList() {
   const { subscribe, relayUrl, activeRelay } = useRelays((state) => state);
-  // @ts-ignore
-  const { addProfiles } = useContext(ProfilesContext);
+  const { addProfiles } = useProfiles();
 
   const [events, setEvents] = useState<any[]>([]);
   const [loading, isLoading] = useState<boolean>(false);
