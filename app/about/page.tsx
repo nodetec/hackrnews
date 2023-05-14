@@ -1,9 +1,6 @@
 import { CogIcon, HeartIcon, UserIcon } from "@heroicons/react/24/solid";
 import React from "react";
 
-function alerto() {
-  alert("hello");
-}
 export default function About() {
   return (
     <div className="space-y-2 h-full p-4 relative space-x-2">
@@ -33,7 +30,7 @@ export default function About() {
         this is a popup
       </div>
 
-      <div className="card">This is a card (with hoover effect)</div>
+      <div className="card p-4">This is a card (with hoover effect)</div>
       <div className="link">www.this-is-a-link.org</div>
 
       <span className="bordered-crumb m-2">#crumb</span>

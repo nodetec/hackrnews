@@ -1,13 +1,20 @@
-// import PostButton from "./PostButton";
-import { UserIcon, MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+"use client";
+import {
+  MagnifyingGlassIcon,
+  PencilSquareIcon,
+} from "@heroicons/react/24/solid";
 import "@/styles/globals.css";
 import Link from "next/link";
 import Logo from "@/app/Logo";
 import { ColorTheme } from "../ColorTheme";
 import { links } from "./links";
 import LoginModal from "../LoginModal";
+import { userStore } from "@/app/stores/user";
+import { Avatar } from "../Avatar";
 
 const Header = () => {
+  const pubkey = userStore((state) => state.pubkey);
+
   return (
     <header className="z-30 py-1 px-4 txt-color bg-bg-accent shadow-lg top-0 dark:bg-zinc-700">
       <nav className="flex items-center body-content justify-evenly">
@@ -17,7 +24,7 @@ const Header = () => {
         </div>
 
         {/* links */}
-        <div className="flex items-center justify-center grow-0">
+        <div className="hidden md:flex space-x-1  items-center justify-center grow-0">
           {links.map((link) => (
             <Link
               key={link.href}
@@ -31,14 +38,13 @@ const Header = () => {
               {link.name}
             </Link>
           ))}
+          <Link href={"/post"} className="bordered-button">
+            <PencilSquareIcon className="h-5 w-5" />
+            Post
+          </Link>
         </div>
 
-        <Link href={"/post"} className="flex gap-2 ghost-button items-center">
-          <button className="border-2 border-orange-600 rounded-md px-3 py-1 text-orange-600 ml-2 hover:bg-orange-600 hover:text-white">
-            post
-          </button>
-        </Link>
-        <div className="flex gap-4 items-center grow justify-end">
+        <div className="flex gap-4 items-center grow justify-end relative">
           <form className="relative">
             <span className="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none">
               <MagnifyingGlassIcon className="h-6 w-6" />
@@ -52,7 +58,7 @@ const Header = () => {
 
           <ColorTheme />
 
-          <LoginModal />
+          {pubkey ? <Avatar /> : <LoginModal />}
         </div>
       </nav>
     </header>

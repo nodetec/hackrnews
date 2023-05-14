@@ -5,15 +5,18 @@ import {
   ComputerDesktopIcon,
   MoonIcon,
   SunIcon,
-  SwatchIcon
 } from "@heroicons/react/24/outline";
-import React, { Fragment, useState } from "react";
-import { getCookie, setCookie, themeResolver } from "../lib/theme";
+import React, { Fragment, useEffect, useState } from "react";
+import { getCookie, setCookie } from "../lib/cookieHandlers";
+import { themeResolver } from "../lib/theme";
 
 export const ColorTheme = () => {
   const theme = getCookie("theme");
   const [selectedTheme, setSelectedTheme] = useState(
-    theme === "" ? "System" : theme
+    theme === "" ? "system" : theme
+  );
+  const [displayIcon, setDisplayIcon] = useState(
+    <ComputerDesktopIcon className="h-5 w-5" />
   );
 
   const themeOptions = [
@@ -22,27 +25,32 @@ export const ColorTheme = () => {
     { name: "Dark", icon: <MoonIcon className="h-5 w-5" /> },
   ];
 
-  // TODO: Figure out why themeInit is being called on the server.
-  const themePreference = window.matchMedia("dark") ? "dark" : "light";
-  setCookie("themePreference", themePreference, 1);
-
-  if (!theme) {
-    setCookie("theme", "system", 20);
-    console.log("setting cookie");
-  }
-
-  // useEffect(() => {
-  //   themeResolver(defaultTheme);
-  // }, [defaultTheme]);
+  useEffect(() => {
+    switch (selectedTheme) {
+      case "light":
+        setDisplayIcon(<SunIcon className="h-5 w-5" />);
+        themeResolver("light");
+        break;
+      case "dark":
+        setDisplayIcon(<MoonIcon className="h-5 w-5" />);
+        themeResolver("dark");
+        break;
+      default:
+        setDisplayIcon(<ComputerDesktopIcon className="h-5 w-5" />);
+        themeResolver("system");
+    }
+  }, [selectedTheme]);
 
   return (
     <Menu as={"div"} className="relative inline-block text-left max-w-sm">
       {({ open }) => (
         <>
           <Menu.Button
-            className={`ghost-round-button ${open ? "bg-black/30" : "bg-transparent"}`}
+            className={`ghost-round-button ${
+              open ? "bg-black/30" : "bg-transparent"
+            }`}
           >
-            <SwatchIcon className="h-5 w-5" />
+            {displayIcon}
           </Menu.Button>
 
           <Transition
@@ -63,7 +71,6 @@ export const ColorTheme = () => {
                       <button
                         onClick={() => {
                           setSelectedTheme(theme.name.toLowerCase());
-                          themeResolver(theme.name.toLowerCase());
                         }}
                         className={` border flex w-full items-center rounded-md px-2 py-2 text-sm ${
                           active
