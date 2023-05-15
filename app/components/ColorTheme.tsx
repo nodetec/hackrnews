@@ -9,22 +9,23 @@ import {
 import React, { Fragment, useEffect, useState } from "react";
 import { getCookie, setCookie } from "../lib/cookieHandlers";
 import { themeResolver } from "../lib/theme";
-
 export const ColorTheme = () => {
-  const theme = getCookie("theme") || "system";
-  const [selectedTheme, setSelectedTheme] = useState(theme);
+  const [selectedTheme, setSelectedTheme] = useState("");
   const [displayIcon, setDisplayIcon] = useState(
     <ComputerDesktopIcon className="h-5 w-5" />
-  );
-
-  const themeOptions = [
+    );
+    const themeOptions = [
     { name: "System", icon: <ComputerDesktopIcon className="h-5 w-5" /> },
     { name: "Light", icon: <SunIcon className="h-5 w-5" /> },
     { name: "Dark", icon: <MoonIcon className="h-5 w-5" /> },
   ];
 
-  useEffect(() => {
-    switch (selectedTheme) {
+  function changeTheme(value:string | undefined){
+    if(value === undefined)
+      value = getCookie('theme') || 'system';
+    setCookie('theme', value);
+    setSelectedTheme(value);
+    switch (value) {
       case "light":
         setDisplayIcon(<SunIcon className="h-5 w-5" />);
         themeResolver("light");
@@ -37,16 +38,19 @@ export const ColorTheme = () => {
         setDisplayIcon(<ComputerDesktopIcon className="h-5 w-5" />);
         themeResolver("system");
     }
-  }, [selectedTheme]);
+  }
+
+  useEffect(()=>{
+    changeTheme(undefined);
+  }, [])
 
   return (
     <Menu as={"div"} className="relative inline-block text-left max-w-sm">
       {({ open }) => (
         <>
           <Menu.Button
-            className={`ghost-round-button ${
-              open ? "bg-black/30" : "bg-transparent"
-            }`}
+            className={`ghost-round-button ${open ? "bg-black/30" : "bg-transparent"
+              }`}
           >
             {displayIcon}
           </Menu.Button>
@@ -68,13 +72,12 @@ export const ColorTheme = () => {
                     {({ active }) => (
                       <button
                         onClick={() => {
-                          setSelectedTheme(theme.name.toLowerCase());
+                          changeTheme(theme.name.toLowerCase());
                         }}
-                        className={` border flex w-full items-center rounded-md px-2 py-2 text-sm ${
-                          active
+                        className={` border flex w-full items-center rounded-md px-2 py-2 text-sm ${active
                             ? "bg-stone-200 border-orange-600 text-orange-600 dark:bg-stone-800 "
                             : "txt-color border-transparent"
-                        }`}
+                          }`}
                       >
                         {theme.icon}
                         <span className="ml-2">{theme.name}</span>
