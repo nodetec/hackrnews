@@ -1,6 +1,7 @@
 "use client";
 import { setCookie,getCookie } from "./cookieHandlers";
 window.matchMedia("(prefers-color-scheme: dark)").onchange = function(){
+  if(typeof document === "undefined") return;
   let theme = getCookie("theme");
   const htmlEl = document.documentElement;
   if(theme === "system"){
