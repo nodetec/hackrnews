@@ -1,23 +1,24 @@
 "use client";
-import { setCookie,getCookie } from "./cookieHandlers";
-window.matchMedia("(prefers-color-scheme: dark)").onchange = function(){
-  if(typeof document === "undefined") return;
+import { getCookie } from "./cookieHandlers";
+
+function addThemeOnChange() {
+  if (typeof document === "undefined") return;
   let theme = getCookie("theme");
   const htmlEl = document.documentElement;
-  if(theme === "system"){
-    const darkMedia = window.matchMedia("(prefers-color-scheme: dark)" );
-    theme = darkMedia.matches?'dark':'light';
+  if (theme === "system") {
+    const darkMedia = window.matchMedia("(prefers-color-scheme: dark)");
+    theme = darkMedia.matches ? 'dark' : 'light';
     htmlEl.className = theme;
   }
 }
+
 export function themeResolver(theme: string) {
-  if (typeof document === "undefined") return;
+  if (typeof window === "undefined" || typeof document === "undefined") return;
   const htmlEl = document.documentElement;
-  if(theme !== 'system')
-    htmlEl.className = theme;
-  else{
-    const darkMedia = window.matchMedia("(prefers-color-scheme: dark)" );
-    theme = darkMedia.matches?'dark':'light';
-    htmlEl.className = theme;
+  if (theme === 'system') {
+    window.matchMedia("(prefers-color-scheme: dark)").onchange = addThemeOnChange;
+    const darkMedia = window.matchMedia("(prefers-color-scheme: dark)");
+    theme = darkMedia.matches ? 'dark' : 'light';
   }
+  htmlEl.className = theme;
 }
