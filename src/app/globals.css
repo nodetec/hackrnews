@@ -2,26 +2,66 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --color-primary: 245 158 11;
+    --color-secondary: 20 184 166;
+    --color-warn: 251 191 36;
+    --color-error: 252 165 165;
+    --color-info: 59 130 246;
+    --color-success: 158 202 225;
+    --background-color: 255 255 255;
+    --surface-1: 250 250 249;
+    --surface-2: 245 245 244;
+    --surface-3: 231 229 228;
+    --text-color: 28 25 23;
+    --discreet-text: 163 163 163;
+  }
+
+  html.dark {
+    --color-primary: 245 158 11;
+    --color-secondary: 20 184 166;
+    --color-warn: 251 191 36;
+    --color-error: 252 165 165;
+    --color-info: 59 130 246;
+    --color-success: 158 202 225;
+    --background-color: 31 28 22;
+    --surface-1: 23 22 18;
+    --surface-2: 13 12 10;
+    --surface-3: 10 10 10;
+    --text-color: 250 250 249;
+    --discreet-text: 163 163 163;
+  }
+
+  .menu-open {
+    animation: fadeIn 0.2s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-5px) translateX(5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) translateX(0);
+    }
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
+/* @media (prefers-color-scheme: dark) { */
+/*   :root { */
+/*     --color-primary: theme('colors.orange.400'); */
+/*     --color-secondary: theme('colors.teal.300'); */
+/*     --color-warn: theme('colors.yellow.300'); */
+/*     --color-error: theme('colors.rose.300'); */
+/*     --color-info: theme('colors.blue.300'); */
+/*     --color-success: theme('colors.lime.300'); */
+/*     --background-color: theme('colors.stone.900'); */
+/*     --surface-1: theme('colors.stone.950'); */
+/*     --surface-2: theme('colors.neutral.900'); */
+/*     --surface-3: theme('colors.zinc.900'); */
+/*     --text-color: theme('colors.stone.50'); */
+/*     --discreet-text: theme('colors.neutral.600'); */
+/*   } */
+/* } */
