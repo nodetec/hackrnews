@@ -1,7 +1,0 @@
-div#dialog {
-  display: block;
-}
-
-div#dialog:not(:target):not([open]) {
-  display: none;
-}
