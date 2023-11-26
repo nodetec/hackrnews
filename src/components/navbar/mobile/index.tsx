@@ -9,49 +9,34 @@ import Divider from '@/components/divider';
 import MenuLinks from './menu-links';
 import UserSettings from './user-settings';
 import styles from './styles.module.css';
+import { closeHandler, openHandler } from './fns';
 
-const evListener = (e: TouchEvent) => {
+
+const preventMobileScrollListener = (e: TouchEvent) => {
     e.preventDefault();
+}
+
+const toggleScroll = (scroll: boolean) => {
+    if (scroll) {
+        document.body.style.overflowY = "auto";
+        document.body.addEventListener('touchmove', preventMobileScrollListener, { passive: false })
+        return
+    }
+    document.body.style.overflowY = "hidden";
+    document.body.removeEventListener('touchmove', preventMobileScrollListener)
 }
 
 export default function MobileMenu() {
     const dialog = React.useRef<HTMLDialogElement>(null);
-
-    const openHandler = () => {
-        // this is for mobile
-        document.body.addEventListener('touchmove', evListener, { passive: false })
-        // this is for scroll with mouse/trackpad
-        document.body.style.overflowY = "hidden";
-        dialog.current?.showModal();
-    }
-    const closeHandler = () => {
-        document.body.removeEventListener('touchmove', evListener)
-        document.body.style.overflowY = "auto";
-        dialog.current?.classList.add(styles.slideOut);
-        dialog.current!.onanimationend = (e) => {
-            if (e.animationName === styles['slide-out']) {
-                dialog.current?.close();
-                e.stopPropagation();
-                dialog.current?.classList.remove(styles.slideOut);
-            }
-        }
-    }
-
-    const animationHandler: React.AnimationEventHandler<HTMLDialogElement> = (e) => {
-        // if (e.animationName === 'slide-out') {
-        //     dialog.current?.close();
-        //     dialog.current?.classList.remove(styles.slideOut);
-        //     // this is to prevent children to close the parent
-        // }
-        // e.stopPropagation();
-    }
+    const openFn = openHandler.bind(null, dialog)
+    const closeFn = closeHandler.bind(null, dialog)
 
     return (
         <>
             <RoundButton
                 flat
                 className="ring-transparent shadow-none"
-                onClick={openHandler}
+                onClick={openFn}
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +57,6 @@ export default function MobileMenu() {
             <dialog
                 ref={dialog}
                 aria-modal
-                onAnimationEnd={animationHandler}
                 className={twJoin(
                     "rounded-3xl p-4 bg-background w-full h-full text-textColor",
                     "space-y-4 backdrop:bg-black/20 backdrop:backdrop-blur-md",
@@ -83,11 +67,11 @@ export default function MobileMenu() {
                     {/* Logo and closebtn */}
                     <div className="flex justify-between items-center">
                         <Logo />
-                        <RoundButton flat onClick={closeHandler}>
+                        <RoundButton flat onClick={closeFn}>
                             <XIcon className="w-5 h-5" />
                         </RoundButton>
                     </div>
-                    <MenuLinks closeHandler={closeHandler} />
+                    <MenuLinks closeHandler={closeFn} />
 
                     <Divider />
 
@@ -99,7 +83,7 @@ export default function MobileMenu() {
                             variant="primary"
                             className="justify-start gap-3"
                             flat
-                            onClick={closeHandler}
+                            onClick={closeFn}
                         >
                             <User2Icon className="w-5 h-5" />
                             Accounts
@@ -108,7 +92,7 @@ export default function MobileMenu() {
 
                     {/* Logout Btn */}
                     <div className="mt-auto">
-                        <Button variant="error" onClick={closeHandler} flat>
+                        <Button variant="error" onClick={closeFn} flat>
                             <LogOutIcon className="w-5 h-5" />
                             Logout
                         </Button>

@@ -20,9 +20,9 @@
     opacity: 0;
     transform: translateX(90%);
 }
-50% {
-    opacity: 0.95;
-    transform: translateX(-10%); 
+40% {
+    opacity: 1;
+    transform: translateX(-5%); 
 }
 100% {
     opacity: 1;
@@ -35,13 +35,9 @@
     opacity: 1;
     transform: translateX(0);
 }
-30% {
+40% {
     opacity: 1;
-    transform: translateX(20%);
-}
-80% {
-    opacity: 0.8;
-    transform: translateX(90%);
+    transform: translateX(-5%);
 }
 100% {
     opacity: 0;
