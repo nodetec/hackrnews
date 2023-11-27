@@ -8,28 +8,13 @@ import { twJoin } from 'tailwind-merge';
 import Divider from '@/components/divider';
 import MenuLinks from './menu-links';
 import UserSettings from './user-settings';
-import styles from './styles.module.css';
-import { closeHandler, openHandler } from './fns';
-
-
-const preventMobileScrollListener = (e: TouchEvent) => {
-    e.preventDefault();
-}
-
-const toggleScroll = (scroll: boolean) => {
-    if (scroll) {
-        document.body.style.overflowY = "auto";
-        document.body.addEventListener('touchmove', preventMobileScrollListener, { passive: false })
-        return
-    }
-    document.body.style.overflowY = "hidden";
-    document.body.removeEventListener('touchmove', preventMobileScrollListener)
-}
+import styles from '@/components/navbar/styles.module.css';
+import { closeHandler, openHandler } from '../fns';
 
 export default function MobileMenu() {
     const dialog = React.useRef<HTMLDialogElement>(null);
-    const openFn = openHandler.bind(null, dialog)
-    const closeFn = closeHandler.bind(null, dialog)
+    const openFn = openHandler.bind(null, dialog, true)
+    const closeFn = closeHandler.bind(null, dialog, true)
 
     return (
         <>

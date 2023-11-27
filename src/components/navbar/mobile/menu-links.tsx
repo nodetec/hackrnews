@@ -7,11 +7,12 @@ import { twJoin } from "tailwind-merge";
 export default function MenuLinks({ closeHandler }: { closeHandler: () => void }) {
     const pathname = usePathname()
     return (
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 focus-within:ring-primary">
             {routes.map((route) => (
                 <Link href={route.path} key={route.name}>
                     <Button
                         onClick={closeHandler}
+                        tabIndex={-1}
                         flat
                         className={twJoin(
                             "justify-start gap-3",

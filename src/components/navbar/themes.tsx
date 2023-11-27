@@ -2,15 +2,15 @@ import { LaptopIcon, MoonIcon, SunIcon } from "lucide-react";
 
 export const themes = [
     {
-        name: "System",
+        name: "system",
         icon: <LaptopIcon className="w-5 h-5" />,
     },
     {
-        name: "Light",
+        name: "light",
         icon: <SunIcon className="w-5 h-5" />,
     },
     {
-        name: "Dark",
+        name: "dark",
         icon: <MoonIcon className="w-5 h-5" />,
     }
 ]

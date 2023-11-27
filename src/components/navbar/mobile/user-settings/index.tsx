@@ -1,17 +1,15 @@
 import { Button, RoundButton } from '@/components/buttons';
-import { ArrowLeftIcon, Settings2Icon, SunIcon } from 'lucide-react';
-import React from 'react'
+import { closeHandler, openHandler } from '@/components/navbar/fns';
+import { ArrowLeftIcon, Settings2Icon } from 'lucide-react';
+import React from 'react';
 import { twJoin } from 'tailwind-merge';
-import styles from '../styles.module.css'
-import { themes } from './themes'
-import { closeHandler, openHandler } from '../fns';
+import styles from '@/components/navbar/styles.module.css';
+import ThemeSelect from './theme-select';
 
 export default function MobileSettings() {
     const dialog = React.useRef<HTMLDialogElement>(null);
-    const themeSelect = React.useRef<HTMLSelectElement>(null);
-    const openFn = openHandler.bind(null, dialog)
-    const closeFn = closeHandler.bind(null, dialog)
-    const [theme, setTheme] = React.useState(themes[0])
+    const openFn = openHandler.bind(null, dialog, false)
+    const closeFn = closeHandler.bind(null, dialog, false)
 
     return (
         <>
@@ -43,38 +41,7 @@ export default function MobileSettings() {
                 </RoundButton>
 
                 <div >
-                    {/* Theme */}
-                    <label htmlFor="theme-btn" className="text-xl">
-                        Preferred Theme
-                    </label>
-                    <div
-                        className={twJoin(
-                            "relative bg-surface3 rounded-lg",
-                            "focus-within:ring-2 ring-primary relative",
-                        )}
-                    >
-                        <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2"> {theme.icon}
-                        </span>
-                        <select
-                            ref={themeSelect}
-                            name="theme-btn"
-                            className={twJoin(
-                                "w-full bg-inherit flex-grow border",
-                                "outline-none pl-10 py-2.5 pr-4 rounded-lg",
-                            )}
-                            defaultValue={"light"}
-                        >
-                            {themes.map((theme) => (
-                                <option
-                                    key={theme.name}
-                                    value={theme.name}
-                                    data-icon={theme.icon}
-                                >
-                                    {theme.name}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
+                    <ThemeSelect />
                 </div>
             </dialog>
         </>
