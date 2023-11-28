@@ -1,64 +1,63 @@
 .slideIn {
-    animation: slide-in 0.3s ease-out;
+  animation: slide-in 0.3s ease-out;
 }
 
 .slideOut {
-    animation: slide-out 0.3s ease-out;
+  animation: slide-out 0.3s ease-out;
 }
 
 .slideIn::backdrop {
-    animation: fade-in 0.2s ease-out;
+  animation: fade-in 0.2s ease-out;
 }
 
 .slideOut::backdrop {
-    animation: fade-out 0.4s ease-out;
+  animation: fade-out 0.4s ease-out;
 }
-
 
 @keyframes slide-in {
-0% {
+  0% {
     opacity: 0;
     transform: translateX(90%);
-}
-40% {
+  }
+  40% {
     opacity: 1;
-    transform: translateX(-5%); 
-}
-100% {
+    transform: translateX(-5%);
+  }
+  100% {
     opacity: 1;
     transform: translateX(0);
-}
+  }
 }
 
 @keyframes slide-out {
-0% {
+  0% {
     opacity: 1;
     transform: translateX(0);
-}
-40% {
+  }
+  40% {
     opacity: 1;
     transform: translateX(-5%);
-}
-100% {
+  }
+  100% {
     opacity: 0;
     transform: translateX(100%);
-}
+  }
 }
 
 @keyframes fade-in {
-from {
+  from {
     opacity: 0;
-}
-to {
+  }
+  to {
     opacity: 1;
-}
+  }
 }
 
 @keyframes fade-out {
-from {
+  from {
     opacity: 1;
-}
-to {
+  }
+  to {
     opacity: 0;
-}
+  }
 }
