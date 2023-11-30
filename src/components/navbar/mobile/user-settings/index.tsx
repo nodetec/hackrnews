@@ -5,6 +5,7 @@ import React from "react";
 import { twJoin } from "tailwind-merge";
 import styles from "@/components/navbar/styles.module.css";
 import ThemeSelect from "./theme-select";
+import RelaySettings from "./relay-settings";
 
 export default function MobileSettings() {
   const dialog = React.useRef<HTMLDialogElement>(null);
@@ -34,8 +35,9 @@ export default function MobileSettings() {
           <ArrowLeftIcon />
         </RoundButton>
 
-        <div>
+        <div className="space-y-8">
           <ThemeSelect />
+          <RelaySettings />
         </div>
       </dialog>
     </>

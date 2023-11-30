@@ -13,12 +13,12 @@ export default function ThemeSelect() {
 
   return (
     <div>
-      <label htmlFor="theme-btn" className="text-xl">
+      <label htmlFor="theme-btn" className="text-2xl">
         Preferred Theme
       </label>
       <div
         className={twJoin(
-          "relative bg-surface3 rounded-lg",
+          "relative bg-surface2 rounded-lg",
           "focus-within:ring-2 ring-primary relative",
         )}
       >
