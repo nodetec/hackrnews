@@ -7,7 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "biome:lint": "biome lint src",
+    "biome:format": "biome format --write src",
+    "biome:easy-fix": "biome check --apply src/",
+    "biome:hard-fix": "biome check --apply-unsafe src/",
+    "biome:check": "biome check src/"
   },
   "dependencies": {
     "animejs": "^3.2.1",
@@ -18,6 +23,7 @@
     "tailwind-merge": "^2.0.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.4.1",
     "@types/animejs": "^3.1.12",
     "@types/node": "^20",
     "@types/react": "^18",
