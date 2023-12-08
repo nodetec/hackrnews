@@ -1,3 +1,4 @@
+import { addCookie } from "@/utils/cookies";
 import styles from "./styles.module.css";
 
 const preventMobileScrollListener = (e: TouchEvent) => {
@@ -39,5 +40,37 @@ export function closeHandler(
 				ref.current?.classList.remove(styles.slideOut);
 			}
 		};
+	}
+}
+
+export function handleThemeToggle(theme: string) {
+	document.documentElement.dataset.mode = theme;
+
+	const themeListener = (e: MediaQueryListEvent | MediaQueryList) => {
+		if (e.matches) {
+			document.documentElement.classList.add("dark");
+		} else {
+			document.documentElement.classList.remove("dark");
+		}
+	};
+
+	const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+	switch (theme) {
+		case "system":
+			themeListener(prefersDark);
+			prefersDark.addEventListener("change", themeListener);
+			addCookie("theme", "system");
+			break;
+		case "dark":
+			prefersDark.removeEventListener("change", themeListener);
+			document.documentElement.classList.add("dark");
+			addCookie("theme", "dark");
+			break;
+		case "light":
+			prefersDark.removeEventListener("change", themeListener);
+			document.documentElement.classList.remove("dark");
+			addCookie("theme", "light");
+			break;
 	}
 }

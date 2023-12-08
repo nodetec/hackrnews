@@ -2,6 +2,7 @@ import { themes } from "@/components/navbar/themes";
 import { ChevronDownIcon } from "lucide-react";
 import React from "react";
 import { twJoin } from "tailwind-merge";
+import { handleThemeToggle } from "../../fns";
 
 export default function ThemeSelect() {
 	const [theme, setTheme] = React.useState(themes[0]);
@@ -34,7 +35,8 @@ export default function ThemeSelect() {
 					)}
 					value={theme.name}
 					onChange={(e) => {
-						document.documentElement.dataset.mode = e.target.value;
+						// document.documentElement.dataset.mode = e.target.value;
+						handleThemeToggle(e.target.value);
 						setTheme(
 							themes.find((t) => t.name === e.target.value) ?? themes[0],
 						);
