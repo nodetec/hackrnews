@@ -1,0 +1,12 @@
+.popover {
+  width: 200px;
+}
+
+.popover:popover-open {
+  width: 200px;
+  height: 100px;
+  position: absolute;
+  inset: unset;
+  margin: 2rem auto;
+}
+

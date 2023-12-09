@@ -7,7 +7,7 @@ export default function Logo() {
 		<Link href="/">
 			<h1
 				className={twJoin(
-					"text-3xl align-top uppercase",
+					"text-3xl uppercase",
 					// tourney.className,
 					pixelify.className,
 				)}

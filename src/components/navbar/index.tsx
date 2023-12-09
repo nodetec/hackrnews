@@ -3,6 +3,8 @@ import React from "react";
 import { twJoin } from "tailwind-merge";
 import Logo from "../logo";
 import MobileMenu from "./mobile";
+import MenuLinks from "./menu-links";
+import ThemeSwitch from "./theme-switch";
 
 export default function Navbar() {
 	return (
@@ -16,20 +18,13 @@ export default function Navbar() {
 		>
 			<Logo />
 			<MobileMenu />
-			<Links />
+			<MenuLinks />
+			<ThemeSwitch />
 			<Settings />
 		</nav>
 	);
 }
 
-function Links() {
-	return (
-		<div className="hidden md:block space-x-4">
-			<Link href="/">Home</Link>
-			<Link href="/about">About</Link>
-		</div>
-	);
-}
 
 function Settings() {
 	return (

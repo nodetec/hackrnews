@@ -26,15 +26,15 @@ const config: Config = {
       },
     },
   },
-  variants: {
-    extend: {
-      opacity: ["open"],
-      translate: ["open"],
-      transitionProperty: ["open"],
-      transitionDuration: ["open"],
-      transitionTimingFunction: ["open"],
-    },
-  },
+  // variants: {
+  //   extend: {
+  //     opacity: ["open"],
+  //     translate: ["open"],
+  //     transitionProperty: ["open"],
+  //     transitionDuration: ["open"],
+  //     transitionTimingFunction: ["open"],
+  //   },
+  // },
   plugins: [],
 };
 export default config;
