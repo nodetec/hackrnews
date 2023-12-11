@@ -10,7 +10,7 @@ export default function MenuLinks() {
 	const pathname = usePathname();
 
 	return (
-		<div className="ml-12 hidden md:flex space-x-4 gap-2 grow">
+		<div className="ml-6 xl:ml-12 hidden md:flex xl:gap-4 grow">
 			{routes.map((route) => (
 				<Link key={route.name} href={route.path}>
 					<Button
