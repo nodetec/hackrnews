@@ -1,8 +1,8 @@
-import { themes } from "@/components/navbar/themes";
 import { ChevronDownIcon } from "lucide-react";
 import React from "react";
 import { twJoin } from "tailwind-merge";
 import { handleThemeToggle } from "../../fns";
+import { themes } from "@/utils/themes";
 
 export default function ThemeSelect() {
 	const [theme, setTheme] = React.useState(themes[0]);

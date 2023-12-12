@@ -1,11 +1,11 @@
 import { Button, RoundButton } from "@/components/buttons";
-import { closeHandler, openHandler } from "@/components/navbar/fns";
-import styles from "@/components/navbar/styles.module.css";
+import styles from "@/app/(navbar)/styles.module.css";
 import { ArrowLeftIcon, Settings2Icon } from "lucide-react";
 import React from "react";
 import { twJoin } from "tailwind-merge";
 import RelaySettings from "./relay-settings";
 import ThemeSelect from "./theme-select";
+import { openHandler, closeHandler } from "../../fns";
 
 export default function MobileSettings() {
 	const dialog = React.useRef<HTMLDialogElement>(null);

@@ -1,10 +1,10 @@
-import Navbar from "@/components/navbar";
 import { josefinSans } from "@/ui/fonts";
 import type { Metadata } from "next";
 import { twJoin } from "tailwind-merge";
 import "./globals.css";
 import { getThemeCookie } from "./theme-cookie";
 import ThemeLoader from "./theme-loader";
+import Navbar from "./(navbar)";
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -13,8 +13,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
 	children,
+	modal,
 }: {
 	children: React.ReactNode;
+		modal: React.ReactNode;
 }) {
 	const theme = getThemeCookie();
 
@@ -33,7 +35,7 @@ export default function RootLayout({
 			>
 				<ThemeLoader />
 				<Navbar />
-				{/* <Sidebar className='hidden' /> */}
+				{modal}
 				{children}
 			</body>
 		</html>

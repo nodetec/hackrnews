@@ -1,9 +1,9 @@
 "use client";
 
 import { Menu, Transition } from "@headlessui/react";
+import { themes } from "@/utils/themes";
 import React from "react";
 import { twJoin } from "tailwind-merge";
-import { themes } from "./themes";
 import { handleThemeToggle } from "./fns";
 
 export default function ThemeSwitch() {
@@ -14,22 +14,22 @@ export default function ThemeSwitch() {
 		setTheme(themes.find((t) => t.name === mode) || themes[0]);
 	}, [setTheme]);
 
-	const toggleTheme = (theme: (typeof themes)[number]) => {
+	const toggleTheme = (theme: typeof themes[number]) => {
 		handleThemeToggle(theme.name);
 		setTheme(theme);
 	};
 
 	return (
-		<div className="hidden ml-auto mr-6 md:block">
+		<div className="hidden ml-auto mr-6 lg:block">
 			<Menu as="div" className="relative">
 				{({ open }) => (
 					<>
-						<Menu.Button 
+						<Menu.Button
 							className={twJoin(
-								"[&>svg]:w-6 [&>svg]:h-6 p-2 rounded-full",
-								open && "bg-surface3",
+								"[&>svg]:w-6 [&>svg]:h-6 p-2 rounded-full hover:shadow-lg ",
+								open ? "bg-surface3" : "hover:bg-surface2",
 							)}
-							>
+						>
 							{theme.icon}
 						</Menu.Button>
 						<Transition

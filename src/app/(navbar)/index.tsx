@@ -1,11 +1,11 @@
+import Divider from "@/components/divider";
+import Logo from "@/components/logo";
 import { twJoin } from "tailwind-merge";
-import Divider from "../divider";
-import Logo from "../logo";
 import Accounts from "./accounts";
 import MenuLinks from "./menu-links";
 import MobileMenu from "./mobile";
-import Settings from "./settings";
 import ThemeSwitch from "./theme-switch";
+import Settings from "./settings";
 
 export default function Navbar() {
 	return (
@@ -21,7 +21,7 @@ export default function Navbar() {
 			<MobileMenu />
 			<MenuLinks />
 			<ThemeSwitch />
-			<div className="flex gap-4 justify-center items-center">
+			<div className="hidden gap-4 justify-center items-center lg:flex">
 				<Accounts />
 				<Divider vertical />
 				<Settings />

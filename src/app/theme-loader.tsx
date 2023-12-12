@@ -1,7 +1,7 @@
 "use client";
 
-import { handleThemeToggle } from "@/components/navbar/fns";
 import React from "react";
+import { handleThemeToggle } from "@/app/(navbar)/fns";
 
 export default function ThemeLoader() {
 	React.useEffect(() => {

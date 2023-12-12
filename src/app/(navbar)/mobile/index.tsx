@@ -3,7 +3,7 @@
 import { Button, OutlineButton, RoundButton } from "@/components/buttons";
 import Divider from "@/components/divider";
 import Logo from "@/components/logo";
-import styles from "@/components/navbar/styles.module.css";
+import styles from "@/app/(navbar)/styles.module.css";
 import { LogOutIcon, User2Icon, XIcon } from "lucide-react";
 import React from "react";
 import { twJoin } from "tailwind-merge";
@@ -17,7 +17,7 @@ export default function MobileMenu() {
 	const closeFn = closeHandler.bind(null, dialog, true);
 
 	return (
-		<div className="md:hidden">
+		<div className="lg:hidden">
 			<RoundButton
 				flat
 				className="ring-transparent shadow-none"
