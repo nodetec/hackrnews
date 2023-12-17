@@ -1,24 +1,26 @@
+"use client";
+
 import React from "react";
-import { themes } from "@utils/themes";
 import { addCookie, getCookie } from "@utils/fns/cookies";
+import { themeStore } from "@/stores/theme";
 
 export function useTheme() {
-  const [theme, setTheme] = React.useState(themes[0]);
+  const { theme, setTheme } = themeStore();
 
   React.useEffect(() => {
-    const themeCookie = getCookie("theme");
-    setTheme(themes.find((t) => t.name === themeCookie) || themes[0]);
+    const themeCookie = getCookie("theme") ?? "system";
+    setTheme(themeCookie);
   }, [setTheme]);
 
   const toggleTheme = (themeName: string) => {
-    setTheme(themes.find((t) => t.name === themeName) || themes[0]);
+    setTheme(themeName);
     handleThemeToggle(themeName);
   };
 
   return { theme, toggleTheme };
 }
 
-function handleThemeToggle(theme: string) {
+export function handleThemeToggle(theme: string) {
   addCookie("theme", theme);
 
   const themeListener = (e: MediaQueryListEvent | MediaQueryList) => {

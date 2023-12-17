@@ -22,7 +22,7 @@ export default function Navbar() {
       <Logo />
       <MobileMenu />
       <MenuLinks />
-      {/* <ThemeSwitch /> */}
+      <ThemeSwitch />
       <div className="hidden gap-4 justify-center items-center lg:flex">
         <Accounts />
         <Divider vertical />

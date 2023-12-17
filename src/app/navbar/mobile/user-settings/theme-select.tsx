@@ -5,13 +5,6 @@ import { themes } from "@/utils/themes";
 import { useTheme } from "@/utils/hooks/theme";
 
 export default function ThemeSelect() {
-	// const [theme, setTheme] = React.useState(themes[0]);
-
-	// React.useEffect(() => {
-	// 	const dataTheme = document.documentElement.dataset.mode;
-	// 	setTheme(themes.find((t) => t.name === dataTheme) ?? themes[0]);
-	// }, [setTheme]);
-
 	const {theme, toggleTheme} = useTheme()
 
 	return (
@@ -37,11 +30,6 @@ export default function ThemeSelect() {
 					)}
 					value={theme.name}
 					onChange={(e) => {
-						// document.documentElement.dataset.mode = e.target.value;
-						// handleThemeToggle(e.target.value);
-						// setTheme(
-						// 	themes.find((t) => t.name === e.target.value) ?? themes[0],
-						// );
 						toggleTheme(e.target.value)
 					}}
 				>

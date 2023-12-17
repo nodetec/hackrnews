@@ -19,13 +19,12 @@ export default function ThemeToggler() {
 								"focus-within:ring-2 ring-primary hover:bg-primary/5",
 								//Checked styles
 								"[&:has(input:checked)]:bg-primary/20",
-								// "[&:has(input:checked)]:text-primary",
 							)}
 						>
 							<span className="[&>svg]:w-6 [&>svg]:h-6">{theme.icon}</span>
 							<span className="text-sm mt-4">{theme.name}</span>
 
-							<ThemeInput theme={theme.name}/>
+							<ThemeInput themeName={theme.name}/>
 						</label>
 					))}
 				</div>

@@ -1,20 +1,17 @@
 "use client";
 
 import { getCookie } from "@/utils/fns/cookies";
-import { handleThemeToggle } from "@/utils/fns/theme";
+import { handleThemeToggle } from "@/utils/hooks/theme";
 import React from "react";
 
 export default function ThemeLoader() {
-	React.useEffect(() => {
-		const theme = getCookie("theme");
-		console.log("theme cookie ", theme);
-		
-		const html = document.documentElement;
-		const mode = html.dataset.mode;
-		console.log(mode);
 
-		handleThemeToggle(mode ?? "system");
-	}, []);
+  React.useEffect(() => {
+    const themeCookie = getCookie("theme");
+    if (!themeCookie || themeCookie === "system") {
+      handleThemeToggle("system");
+    }
+  }, []);
 
-	return null;
+  return null;
 }

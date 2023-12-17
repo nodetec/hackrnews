@@ -1,22 +1,27 @@
 "use client";
 
-import { handleThemeToggle } from "@/utils/fns/theme";
+import { useTheme } from "@utils/hooks/theme";
 import React from "react";
 
-export default function ThemeInput({ theme }: { theme: string }) {
-	React.useEffect(() => {
-		console.log(theme === document.documentElement.dataset.mode)
-	},[])
-	return (
-		<input
-			onChange={() => {
-				handleThemeToggle(theme);
-			}}
-			className="appearance-none"
-			type="radio"
-			id={theme}
-			name="theme"
-			value={theme}
-		/>
-	);
+export default function ThemeInput({ themeName }: { themeName: string }) {
+  const { theme, toggleTheme } = useTheme();
+  const ref = React.useRef<HTMLInputElement>(null);
+
+  React.useEffect(() => {
+    ref.current!.checked = theme.name === themeName;
+  }, [theme.name, themeName]);
+
+  return (
+    <input
+      onChange={() => {
+        toggleTheme(themeName);
+      }}
+      ref={ref}
+      className="appearance-none"
+      type="radio"
+      id={themeName}
+      name="theme"
+      value={themeName}
+    />
+  );
 }
