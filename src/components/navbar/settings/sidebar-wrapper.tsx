@@ -3,7 +3,7 @@
 import React from "react";
 import { twJoin } from "tailwind-merge";
 import styles from "../styles.module.css";
-import { RoundButton } from "@/components/buttons";
+import { RoundButton } from "@/ui/buttons";
 import { SettingsIcon, XIcon } from "lucide-react";
 import { closeHandler } from "@/utils/fns/modals";
 import { openHandler } from "@/utils/fns/modals";

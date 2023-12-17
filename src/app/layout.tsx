@@ -3,7 +3,7 @@ import { twJoin } from "tailwind-merge";
 import "./globals.css";
 import ThemeLoader from "./theme-loader";
 import { josefinSans } from "@/utils/fonts";
-import Navbar from "./navbar";
+import Navbar from "../components/navbar";
 import { cookies } from "next/headers";
 
 export const metadata: Metadata = {

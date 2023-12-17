@@ -1,11 +1,11 @@
-import Divider from "@/components/divider";
-import Logo from "@/components/logo";
+import Divider from "@/ui/divider";
+import Logo from "@/components/navbar/logo";
 import { twJoin } from "tailwind-merge";
 import Accounts from "./accounts";
 import MenuLinks from "./menu-links";
 import MobileMenu from "./mobile";
 import ThemeSwitch from "./theme-switch";
-import { RoundButton } from "@/components/buttons";
+import { RoundButton } from "@/ui/buttons";
 import { SettingsIcon } from "lucide-react";
 import Settings from "./settings";
 

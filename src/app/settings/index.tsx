@@ -2,7 +2,7 @@ import React from "react";
 import { twJoin } from "tailwind-merge";
 import styles from "./styles.module.css";
 import { UserIcon, XIcon } from "lucide-react";
-import { Button, RoundButton } from "@/components/buttons";
+import { Button, RoundButton } from "@/ui/buttons";
 import ThemeToggler from "./theme-toggler";
 
 export default function SettingsSidebar() {

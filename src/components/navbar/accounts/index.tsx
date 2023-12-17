@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, OutlineButton } from "@/components/buttons";
+import { Button, OutlineButton } from "@/ui/buttons";
 import { User2Icon } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";

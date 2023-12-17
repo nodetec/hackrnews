@@ -1,8 +1,8 @@
 "use client";
 
-import { Button, OutlineButton, RoundButton } from "@/components/buttons";
-import Divider from "@/components/divider";
-import Logo from "@/components/logo";
+import { Button, OutlineButton, RoundButton } from "@/ui/buttons";
+import Divider from "@/ui/divider";
+import Logo from "@/components/navbar/logo";
 import styles from "@/app/navbar/styles.module.css";
 import { LogOutIcon, User2Icon, XIcon } from "lucide-react";
 import React from "react";

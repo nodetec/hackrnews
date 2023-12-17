@@ -1,4 +1,4 @@
-import { Button, RoundButton } from "@/components/buttons";
+import { Button, RoundButton } from "@/ui/buttons";
 import styles from "@/app/navbar/styles.module.css";
 import { ArrowLeftIcon, Settings2Icon } from "lucide-react";
 import React from "react";

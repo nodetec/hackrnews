@@ -1,4 +1,4 @@
-import Switch from "@/components/switch";
+import Switch from "@/ui/switch";
 import Image from "next/image";
 import React from "react";
 import { twJoin } from "tailwind-merge";

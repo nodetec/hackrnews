@@ -4,7 +4,7 @@ import { Menu, Transition } from "@headlessui/react";
 import { themes } from "@/utils/themes";
 import React from "react";
 import { twJoin } from "tailwind-merge";
-import { RoundButton } from "@/components/buttons";
+import { RoundButton } from "@/ui/buttons";
 import { useTheme } from "@/utils/hooks/theme";
 
 export default function ThemeSwitch() {

@@ -2,7 +2,7 @@
 
 import { routes } from "@/utils/routes";
 import { twJoin } from "tailwind-merge";
-import { Button } from "@/components/buttons";
+import { Button } from "@/ui/buttons";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 

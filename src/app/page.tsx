@@ -1,5 +1,5 @@
 "use client";
-import { Button, OutlineButton, RoundButton } from "@/components/buttons";
+import { Button, OutlineButton, RoundButton } from "@/ui/buttons";
 import { ThumbsUpIcon } from "lucide-react";
 import React from "react";
 

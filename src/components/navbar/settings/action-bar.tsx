@@ -1,4 +1,4 @@
-import { Button } from "@/components/buttons";
+import { Button } from "@/ui/buttons";
 import { UserIcon } from "lucide-react";
 
 export default function ActionBar() {
