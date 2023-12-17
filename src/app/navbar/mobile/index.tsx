@@ -3,13 +3,14 @@
 import { Button, OutlineButton, RoundButton } from "@/components/buttons";
 import Divider from "@/components/divider";
 import Logo from "@/components/logo";
-import styles from "@/app/(navbar)/styles.module.css";
+import styles from "@/app/navbar/styles.module.css";
 import { LogOutIcon, User2Icon, XIcon } from "lucide-react";
 import React from "react";
 import { twJoin } from "tailwind-merge";
-import { closeHandler, openHandler } from "../fns";
 import MenuLinks from "./menu-links";
 import UserSettings from "./user-settings";
+import { closeHandler } from "@/utils/fns/modals";
+import { openHandler } from "@/utils/fns/modals";
 
 export default function MobileMenu() {
 	const dialog = React.useRef<HTMLDialogElement>(null);

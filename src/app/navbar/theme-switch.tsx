@@ -4,7 +4,8 @@ import { Menu, Transition } from "@headlessui/react";
 import { themes } from "@/utils/themes";
 import React from "react";
 import { twJoin } from "tailwind-merge";
-import { handleThemeToggle } from "./fns";
+import { RoundButton } from "@/components/buttons";
+import { handleThemeToggle } from "@/utils/fns/theme";
 
 export default function ThemeSwitch() {
 	const [theme, setTheme] = React.useState(themes[0]);
@@ -24,13 +25,15 @@ export default function ThemeSwitch() {
 			<Menu as="div" className="relative">
 				{({ open }) => (
 					<>
-						<Menu.Button
-							className={twJoin(
-								"[&>svg]:w-6 [&>svg]:h-6 p-2 rounded-full hover:shadow-lg ",
-								open ? "bg-surface3" : "hover:bg-surface2",
-							)}
-						>
-							{theme.icon}
+						<Menu.Button as="span">
+							<RoundButton
+								className={twJoin(
+									open ? "bg-surface3" : "hover:bg-surface2",
+									"[&>svg]:w-6 [&>svg]:h-6",
+								)}
+							>
+								{theme.icon}
+							</RoundButton>
 						</Menu.Button>
 						<Transition
 							as={React.Fragment}

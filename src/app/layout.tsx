@@ -1,10 +1,10 @@
-import { josefinSans } from "@/ui/fonts";
 import type { Metadata } from "next";
 import { twJoin } from "tailwind-merge";
 import "./globals.css";
-import { getThemeCookie } from "./theme-cookie";
 import ThemeLoader from "./theme-loader";
-import Navbar from "./(navbar)";
+import { josefinSans } from "@/utils/fonts";
+import Navbar from "./navbar";
+import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -13,7 +13,6 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
 	children,
-	modal,
 }: {
 	children: React.ReactNode;
 		modal: React.ReactNode;
@@ -35,9 +34,17 @@ export default function RootLayout({
 			>
 				<ThemeLoader />
 				<Navbar />
-				{modal}
 				{children}
 			</body>
 		</html>
 	);
+}
+
+function getThemeCookie(): string {
+	const cookie = cookies().get("theme");
+	if (cookie) {
+		return cookie.value;
+	}
+
+	return "system";
 }

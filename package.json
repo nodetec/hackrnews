@@ -7,12 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write .",
-    "biome:lint": "biome lint src",
-    "biome:format": "biome format --write src",
-    "biome:easy-fix": "biome check --apply src/",
-    "biome:hard-fix": "biome check --apply-unsafe src/",
-    "biome:check": "biome check src/"
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
@@ -21,10 +16,10 @@
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18",
-    "tailwind-merge": "^2.0.0"
+    "tailwind-merge": "^2.0.0",
+    "zustand": "^4.4.7"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.4.1",
     "@types/animejs": "^3.1.12",
     "@types/node": "^20",
     "@types/react": "^18",

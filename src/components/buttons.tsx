@@ -77,12 +77,12 @@ export function Button({
 		<button
 			type="button"
 			className={twMerge(
-				"w-full py-2 px-3 rounded",
+				"block py-2 px-3 rounded",
 				"text-neutral-950 border-black/5",
 				!flat && "border",
 				"uppercase text-sm font-semibold",
 				"transition ease-out",
-				"flex justify-center items-center gap-2",
+				"inline-flex justify-center items-center gap-2",
 				variantStyles[variant],
 				className,
 			)}

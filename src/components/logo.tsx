@@ -1,4 +1,4 @@
-import { pixelify } from "@/ui/fonts";
+import { pixelify } from "@/utils/fonts";
 import Link from "next/link";
 import { twJoin } from "tailwind-merge";
 
