@@ -1,16 +1,16 @@
 "use client";
 
-import { Button, OutlineButton, RoundButton } from "@/ui/buttons";
-import Divider from "@/ui/divider";
-import Logo from "@/components/navbar/logo";
-import styles from "@/app/navbar/styles.module.css";
+import { Button, OutlineButton, RoundButton } from "@ui/buttons";
+import Divider from "@ui/divider";
+import styles from "@components/navbar/styles.module.css";
 import { LogOutIcon, User2Icon, XIcon } from "lucide-react";
 import React from "react";
 import { twJoin } from "tailwind-merge";
 import MenuLinks from "./menu-links";
 import UserSettings from "./user-settings";
-import { closeHandler } from "@/utils/fns/modals";
-import { openHandler } from "@/utils/fns/modals";
+import { closeHandler } from "@utils/fns/modals";
+import { openHandler } from "@utils/fns/modals";
+import Logo from "@components/logo";
 
 export default function MobileMenu() {
 	const dialog = React.useRef<HTMLDialogElement>(null);

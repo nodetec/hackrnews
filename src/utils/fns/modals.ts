@@ -1,4 +1,4 @@
-import styles from "@/app/navbar/styles.module.css";
+import styles from "@components/navbar/styles.module.css";
 import { toggleScroll } from "./scroll";
 
 export function openHandler(

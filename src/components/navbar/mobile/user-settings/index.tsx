@@ -1,5 +1,5 @@
 import { Button, RoundButton } from "@/ui/buttons";
-import styles from "@/app/navbar/styles.module.css";
+import styles from "@components/navbar/styles.module.css";
 import { ArrowLeftIcon, Settings2Icon } from "lucide-react";
 import React from "react";
 import { twJoin } from "tailwind-merge";

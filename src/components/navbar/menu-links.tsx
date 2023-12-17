@@ -1,8 +1,8 @@
 "use client";
 
-import { routes } from "@/utils/routes";
+import { routes } from "@utils/routes";
 import { twJoin } from "tailwind-merge";
-import { Button } from "@/ui/buttons";
+import { Button } from "@ui/buttons";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 

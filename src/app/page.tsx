@@ -1,4 +1,3 @@
-"use client";
 import { Button, OutlineButton, RoundButton } from "@/ui/buttons";
 import { ThumbsUpIcon } from "lucide-react";
 import React from "react";
@@ -10,7 +9,7 @@ export default function Home() {
 			<div className="bg-surface2 w-36 h-36" />
 			<div className="bg-surface3 w-36 h-36" />
 
-			<Button variant="primary">primary</Button>
+			<Button>primary</Button>
 			<Button variant="error">error</Button>
 			<Button variant="success">success</Button>
 			<Button variant="warn">warn</Button>
