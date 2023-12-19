@@ -2,11 +2,15 @@ import { themes } from "@/utils/themes";
 import { twJoin } from "tailwind-merge";
 import ThemeInput from "./theme-input";
 
+// TODO: This componnent needs to implement the following:
+// - Add a cookie when toggled (default is wide)
+// - feed needs to be rendered accordingly, srr preferably
+
 export default function ThemeToggler() {
 	return (
 		<div>
 			<fieldset>
-				<legend className="text-2xl mb-2">Prefered Theme</legend>
+				<legend className="text-2xl mb-2">Theme</legend>
 				<div className="flex gap-2 justify-around">
 					{themes.map((theme) => (
 						<label

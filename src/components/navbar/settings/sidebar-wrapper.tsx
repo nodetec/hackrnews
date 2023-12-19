@@ -8,7 +8,11 @@ import { SettingsIcon, XIcon } from "lucide-react";
 import { closeHandler } from "@/utils/fns/modals";
 import { openHandler } from "@/utils/fns/modals";
 
-export default function SidebarWrapper({ children }: { children: React.ReactNode }) {
+export default function SidebarWrapper({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const dialog = React.useRef<HTMLDialogElement>(null);
   const openFn = openHandler.bind(null, dialog, true);
   const closeFn = closeHandler.bind(null, dialog, true);
