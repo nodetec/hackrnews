@@ -38,38 +38,38 @@ export function Button({
       "bg-primary",
       "hover:bg-primary/90",
       "active:bg-primary/80",
-      !flat && "shadow hover:shadow-lg active:shadow"
+      !flat && "shadow hover:shadow-lg active:shadow",
     ),
     [VARIANT.error]: twJoin(
       "bg-error",
       "hover:bg-error/90",
       "active:bg-error/80",
-      !flat && "shadow hover:shadow-lg active:shadow"
+      !flat && "shadow hover:shadow-lg active:shadow",
     ),
     [VARIANT.info]: twJoin(
       "bg-info",
       "hover:bg-info/90",
       "active:bg-info/80",
-      !flat && "shadow hover:shadow-lg active:shadow"
+      !flat && "shadow hover:shadow-lg active:shadow",
     ),
     [VARIANT.success]: twJoin(
       "bg-success",
       "hover:bg-success/90",
       "active:bg-success/80",
-      !flat && "shadow hover:shadow-lg active:shadow"
+      !flat && "shadow hover:shadow-lg active:shadow",
     ),
 
     [VARIANT.warn]: twJoin(
       "bg-warn",
       "hover:bg-warn/90",
       "active:bg-warn/80",
-      !flat && "shadow hover:shadow-lg active:shadow"
+      !flat && "shadow hover:shadow-lg active:shadow",
     ),
     [VARIANT.ghost]: twJoin(
       "bg-transparent text-textColor",
       "hover:bg-surface2/50",
       "active:bg-surface2",
-      !flat && "shadow hover:shadow-lg active:shadow"
+      !flat && "shadow hover:shadow-lg active:shadow",
     ),
   };
 
@@ -83,10 +83,10 @@ export function Button({
           !flat && "border",
           "uppercase text-sm font-semibold",
           "transition ease-out",
-          "inline-flex justify-center items-center gap-2"
+          "inline-flex justify-center items-center gap-2",
         ),
         variantStyles[variant],
-        className
+        className,
       )}
       {...rest}
     >

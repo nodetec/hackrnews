@@ -9,38 +9,38 @@ import { closeHandler } from "@/utils/fns/modals";
 import { openHandler } from "@/utils/fns/modals";
 
 export default function MobileSettings() {
-	const dialog = React.useRef<HTMLDialogElement>(null);
-	const openFn = openHandler.bind(null, dialog, false);
-	const closeFn = closeHandler.bind(null, dialog, false);
+  const dialog = React.useRef<HTMLDialogElement>(null);
+  const openFn = openHandler.bind(null, dialog, false);
+  const closeFn = closeHandler.bind(null, dialog, false);
 
-	return (
-		<>
-			<Button className="justify-start gap-3" flat onClick={openFn}>
-				<Settings2Icon className="w-5 h-5" />
-				Settings
-			</Button>
+  return (
+    <>
+      <Button className="justify-start gap-3" flat onClick={openFn}>
+        <Settings2Icon className="w-5 h-5" />
+        Settings
+      </Button>
 
-			<dialog
-				id="mobile-settings"
-				ref={dialog}
-				data-dialog="mobile-settings"
-				aria-modal
-				className={twJoin(
-					"rounded-3xl p-4 bg-background w-full h-full text-textColor",
-					"space-y-4 backdrop:blur-md backdrop:bg-black/50 backdrop:w-full backdrop:h-full",
-					styles.slideIn,
-				)}
-			>
-				{/* Close Button */}
-				<RoundButton flat onClick={closeFn}>
-					<ArrowLeftIcon />
-				</RoundButton>
+      <dialog
+        id="mobile-settings"
+        ref={dialog}
+        data-dialog="mobile-settings"
+        aria-modal
+        className={twJoin(
+          "rounded-3xl p-4 bg-background w-full h-full text-textColor",
+          "space-y-4 backdrop:blur-md backdrop:bg-black/50 backdrop:w-full backdrop:h-full",
+          styles.slideIn,
+        )}
+      >
+        {/* Close Button */}
+        <RoundButton flat onClick={closeFn}>
+          <ArrowLeftIcon />
+        </RoundButton>
 
-				<div className="space-y-8">
-					<ThemeSelect />
-					<RelaySettings />
-				</div>
-			</dialog>
-		</>
-	);
+        <div className="space-y-8">
+          <ThemeSelect />
+          <RelaySettings />
+        </div>
+      </dialog>
+    </>
+  );
 }

@@ -3,7 +3,7 @@ import { toggleScroll } from "./scroll";
 
 export function openHandler(
   ref: React.RefObject<HTMLDialogElement>,
-  scroll: boolean
+  scroll: boolean,
 ) {
   if (scroll) toggleScroll(true);
   ref.current?.showModal();
@@ -11,7 +11,7 @@ export function openHandler(
 
 export function closeHandler(
   ref: React.RefObject<HTMLDialogElement>,
-  scroll: boolean
+  scroll: boolean,
 ) {
   if (scroll) toggleScroll(false);
   ref.current?.classList.add(styles.slideOut);

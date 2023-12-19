@@ -3,8 +3,12 @@
 import { layoutState, Layout } from "@/stores/prefered-layout";
 import React from "react";
 
-export default function LayoutInput({ preferedLayout }: { preferedLayout: Layout }) {
-  const {layout, setLayout } = layoutState();
+export default function LayoutInput({
+  preferedLayout,
+}: {
+  preferedLayout: Layout;
+}) {
+  const { layout, setLayout } = layoutState();
   const ref = React.useRef<HTMLInputElement>(null);
 
   React.useEffect(() => {

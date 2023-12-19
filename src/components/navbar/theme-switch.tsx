@@ -19,7 +19,7 @@ export default function ThemeSwitch() {
               <RoundButton
                 className={twJoin(
                   open ? "bg-surface3" : "hover:bg-surface2",
-                  "[&>svg]:w-6 [&>svg]:h-6"
+                  "[&>svg]:w-6 [&>svg]:h-6",
                 )}
               >
                 {theme.icon}
@@ -36,7 +36,7 @@ export default function ThemeSwitch() {
             >
               <Menu.Items
                 className={twJoin(
-                  "absolute right-0 mt-2 w-56 origin-top-right bg-surface2 rounded-lg py-2"
+                  "absolute right-0 mt-2 w-56 origin-top-right bg-surface2 rounded-lg py-2",
                 )}
               >
                 <ul className="flex flex-col divide-y divide-surface3">
@@ -49,7 +49,7 @@ export default function ThemeSwitch() {
                           className={twJoin(
                             "px-4 py-2 flex cursor-pointer gap-3",
                             active && "bg-primary/10",
-                            theme.name === t.name && "text-primary bg-surface3"
+                            theme.name === t.name && "text-primary bg-surface3",
                           )}
                         >
                           {t.icon} {t.name}

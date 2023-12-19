@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export default function IconRadio() {
-  return (
-    <div>IconRadio</div>
-  )
+  return <div>IconRadio</div>;
 }
