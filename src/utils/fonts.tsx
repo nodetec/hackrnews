@@ -2,6 +2,7 @@ import {
   Chakra_Petch,
   Josefin_Sans,
   Pixelify_Sans,
+  Silkscreen,
   Space_Grotesk,
   Tourney,
 } from "next/font/google";
@@ -40,3 +41,9 @@ export const spaceGrotesk = Space_Grotesk({
   weight: ["400", "500", "600", "700"],
   variable: "--font-space-grotesk",
 });
+
+export const silkScreen = Silkscreen({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-silk-screen",
+})
