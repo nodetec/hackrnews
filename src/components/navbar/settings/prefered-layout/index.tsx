@@ -1,19 +1,11 @@
 import React from "react";
 import { twJoin } from "tailwind-merge";
 import LayoutInput from "./layout-input";
-import { Layout } from "@/stores/prefered-layout";
+import { layoutType } from "@utils/prefered-layouts";
+import { cookies } from "next/headers";
 
 export default function PreferedLayout() {
-  const layoutType = [
-    {
-      name: Layout.COMPACT,
-      skeleton: <CompactSkelleton />,
-    },
-    {
-      name: Layout.WIDE,
-      skeleton: <WideSkelleton />,
-    },
-  ];
+  const currSelected = cookies().get("layout")?.value ?? "wide"
 
   return (
     <div>
@@ -27,38 +19,19 @@ export default function PreferedLayout() {
               className={twJoin(
                 "w-full inline-flex flex-col justify-start",
                 "bg-surface1 shadow cursor-pointer select-none",
-                "p-2 rounded-lg",
+                "p-4 rounded-lg",
                 "focus-within:ring-2 ring-primary hover:bg-primary/5",
                 //Checked styles
                 "[&:has(input:checked)]:bg-primary/20",
               )}
             >
-              <span className="text-sm mb-1">{layout.name}</span>
+              <span className="text-sm mb-2">{layout.name}</span>
               {layout.skeleton}
-              <LayoutInput preferedLayout={layout.name} />
+              <LayoutInput currSelected={currSelected} option={layout.name} />
             </label>
           ))}
         </div>
       </fieldset>
-    </div>
-  );
-}
-
-function CompactSkelleton() {
-  return (
-    <div className="flex gap-2">
-      <WideSkelleton />
-      <WideSkelleton />
-    </div>
-  );
-}
-
-function WideSkelleton() {
-  return (
-    <div className="space-y-1 w-full">
-      <div className="bg-primary/50 h-1"></div>
-      <div className="bg-discreetText/50 h-1"></div>
-      <div className="bg-discreetText/50 h-1 w-3/4"></div>
     </div>
   );
 }

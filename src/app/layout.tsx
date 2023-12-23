@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { twJoin } from "tailwind-merge";
 import "./globals.css";
-import ThemeLoader from "./theme-loader";
+import SystemThemeLoader from "./system-theme-loader";
 import { josefinSans } from "@/utils/fonts";
 import Navbar from "../components/navbar";
 import { cookies } from "next/headers";
@@ -17,34 +17,20 @@ export default function RootLayout({
   children: React.ReactNode;
   modal: React.ReactNode;
 }) {
-  const theme = getThemeCookie();
+  const theme = cookies().get("theme")?.value ?? "system";
 
   return (
-    <html
-      data-mode={theme ?? "system"}
-      lang="en"
-      className={theme === "dark" ? "dark" : ""}
-    >
+    <html lang="en" className={theme}>
       <body
         className={twJoin(
           "bg-background transition-colors p-2 mx-auto md:p-4 text-textColor container",
           josefinSans.className,
-          // TODO: add dark and light colors
         )}
       >
-        <ThemeLoader />
+        <SystemThemeLoader theme={theme} />
         <Navbar />
         {children}
       </body>
     </html>
   );
-}
-
-function getThemeCookie(): string {
-  const cookie = cookies().get("theme");
-  if (cookie) {
-    return cookie.value;
-  }
-
-  return "system";
 }

@@ -1,24 +1,34 @@
 "use client";
 
+import { RoundButton } from "@/ui/buttons";
+import { closeHandler, openHandler } from "@/utils/fns/modals";
+import styles from "@components/navbar/styles.module.css";
+import { SettingsIcon, XIcon } from "lucide-react";
 import React from "react";
 import { twJoin } from "tailwind-merge";
-import styles from "@components/navbar/styles.module.css";
-import { RoundButton } from "@/ui/buttons";
-import { SettingsIcon, XIcon } from "lucide-react";
-import { closeHandler } from "@/utils/fns/modals";
-import { openHandler } from "@/utils/fns/modals";
 
 export default function SidebarWrapper({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const dialog = React.useRef<HTMLDialogElement>(null);
-  const openFn = openHandler.bind(null, dialog, true);
-  const closeFn = closeHandler.bind(null, dialog, true);
+  const dialogId = React.useId()
+  const openFn = openHandler.bind(null, dialogId, true);
+  const closeFn = closeHandler.bind(null, dialogId, true);
+
+  React.useEffect(() => {
+    const dialog = document.getElementById(dialogId) as HTMLDialogElement;
+    window.addEventListener("resize", () => {
+      if (!window.matchMedia("(min-width: 1024px)").matches) {
+        dialog.close();
+      }
+    });
+  }, []);
 
   const clickOutside = (e: React.MouseEvent<HTMLDialogElement, MouseEvent>) => {
-    const dialogDimensions = dialog.current?.getBoundingClientRect();
+    const dialog = document.getElementById(dialogId) as HTMLDialogElement;
+
+    const dialogDimensions = dialog.getBoundingClientRect();
 
     if (!dialogDimensions) {
       return;
@@ -26,31 +36,30 @@ export default function SidebarWrapper({
 
     // keypresses like esc or enter have the clientX set to 0, which triggers the close function
     if (e.clientX > 0 && e.clientX < dialogDimensions.left) {
-      closeHandler(dialog, true);
+      closeHandler(dialogId, true);
     }
   };
 
   return (
     <>
-      <RoundButton className={"group"} onClick={openFn} flat>
+      <RoundButton className={"group"} onClick={openFn} flat autoFocus>
         <SettingsIcon className="transition-all group-hover:rotate-45" />
       </RoundButton>
 
       <dialog
-        ref={dialog}
+        id={dialogId}
         aria-modal
         onClick={clickOutside}
         onKeyDown={(e) => {
-          e.preventDefault();
           if (e.key === "Escape") {
-            closeHandler(dialog, true);
+            e.preventDefault();
+            closeHandler(dialogId, true);
           }
         }}
         aria-labelledby="settings-sidebar"
         className={twJoin(
           "w-[400px] fixed top-0 right-0 mr-4 h-screen",
           "bg-background text-textColor rounded-3xl p-4 overflow-scroll",
-          // "xl:backdrop:hidden",
           styles.slideIn,
         )}
       >
@@ -58,7 +67,7 @@ export default function SidebarWrapper({
           onClick={closeFn}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              closeHandler(dialog, true);
+              closeHandler(dialogId, true);
             }
           }}
           className="text-error mb-8"
@@ -66,7 +75,6 @@ export default function SidebarWrapper({
         >
           <XIcon className="w-6 h-6" />
         </RoundButton>
-
         {children}
       </dialog>
     </>

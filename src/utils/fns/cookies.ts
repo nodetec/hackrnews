@@ -25,3 +25,12 @@ export function getCookie(cname: string) {
 
   return null;
 }
+
+export function deleteCookie(name: string) {
+  addCookie(name, "", -1);
+}
+
+export function updateCookie(name: string, value: string, days = 360) {
+  deleteCookie(name);
+  addCookie(name, value, days);
+}

@@ -1,47 +1,41 @@
-import { Button, OutlineButton, RoundButton } from "@/ui/buttons";
-import { ThumbsUpIcon } from "lucide-react";
+import AricleCard from "@/components/aricle-card";
 import React from "react";
 
-export default function Home() {
+export default function Page() {
   return (
-    <div className="space-y-4 flex flex-col items-center pt-12">
-      <div className="bg-surface1 w-36 h-36" />
-      <div className="bg-surface2 w-36 h-36" />
-      <div className="bg-surface3 w-36 h-36" />
-
-      <Button>primary</Button>
-      <Button variant="error">error</Button>
-      <Button variant="success">success</Button>
-      <Button variant="warn">warn</Button>
-      <Button variant="info">info</Button>
-      <Button variant="ghost">ghost</Button>
-      <Button variant="ghost" flat>
-        ghost
-      </Button>
-
-      <RoundButton>
-        <ThumbsUpIcon className="w-5 h-5" />
-      </RoundButton>
-      <RoundButton variant="error">
-        <ThumbsUpIcon className="w-5 h-5" />
-      </RoundButton>
-      <RoundButton variant="warn">
-        <ThumbsUpIcon className="w-5 h-5" />
-      </RoundButton>
-      <RoundButton variant="ghost" flat>
-        <ThumbsUpIcon className="w-5 h-5" />
-      </RoundButton>
-
-      <OutlineButton variant="success">success</OutlineButton>
-      <OutlineButton variant="error">error</OutlineButton>
-      <OutlineButton>ghost</OutlineButton>
-      <OutlineButton variant="warn">warn</OutlineButton>
-      <OutlineButton flat variant="warn">
-        flat
-      </OutlineButton>
-      <OutlineButton flat variant="primary">
-        primary
-      </OutlineButton>
+    <div>
+      <AricleCard {...mockProps[0]} />
     </div>
   );
 }
+
+const mockProps = [
+  {
+    postNr: 1,
+    title:
+      "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+    date: "20/10/2035",
+    author: "John Collogne",
+    relay: "relay.sky.net",
+    views: 1000,
+    upvotes: 14,
+    downvotes: 2,
+    comments: 36,
+    sats: 36321,
+    tags: ["nostr", "nextJS", "astro", "svelte"],
+  },
+  {
+    postNr: 2,
+    title:
+      "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.",
+    date: "17/09/2033",
+    author: "Tesz Tost Herona",
+    relay: "beaver.relay.super-duper-ass-long-relay-name-just-because-yes.trim",
+    views: 67000,
+    upvotes: 12734,
+    downvotes: 23903,
+    comments: 3182,
+    sats: 379000000,
+    tags: ["java", "sucks"],
+  },
+];

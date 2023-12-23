@@ -1,13 +1,11 @@
-"use client";
-
 import { routes } from "@utils/routes";
 import { twJoin } from "tailwind-merge";
 import { Button } from "@ui/buttons";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { headers } from "next/headers";
 
 export default function MenuLinks() {
-  const pathname = usePathname();
+  const pathname = headers().get("next-url") ?? "/";
 
   return (
     <div className="ml-6 xl:ml-12 hidden lg:flex xl:gap-4 grow">
@@ -20,7 +18,7 @@ export default function MenuLinks() {
               "gap-3 items-center",
               "active:bg-primary/30 items-center justify-center",
               pathname === route.path &&
-                "underline underline-offset-2 decoration-primary decoration-4",
+              "underline underline-offset-2 decoration-primary decoration-4",
             )}
           >
             {route.icon}

@@ -10,11 +10,11 @@ export default function Switch({
   return (
     <div
       className={twMerge(
-        "space-x-2 disabled:opacity-40 pointer-events-none",
+        "space-x-2 disabled:opacity-40",
         className,
       )}
     >
-      <label className="relative inline-flex cursor-pointer items-center">
+      <label className="relative inline-flex cursor-pointer items-center h-8 p-1 hover:bg-surface2 rounded-lg">
         <input id="switch-3" type="checkbox" className="peer sr-only" />
         <label htmlFor="switch-3" className="hidden">
           Enable this relay
@@ -22,7 +22,7 @@ export default function Switch({
         <div
           className={twJoin(
             "peer h-2 w-10 rounded border dark:border-black bg-slate-300 dark:bg-neutral-700 after:absolute",
-            "after:-top-1.5 after:left-0 after:h-5 after:w-5 after:rounded-md after:border",
+            "after:bottom-1.5 after:left-1 after:h-5 after:w-5 after:rounded-md after:border",
             "after:border-surface3 dark:after-border-black after:bg-white dark:after:bg-neutral-500",
             "after:transition-all after:content-[''] peer-checked:after:bg-success",
             "peer-checked:after:translate-x-full peer-focus:ring-secundary",

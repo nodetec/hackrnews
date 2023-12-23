@@ -1,0 +1,23 @@
+import React from "react";
+import Image from 'next/image';
+import { ArticleCardProps } from ".";
+
+export default function Author(props: ArticleCardProps) {
+  return (
+    <div className="flex items-center gap-2 mt-2">
+      <Image
+        alt={"avatar of " + props.author}
+        width={30}
+        height={30}
+        className="rounded-full"
+        src={
+          "https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=" +
+          props.author.split(" ").join("+")
+        }
+      />
+      <span className="text-secondary text-sm font-bold whitespace-nowrap">
+        {props.author}
+      </span>
+    </div>
+  );
+}

@@ -1,16 +1,17 @@
-import { themes } from "@/utils/themes";
+import { themes } from "@utils/themes";
 import { twJoin } from "tailwind-merge";
 import ThemeInput from "./theme-input";
-
-// TODO: This componnent needs to implement the following:
-// - Add a cookie when toggled (default is wide)
-// - feed needs to be rendered accordingly, srr preferably
+import PinToNavbar from "./pin-navbar";
+import { cookies } from "next/headers";
 
 export default function ThemeToggler() {
   return (
     <div>
       <fieldset>
-        <legend className="text-2xl mb-2">Theme</legend>
+        <legend className="text-2xl mb-3 inline-flex items-center justify-between w-full">
+          Theme
+          <PinToNavbar isPinned={cookies().get("pinned")?.value === "true"} />
+        </legend>
         <div className="flex gap-2 justify-around">
           {themes.map((theme) => (
             <label
@@ -28,7 +29,10 @@ export default function ThemeToggler() {
               <span className="[&>svg]:w-6 [&>svg]:h-6">{theme.icon}</span>
               <span className="text-sm mt-4">{theme.name}</span>
 
-              <ThemeInput themeName={theme.name} />
+              <ThemeInput
+                themeName={theme.name}
+                currentTheme={cookies().get("theme")?.value ?? "system"}
+              />
             </label>
           ))}
         </div>

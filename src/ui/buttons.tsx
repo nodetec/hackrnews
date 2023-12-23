@@ -15,13 +15,13 @@ export enum VARIANT {
 
 type ButtonProps = BaseButtonProps & {
   variant?:
-    | VARIANT
-    | "primary"
-    | "error"
-    | "info"
-    | "success"
-    | "warn"
-    | "ghost";
+  | VARIANT
+  | "primary"
+  | "error"
+  | "info"
+  | "success"
+  | "warn"
+  | "ghost";
   flat?: boolean;
 };
 

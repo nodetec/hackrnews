@@ -1,31 +1,32 @@
 "use client";
 
-import { layoutState, Layout } from "@/stores/prefered-layout";
+import { setPreferenceCookie } from "@/utils/actions/user-preferences";
 import React from "react";
 
 export default function LayoutInput({
-  preferedLayout,
+  option,
+  currSelected,
 }: {
-  preferedLayout: Layout;
+  option: string;
+  currSelected: string;
 }) {
-  const { layout, setLayout } = layoutState();
-  const ref = React.useRef<HTMLInputElement>(null);
-
-  React.useEffect(() => {
-    ref.current!.checked = layout === preferedLayout;
-  }, [layout, preferedLayout]);
+  // NOTE: I can style fade in/out animations using the pending state from
+  // the useTransition hook 
+  const [_pending, startTransition] = React.useTransition();
 
   return (
     <input
-      onChange={() => {
-        setLayout(preferedLayout);
+      onChange={async (e) => {
+        startTransition(() => {
+          setPreferenceCookie("layout", e.target.value);
+        });
       }}
-      ref={ref}
       className="appearance-none"
+      checked={option === currSelected}
       type="radio"
-      id={preferedLayout}
+      id={option}
       name="layout"
-      value={preferedLayout}
+      value={option}
     />
   );
 }

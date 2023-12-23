@@ -14,3 +14,23 @@ export const themes = [
     icon: <MoonIcon className="w-5 h-5" />,
   },
 ];
+
+export function handleSystemTheme(isSystem: boolean) {
+  const themeListener = (e: MediaQueryListEvent | MediaQueryList) => {
+    if (e.matches) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  };
+
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+  if (isSystem) {
+    themeListener(prefersDark);
+    prefersDark.addEventListener("change", themeListener);
+    return;
+  }
+
+  prefersDark.removeEventListener("change", themeListener);
+}

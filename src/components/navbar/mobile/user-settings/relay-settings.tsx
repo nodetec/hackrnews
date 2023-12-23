@@ -21,7 +21,7 @@ const RelaysMock = [
 export default function RelaySettings() {
   return (
     <div>
-      <h1 className="text-2xl">Relay Settings</h1>
+      <h1 className="text-2xl mb-2">Relay Settings</h1>
       <div className="flex flex-col gap-4">
         {RelaysMock.map((relay) => (
           <div

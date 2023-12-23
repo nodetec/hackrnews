@@ -4,8 +4,8 @@ import { twJoin } from "tailwind-merge";
 import Accounts from "./accounts";
 import MenuLinks from "./menu-links";
 import MobileMenu from "./mobile";
-import ThemeSwitch from "./theme-switch";
 import Settings from "./settings";
+import ThemeSwitch from "./theme-menu";
 
 export default function Navbar() {
   return (

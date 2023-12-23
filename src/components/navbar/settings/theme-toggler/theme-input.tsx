@@ -1,22 +1,21 @@
 "use client";
 
-import { useTheme } from "@utils/hooks/theme";
+import { setPreferenceCookie } from "@/utils/actions/user-preferences";
 import React from "react";
 
-export default function ThemeInput({ themeName }: { themeName: string }) {
-  const { theme, toggleTheme } = useTheme();
-  const ref = React.useRef<HTMLInputElement>(null);
-
-  React.useEffect(() => {
-    ref.current!.checked = theme.name === themeName;
-  }, [theme.name, themeName]);
-
+export default function ThemeInput({
+  themeName,
+  currentTheme,
+}: {
+  themeName: string;
+  currentTheme: string;
+}) {
   return (
     <input
-      onChange={() => {
-        toggleTheme(themeName);
+      onChange={async () => {
+        setPreferenceCookie("theme", themeName);
       }}
-      ref={ref}
+      checked={currentTheme === themeName}
       className="appearance-none"
       type="radio"
       id={themeName}
