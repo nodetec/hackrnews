@@ -11,12 +11,12 @@ export default function Pill(props: PillProps) {
     <span
       className={twJoin(
         "inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium",
-        "border border-primary",
+        "border border-primary cursor-pointer",
         props.variant === "primary"
           ? "bg-primary text-surface1"
           : "bg-surface1 text-primary",
         props.variant === "primary" && "active:bg-background active:text-primary",
-        "active:bg-primary/30 transition-colors duration-75",
+        "active:bg-primary/20 transition-colors duration-75",
       )}
     >
       {props.children}

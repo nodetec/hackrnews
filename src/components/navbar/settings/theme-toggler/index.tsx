@@ -31,7 +31,7 @@ export default function ThemeToggler() {
 
               <ThemeInput
                 themeName={theme.name}
-                currentTheme={cookies().get("theme")?.value ?? "system"}
+                currTheme={cookies().get("theme")?.value ?? "system"}
               />
             </label>
           ))}
