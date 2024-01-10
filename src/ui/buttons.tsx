@@ -78,7 +78,7 @@ export function Button({
       type="button"
       className={twMerge(
         twJoin(
-          "block py-2 px-3 rounded",
+          "block py-2 px-3 rounded cursor-pointer",
           "text-neutral-950 border-black/5",
           !flat && "border",
           "uppercase text-sm font-semibold",

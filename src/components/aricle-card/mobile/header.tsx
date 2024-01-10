@@ -1,5 +1,5 @@
 import React from "react";
-import { ArticleCardProps } from ".";
+import { ArticleCardProps } from "..";
 import { twJoin } from "tailwind-merge";
 import { RoundButton } from "@/ui/buttons";
 import { InfoIcon } from "lucide-react";

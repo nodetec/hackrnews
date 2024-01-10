@@ -1,10 +1,10 @@
 import React from "react";
 import Image from 'next/image';
-import { ArticleCardProps } from ".";
+import { ArticleCardProps } from "..";
 
 export default function Author(props: ArticleCardProps) {
   return (
-    <div className="flex items-center gap-2 mt-2">
+    <div className="flex items-center gap-2 mt-2 border">
       <Image
         alt={"avatar of " + props.author}
         width={30}
@@ -15,7 +15,9 @@ export default function Author(props: ArticleCardProps) {
           props.author.split(" ").join("+")
         }
       />
-      <span className="text-secondary text-sm font-bold whitespace-nowrap">
+
+      {/* TODO: Search how to align vertically text with tailwind ... */}
+      <span className="text-secondary font-bold whitespace-nowrap border">
         {props.author}
       </span>
     </div>

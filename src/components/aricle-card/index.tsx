@@ -1,7 +1,5 @@
-import Actions from "./actions";
-import Author from "./author";
-import Body from "./body";
-import Header from "./header";
+import DesktopCard from "./desktop";
+import MobileCard from "./mobile";
 
 export type ArticleCardProps = {
   postNr: number;
@@ -13,7 +11,7 @@ export type ArticleCardProps = {
   views: number;
   upvotes: number;
   downvotes: number;
-  comments: number;
+  comments?: number;
   sats: number;
   tags: string[];
 };
@@ -21,10 +19,8 @@ export type ArticleCardProps = {
 export default function ArticleCard(props: ArticleCardProps) {
   return (
     <div className="p-2">
-      <Header {...props} />
-      <Author {...props} />
-      <Body {...props} />
-      <Actions {...props} />
+      <MobileCard {...props} />
+      <DesktopCard {...props} />
     </div>
   );
 }

@@ -1,11 +1,20 @@
 import AricleCard from "@/components/aricle-card";
-import React from "react";
+import Divider from "@/ui/divider";
 
 export default function Page() {
   return (
-    <div className="mt-8">
-      {mockProps.map((props) => (
-        <AricleCard {...props} />
+    <div className="mt-8 space-y-4">
+      {mockProps.map((props, idx) => (
+        <>
+          <AricleCard key={props.postNr} {...props} />
+          {/* TODO: Not sure if this fits well */}
+          {/* {idx !== mockProps.length - 1 && ( */}
+          {/*   <Divider */}
+          {/*     className="w-[80%] mx-auto opacity-40" */}
+          {/*     key={props.postNr} */}
+          {/*   /> */}
+          {/* )} */}
+        </>
       ))}
     </div>
   );
@@ -38,7 +47,7 @@ const mockProps = [
     downvotes: 23903,
     comments: 3182,
     sats: 379000000,
-    tags: ["java", "sucks"],
+    tags: ["java", "sucks", "nostr", "nextJS", "astro", "svelte"],
   },
   {
     postNr: 3,
@@ -66,7 +75,7 @@ const mockProps = [
     downvotes: 23903,
     comments: 3182,
     sats: 379000000,
-    tags: ["java", "sucks"],
+    tags: [],
   },
   {
     postNr: 5,

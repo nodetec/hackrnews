@@ -12,7 +12,6 @@ export default function ThemeInput({
   currTheme: string;
 }) {
   const [pending, startTransition] = React.useTransition();
-  console.log(currTheme, themeName);
 
   const setTheme = async (theme: string) => {
     startTransition(() => {

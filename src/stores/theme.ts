@@ -1,3 +1,4 @@
+// NOTE: not used properly to be deleted
 import { themes } from "@/utils/themes";
 import { create } from "zustand";
 

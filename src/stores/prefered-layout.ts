@@ -1,3 +1,4 @@
+// NOTE: not used probably to delete
 import { Layout } from "@utils/prefered-layouts";
 import { create } from "zustand";
 

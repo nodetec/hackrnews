@@ -1,5 +1,5 @@
 import React from "react";
-import { ArticleCardProps } from ".";
+import { ArticleCardProps } from "..";
 import { Button } from "@/ui/buttons";
 import {
   ChevronDownIcon,
