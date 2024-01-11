@@ -1,8 +1,6 @@
 import React from "react";
 import { Button } from "@/ui/buttons";
 import {
-  ChevronDownIcon,
-  ChevronUpIcon,
   LinkIcon,
   MessagesSquareIcon,
   ZapIcon,

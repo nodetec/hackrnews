@@ -24,6 +24,7 @@ const config: Config = {
         surface3: "rgb(var(--surface-3)/ <alpha-value>)",
         background: "rgb(var(--background-color)/ <alpha-value>)",
         textColor: "rgb(var(--text-color)/ <alpha-value>)",
+        subText: "rgb(var(--sub-text)/ <alpha-value>)",
         discreetText: "rgb(var(--discreet-text)/ <alpha-value>)",
       },
     },

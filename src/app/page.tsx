@@ -1,20 +1,11 @@
-import AricleCard from "@/components/aricle-card";
-import Divider from "@/ui/divider";
+import ArticleCard from "@/components/article-card";
 
 export default function Page() {
   return (
-    <div className="mt-8 space-y-4">
-      {mockProps.map((props, idx) => (
-        <>
-          <AricleCard key={props.postNr} {...props} />
-          {/* TODO: Not sure if this fits well */}
-          {/* {idx !== mockProps.length - 1 && ( */}
-          {/*   <Divider */}
-          {/*     className="w-[80%] mx-auto opacity-40" */}
-          {/*     key={props.postNr} */}
-          {/*   /> */}
-          {/* )} */}
-        </>
+    <div className="mt-8 space-y-4 w-full">
+      {mockProps.map((props) => (
+        // pass the index of the post as postNr
+        <ArticleCard {...props} key={props.postNr} />
       ))}
     </div>
   );
@@ -24,10 +15,10 @@ const mockProps = [
   {
     postNr: 1,
     title:
-      "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+      "Lorem ipsum dolor sit amet, qui minim la",
     date: "20/10/2035",
     author: "John Collogne",
-    relay: "relay.sky.net",
+    relay: "https://link.to.another-source.net/and-another-one/path/to/an-article-somewhere/on/the-web",
     views: 1000,
     upvotes: 14,
     downvotes: 2,
@@ -38,10 +29,10 @@ const mockProps = [
   {
     postNr: 2,
     title:
-      "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.",
+    "Repellendus saepe placeat quibusdam vero eaque fuga dolore, explicabo distinctio",
     date: "17/09/2033",
-    author: "Tesz Tost Herona",
-    relay: "beaver.relay.super-duper-ass-long-relay-name-just-because-yes.trim",
+    author: "Tes Tost Herona",
+    relay: "https://link.to.another-source.net/and-another-one/path/to/an-article-somewhere/on/the-web",
     views: 67000,
     upvotes: 12734,
     downvotes: 23903,
@@ -52,13 +43,13 @@ const mockProps = [
   {
     postNr: 3,
     title:
-      "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.",
+      "Adipisicing minim sint cillum sint consectetur cupidatat.Lorem ipsum dolor",
     date: "17/09/2033",
-    author: "Tesz Tost Herona",
-    relay: "beaver.relay.super-duper-ass-long-relay-name-just-because-yes.trim",
+    author: "Chris@Machine",
+    relay: "https://link.to.another-source.net/and-another-one/path/to/an-article-somewhere/on/the-web",
     views: 67000,
-    upvotes: 12734,
-    downvotes: 23903,
+    upvotes: 333734,
+    downvotes: 333333,
     comments: 3182,
     sats: 379000000,
     tags: ["java", "sucks"],
@@ -66,10 +57,10 @@ const mockProps = [
   {
     postNr: 4,
     title:
-      "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.",
+      "Nisi anim cupidatat excepteur officia. Reprehenderit no",
     date: "17/09/2033",
-    author: "Tesz Tost Herona",
-    relay: "beaver.relay.super-duper-ass-long-relay-name-just-because-yes.trim",
+    author: "Tex Uport",
+    relay: "https://link.to.another-source.net/and-another-one/path/to/an-article-somewhere/on/the-web",
     views: 67000,
     upvotes: 12734,
     downvotes: 23903,
@@ -80,10 +71,10 @@ const mockProps = [
   {
     postNr: 5,
     title:
-      "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.",
+      "REPREHENDERIT NOSTRUD NOSTRUD IPSUM!!!",
     date: "17/09/2033",
-    author: "Tesz Tost Herona",
-    relay: "beaver.relay.super-duper-ass-long-relay-name-just-because-yes.trim",
+    author: "Kah MaelTohe",
+    relay: "http://beaver.super-duper-ass-long-link-to-just-because-yes.trim",
     views: 67000,
     upvotes: 12734,
     downvotes: 23903,

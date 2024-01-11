@@ -4,7 +4,6 @@ import MobileCard from "./mobile";
 export type ArticleCardProps = {
   postNr: number;
   title: string;
-  // body: string;
   date: string;
   author: string;
   relay: string;
