@@ -27,7 +27,7 @@ export default function VoteBtns({
       <Button
         onClick={() => handlevote("upvote")}
         className={twJoin(
-          "text-success p-1 gap-0.5 mx-auto justify-between",
+          "text-success p-1 gap-0.5 mx-auto justify-center w-full",
           "xl:w-[70%] 2xl:w-3/5 2xl:justify-end",
           "2xl:rounded-none 2xl:rounded-bl-xl",
           voted === "upvote" && "hover:bg-success/10 bg-success/20",
@@ -41,8 +41,8 @@ export default function VoteBtns({
       <Button
         onClick={() => handlevote("downvote")}
         className={twJoin(
-          "text-error px-1 gap-0.5 mx-auto justify-between flex-row-reverse",
-          "xl:w-[70%] xl:flex-row 2xl:w-3/5 2xl:justify-start",
+          "text-error p-1 gap-0.5 mx-auto flex-row-reverse w-full justify-center rounded-b-xl",
+          "xl:w-[70%] 2xl:flex-row 2xl:w-3/5 2xl:justify-start",
           "2xl:rounded-none 2xl:rounded-br-xl",
           voted === "downvote" && "hover:bg-error/10 bg-error/20",
         )}

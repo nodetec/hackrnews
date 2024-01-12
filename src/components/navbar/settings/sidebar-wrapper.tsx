@@ -59,7 +59,7 @@ export default function SidebarWrapper({
         aria-labelledby="settings-sidebar"
         className={twJoin(
           "w-[400px] fixed top-0 right-0 mr-4 h-screen",
-          "bg-background text-textColor rounded-3xl p-4 overflow-scroll",
+          "bg-background text-textColor rounded-3xl p-4",
           styles.slideIn,
         )}
       >

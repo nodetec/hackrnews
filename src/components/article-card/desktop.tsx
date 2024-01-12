@@ -10,6 +10,7 @@ import { nFormatter } from "@/utils/fns/number-formatter";
 import Image from "next/image";
 import displayTags from "../displayTags";
 import VoteBtns from "./vote-btns";
+import Ranking from "./ranking";
 
 export type ArticleCardProps = {
   postNr: number;
@@ -29,14 +30,15 @@ export default function DesktopCard(props: ArticleCardProps) {
   return (
     <div className="grid-rows-2 hidden lg:grid grid-cols-12 gap-y-4">
       {/* Post Nr, Upvotes, Downvotes */}
-      <div className="col-span-1 row-span-2 flex flex-col rounded-xl bg-surface1 pt-1">
-        <h2 className="text-center text-2xl text-primary font-extrabold">
-          #{props.postNr}
-        </h2>
-
-        <div className="flex h-full flex-col 2xl:flex-row">
-          <VoteBtns upvotes={props.upvotes} downvotes={props.downvotes} />
-        </div>
+      <div className="col-span-1 row-span-2 flex flex-col rounded-xl bg-surface1 overflow-hidden">
+        {/* <h2 className="text-center text-2xl text-primary font-extrabold"> */}
+        {/*   #{props.postNr} */}
+        {/* </h2> */}
+        {/**/}
+        {/* <div className="flex h-full flex-col 2xl:flex-row"> */}
+        {/*   <VoteBtns upvotes={props.upvotes} downvotes={props.downvotes} /> */}
+        {/* </div> */}
+        <Ranking upvotes={props.upvotes} downvotes={props.downvotes} postNr={props.postNr} />
       </div>
 
       {/* Article title - Header */}
