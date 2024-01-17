@@ -22,9 +22,8 @@ export default function Actions(props: ArticleCardProps) {
     anime({
       targets: input === "upvote" ? upvoteRef.current : downvoteRef.current,
       translateY: [input === "upvote" ? -5 : 5, 0],
-      scale: [1.8, 1],
       duration: 500,
-      easing: "spring(1, 80, 10, 0)",
+      easing: "easeOutElastic(5, .4)",
     });
 
     if (voted === input) {
@@ -65,13 +64,13 @@ export default function Actions(props: ArticleCardProps) {
         </Button>
       </div>
       <div className="flex-1 flex justify-center">
-        <Button className="px-2 py-1 gap-1" flat>
-          <MessagesSquareIcon className="w-5 h-5" />
+        <Button className="px-2 py-1 gap-1 text-subText" flat>
+          <MessagesSquareIcon className="w-5 h-5 text-textColor" />
           {nFormatter(props.comments ?? 0)}
         </Button>
       </div>
       <div className="flex-1 flex justify-end">
-        <Button className="px-2 py-1 gap-1" flat>
+        <Button className="px-2 py-1 gap-1 text-subText" flat>
           <ZapIcon className="w-5 h-5 text-warn" />
           {nFormatter(props.sats)}
         </Button>

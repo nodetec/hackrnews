@@ -13,7 +13,7 @@ export default function Navbar() {
       className={twJoin(
         "w-full bg-surface1 ring-1 ring-black/5 drop-shadow-md rounded-3xl p-4 px-6",
         "md:p-[1rem] md:px-[2rem]",
-        "flex items-center justify-between",
+        "flex items-center justify-between sticky top-0 z-50",
         "dark:ring-white/5",
       )}
     >

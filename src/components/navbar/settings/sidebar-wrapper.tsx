@@ -70,7 +70,7 @@ export default function SidebarWrapper({
               closeHandler(dialogId, true);
             }
           }}
-          className="text-error sticky top-0 bg-background"
+          className="text-error sticky top-0 bg-background z-20"
           flat
         >
           <XIcon className="w-6 h-6" />

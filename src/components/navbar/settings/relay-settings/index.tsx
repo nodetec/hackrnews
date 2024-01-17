@@ -1,5 +1,5 @@
 import React from "react";
-import RelaySettings from "../../mobile/user-settings/relay-settings";
+import RelaySettings from "@components/navbar/relay-settings";
 
 export default function Component() {
   return (
