@@ -12,8 +12,8 @@ export default function Ranking(props: {
   downvotes: number;
 }) {
   const [voted, setvoted] = React.useState<"upvote" | "downvote" | null>(null);
-  const upvoteRef = React.useRef<HTMLDivElement>(null);
-  const downvoteRef = React.useRef<HTMLDivElement>(null);
+  const upvoteRef = React.useRef<HTMLSpanElement>(null);
+  const downvoteRef = React.useRef<HTMLSpanElement>(null);
 
   const handlevote = (input: "upvote" | "downvote") => {
     anime({
