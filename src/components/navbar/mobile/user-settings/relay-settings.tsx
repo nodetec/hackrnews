@@ -16,12 +16,16 @@ const RelaysMock = [
     displayName: "relay.example/simple.com",
     avatar: "https://picsum.photos/200",
   },
+  {
+    displayName: "relay.example/simple.net",
+    avatar: "https://picsum.photos/200",
+  },
 ];
 
 export default function RelaySettings() {
   return (
     <div>
-      <h1 className="text-2xl mb-2">Relay Settings</h1>
+      <h1 className="text-md mb-2">Relay Settings</h1>
       <div className="flex flex-col gap-4">
         {RelaysMock.map((relay) => (
           <div

@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en" className={theme}>
       <body
         className={twJoin(
-          "bg-background transition-colors p-2 mx-auto md:p-4 text-textColor container",
+          "bg-background transition-colors p-2 mx-auto md:p-4 text-textColor container max-w-6xl",
           josefinSans.className,
         )}
       >

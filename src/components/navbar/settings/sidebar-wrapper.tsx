@@ -12,7 +12,7 @@ export default function SidebarWrapper({
 }: {
   children: React.ReactNode;
 }) {
-  const dialogId = React.useId()
+  const dialogId = React.useId();
   const openFn = openHandler.bind(null, dialogId, true);
   const closeFn = closeHandler.bind(null, dialogId, true);
 
@@ -70,7 +70,7 @@ export default function SidebarWrapper({
               closeHandler(dialogId, true);
             }
           }}
-          className="text-error mb-8"
+          className="text-error sticky top-0 bg-background"
           flat
         >
           <XIcon className="w-6 h-6" />

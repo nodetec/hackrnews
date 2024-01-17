@@ -1,7 +1,7 @@
 import React from "react";
 import RelaySettings from "../../mobile/user-settings/relay-settings";
 
-export default function PreferedLayout() {
+export default function Component() {
   return (
     <div>
       <fieldset>

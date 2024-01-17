@@ -5,6 +5,7 @@ export function openHandler(id: string, scroll: boolean) {
   if (scroll) toggleScroll(true);
   const dialog = document.getElementById(id) as HTMLDialogElement;
   dialog.showModal();
+  dialog.scrollTo(0, 0);
 }
 
 export function closeHandler(id: string, scroll: boolean) {

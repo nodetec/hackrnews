@@ -10,7 +10,7 @@ export default function MobileCard(props: ArticleCardProps) {
     <div className="lg:hidden">
       <Header {...props} />
       <Author {...props} />
-      <Body {...props} />
+      <Body {...props} /> {/* which is the Title of the article */}
       <Actions {...props} />
     </div>
   );

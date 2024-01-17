@@ -8,7 +8,7 @@ export default function ThemeSelect() {
   const currentTheme = cookies().get("theme")?.value ?? "system";
   return (
     <div>
-      <label htmlFor="theme-btn" className="text-2xl">
+      <label htmlFor="theme-btn" className="text-md">
         Preferred Theme
       </label>
       <div

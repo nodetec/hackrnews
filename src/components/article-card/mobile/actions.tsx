@@ -26,7 +26,7 @@ export default function Actions(props: ArticleCardProps) {
       <div className="flex-1 flex justify-center">
         <Button className="px-2 py-1 gap-1" flat>
           <MessagesSquareIcon className="w-5 h-5" />
-          {nFormatter(props.comments)}
+          {nFormatter(props.comments ?? 0)}
         </Button>
       </div>
       <div className="flex-1 flex justify-end">

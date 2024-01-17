@@ -1,6 +1,7 @@
 "use client";
 import { Button } from "@/ui/buttons";
 import { nFormatter } from "@/utils/fns/number-formatter";
+import anime from "animejs";
 import { ArrowDownIcon, ArrowUpIcon } from "lucide-react";
 import React from "react";
 import { twJoin } from "tailwind-merge";
@@ -11,7 +12,19 @@ export default function Ranking(props: {
   downvotes: number;
 }) {
   const [voted, setvoted] = React.useState<"upvote" | "downvote" | null>(null);
+  const upvoteRef = React.useRef<HTMLDivElement>(null);
+  const downvoteRef = React.useRef<HTMLDivElement>(null);
+
   const handlevote = (input: "upvote" | "downvote") => {
+    anime({
+      targets: input === "upvote" ? upvoteRef.current : downvoteRef.current,
+      translateY: [(input === "upvote" ? -5 : 5), 0],
+      translateX: [5.7, 0],
+      scale: [1.4, 1],
+      duration: 500,
+      easing: "spring(1, 80, 10, 0)",
+    });
+
     if (voted === input) {
       setvoted(null);
     } else {
@@ -32,12 +45,12 @@ export default function Ranking(props: {
         <span className="w-2/3 inline-block text-center pl-2">
           {nFormatter(props.upvotes, 0)}
         </span>
-        <span className="w-1/3 inline-block relative h-full">
+        <span ref={upvoteRef} className="w-1/3 inline-block relative h-full">
           <ArrowUpIcon className="w-5 h-5 absolute top-0 -left-3" />
         </span>
       </Button>
 
-      <h2 className="text-center text-xl text-primary font-extrabold">
+      <h2 className="text-center text-base text-primary font-extrabold">
         #{props.postNr}
       </h2>
 
@@ -52,7 +65,7 @@ export default function Ranking(props: {
         <span className="w-2/3 inline-block text-center pl-2">
           {nFormatter(props.downvotes, 0)}
         </span>
-        <span className="w-1/3 inline-block relative h-full">
+        <span ref={downvoteRef} className="w-1/3 inline-block relative h-full">
           <ArrowDownIcon className="w-5 h-5 absolute top-0 -left-3" />
         </span>
       </Button>

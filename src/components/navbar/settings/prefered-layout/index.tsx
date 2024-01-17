@@ -10,7 +10,7 @@ export default function PreferedLayout() {
   return (
     <div>
       <fieldset>
-        <legend className="text-2xl mb-2">Layout</legend>
+        <legend className="text-md mb-2">Layout</legend>
         <div className="space-y-4">
           {layoutType.map((layout) => (
             <label

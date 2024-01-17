@@ -8,7 +8,7 @@ export default function ThemeToggler() {
   return (
     <div>
       <fieldset>
-        <legend className="text-2xl mb-3 inline-flex items-center justify-between w-full">
+        <legend className="text-md mb-3 inline-flex items-center justify-between w-full">
           Theme
           <PinToNavbar isPinned={cookies().get("pinned")?.value === "true"} />
         </legend>
