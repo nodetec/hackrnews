@@ -26,7 +26,7 @@ export default function MenuLinks() {
             <span
               className={twJoin(
                 pathname === route.path &&
-                "underline underline-offset-2 decoration-primary decoration-4",
+                "underline underline-offset-2 decoration-primary decoration-2",
               )}
             >
               {route.name}

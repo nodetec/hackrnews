@@ -38,7 +38,7 @@ export default function DesktopCard(props: ArticleCardProps) {
         <h2 className="text-base whitespace-nowrap">{props.title}</h2>
         <div
           className={twJoin(
-            "grow overflow-hidden text-ellipsis whitespace-nowrap gap-1 text-blue-400",
+            "grow overflow-hidden text-ellipsis whitespace-nowrap gap-1 text-link",
             "underline underline-offset-2 cursor-pointer",
           )}
         >

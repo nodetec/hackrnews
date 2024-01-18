@@ -4,10 +4,18 @@ import InfoBtn from "./info-btn";
 
 export default function Header(props: ArticleCardProps) {
   return (
-    <div className="bg-surface1 flex items-center gap-4 py-1 px-2 rounded-lg">
+    <div className="bg-surface1 flex items-center gap-4 py-1 px-2 rounded-lg h-12">
       <span className="text-md text-primary p-1">#{props.postNr}</span>
       <span className="text-discreetText">{props.date}</span>
-      <InfoBtn relay={props.relay} date={props.date} views={props.views} />
+      <InfoBtn
+        author={props.author}
+        authorsImage={
+          "https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=" +
+          props.author.split(" ").join("+")
+        }
+        date={props.date}
+        views={props.views}
+      />
     </div>
   );
 }

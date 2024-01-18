@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import colors from "tailwindcss/colors";
 
 /** @type {import('tailwindcss').Config} */
 const config: Config = {
@@ -35,6 +36,7 @@ const config: Config = {
         textColor: "rgb(var(--text-color)/ <alpha-value>)",
         subText: "rgb(var(--sub-text)/ <alpha-value>)",
         discreetText: "rgb(var(--discreet-text)/ <alpha-value>)",
+        link: colors.blue[400],
       },
     },
   },

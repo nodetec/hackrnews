@@ -14,11 +14,11 @@ export default function Page() {
 const mockProps = [
   {
     postNr: 1,
-    title:
-      "Lorem ipsum dolor sit amet, qui minim la",
+    title: "Lorem ipsum dolor sit amet, qui minim la",
     date: "20/10/2035",
     author: "John Collogne",
-    relay: "https://link.to.another-source.net/and-another-one/path/to/an-article-somewhere/on/the-web",
+    relay:
+      "https://link.to.another-source.net/and-another-one/path/to/an-article-somewhere/on/the-web",
     views: 1000,
     upvotes: 14,
     downvotes: 2,
@@ -29,10 +29,11 @@ const mockProps = [
   {
     postNr: 2,
     title:
-    "Repellendus saepe placeat quibusdam vero eaque fuga dolore, explicabo distinctio",
+      "Repellendus saepe placeat quibusdam vero eaque fuga dolore, explicabo distinctio",
     date: "17/09/2033",
     author: "Tes Tost Herona",
-    relay: "https://link.to.another-source.net/and-another-one/path/to/an-article-somewhere/on/the-web",
+    relay:
+      "https://link.to.another-source.net/and-another-one/path/to/an-article-somewhere/on/the-web",
     views: 67000,
     upvotes: 12734,
     downvotes: 23903,
@@ -46,7 +47,8 @@ const mockProps = [
       "Adipisicing minim sint cillum sint consectetur cupidatat.Lorem ipsum dolor",
     date: "17/09/2033",
     author: "Chris@Machine",
-    relay: "https://link.to.another-source.net/and-another-one/path/to/an-article-somewhere/on/the-web",
+    relay:
+      "https://link.to.another-source.net/and-another-one/path/to/an-article-somewhere/on/the-web",
     views: 67000,
     upvotes: 333734,
     downvotes: 333333,
@@ -56,11 +58,11 @@ const mockProps = [
   },
   {
     postNr: 4,
-    title:
-      "Nisi anim cupidatat excepteur officia. Reprehenderit no",
+    title: "Nisi anim cupidatat excepteur officia. Reprehenderit no",
     date: "17/09/2033",
     author: "Tex Uport",
-    relay: "https://link.to.another-source.net/and-another-one/path/to/an-article-somewhere/on/the-web",
+    relay:
+      "https://link.to.another-source.net/and-another-one/path/to/an-article-somewhere/on/the-web",
     views: 67000,
     upvotes: 12734,
     downvotes: 23903,
@@ -70,8 +72,7 @@ const mockProps = [
   },
   {
     postNr: 5,
-    title:
-      "REPREHENDERIT NOSTRUD NOSTRUD IPSUM!!!",
+    title: "REPREHENDERIT NOSTRUD NOSTRUD IPSUM!!!",
     date: "17/09/2033",
     author: "Kah MaelTohe",
     relay: "http://beaver.super-duper-ass-long-link-to-just-because-yes.trim",

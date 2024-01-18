@@ -1,6 +1,8 @@
 "use client";
 
+import anime from "animejs";
 import React from "react";
+import { twMerge } from "tailwind-merge";
 
 type StateCtx = boolean;
 
@@ -28,7 +30,7 @@ function Popover({ children, ...props }: PopoverProps) {
 
   return (
     <DialogContext.Provider value={{ openCx: open, setOpenCx: setOpen }}>
-      <span {...props}>
+      <span {...props} className={props.className}>
         {typeof children === "function" ? children(open, setOpen) : children}
       </span>
     </DialogContext.Provider>
@@ -50,24 +52,92 @@ type FloatProps = {
 
 function Float({ children, ...props }: FloatProps) {
   const { openCx, setOpenCx } = React.useContext(DialogContext);
+  const [open, setOpen] = React.useState(false);
   const dialogRef = React.useRef<HTMLDialogElement>(null);
 
-  React.useEffect(() => {
-    dialogRef.current?.addEventListener("click", (e) => {
-      const dialogDimensions = dialogRef.current!.getBoundingClientRect();
-      if (
-        e.clientX < dialogDimensions.left ||
-        e.clientX > dialogDimensions.right ||
-        e.clientY < dialogDimensions.top ||
-        e.clientY > dialogDimensions.bottom
-      ) {
-        dialogRef.current?.close();
-        setOpenCx(false);
-      }
+  const clickOutListener = (e: MouseEvent) => {
+    const dialogDimensions = dialogRef.current!.getBoundingClientRect();
+    if (
+      e.clientX < dialogDimensions.left ||
+      e.clientX > dialogDimensions.right ||
+      e.clientY < dialogDimensions.top ||
+      e.clientY > dialogDimensions.bottom
+    ) {
+      handleClose();
+    }
+  };
+
+  const scrollListener = (e: Event) => {
+    if (openCx) {
+      handleClose();
+    }
+  };
+
+  const pressEscListener = (e: KeyboardEvent) => {
+    if (e.key === "Escape" && openCx) {
+      e.preventDefault();
+      handleClose();
+    }
+  };
+
+  const handleClose = () => {
+    anime({
+      targets: dialogRef.current,
+      opacity: [1, 0],
+      duration: 200,
+      translateY: [0, -20],
+      translateX: [0, 10],
+      scale: [1, 0.75],
+      easing: "easeInElastic(2, .6)",
+      complete: () => setOpenCx(false),
     });
-  }, []);
+
+    document.removeEventListener("click", clickOutListener);
+  };
+
+  const handleOpen = () => {
+    document.addEventListener("click", clickOutListener);
+    setOpen(true);
+
+    anime({
+      targets: dialogRef.current,
+      opacity: [0, 1],
+      duration: 200,
+      translateY: [-20, 0],
+      translateX: [10, 0],
+      scale: [0.75, 1],
+      easing: "easeOutElastic(2, .6)",
+    });
+  };
+
+  React.useEffect(() => {
+    // Esc Linstener
+    document.addEventListener("keydown", pressEscListener);
+    // Scroll Linstener
+    //TODO: See if the experience of closing the modal is good
+    document.addEventListener("scroll", scrollListener);
+
+    if (openCx) {
+      handleOpen();
+    }
+
+    return () => {
+      document.removeEventListener("scroll", scrollListener);
+      document.removeEventListener("keydown", pressEscListener);
+    };
+  }, [openCx]);
+
   return (
-    <dialog ref={dialogRef} open={openCx} {...props}>
+    <dialog
+      ref={dialogRef}
+      open={open}
+      {...props}
+      className={twMerge(
+        "z-20 opacity-0 scale-75 text-textColor p-2",
+        "bg-surface1 dark:bg-surface2 rounded-3xl ring-1 ring-black/10 shadow-md",
+        props.className,
+      )}
+    >
       {children}
     </dialog>
   );

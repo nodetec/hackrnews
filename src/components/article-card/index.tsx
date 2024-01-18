@@ -17,7 +17,7 @@ export type ArticleCardProps = {
 
 export default function ArticleCard(props: ArticleCardProps) {
   return (
-    <div className="p-2 w-full">
+    <div className="p-2 w-full col-span-1">
       <MobileCard {...props} />
       <DesktopCard {...props} />
     </div>

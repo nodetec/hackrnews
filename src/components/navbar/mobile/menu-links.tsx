@@ -20,12 +20,17 @@ export default function MenuLinks({ dialogId }: { dialogId: string }) {
             className={twJoin(
               "justify-start gap-3 w-full",
               "active:bg-primary/30",
-              pathname === route.path &&
-              "underline underline-offset-2 decoration-primary decoration-4",
             )}
           >
             {route.icon}
-            {route.name}
+            <span
+              className={twJoin(
+                pathname === route.path &&
+                "underline underline-offset-2 decoration-primary decoration-2",
+              )}
+            >
+              {route.name}
+            </span>
           </Button>
         </Link>
       ))}
