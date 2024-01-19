@@ -10,6 +10,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@dotlottie/react-player": "^1.6.13",
     "@headlessui/react": "^1.7.17",
     "animejs": "^3.2.1",
     "lucide-react": "^0.292.0",

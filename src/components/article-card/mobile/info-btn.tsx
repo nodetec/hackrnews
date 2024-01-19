@@ -1,16 +1,17 @@
 "use client";
 
+import CheckAnimation, { ExtendedRef } from "@/ui/animated-check";
 import { RoundButton } from "@/ui/buttons";
 import ImageAvatar from "@/ui/image-avatar";
 import { nFormatter } from "@/utils/fns/number-formatter";
+import { useCopyToClipboard } from "@/utils/hooks/copy-to-clipboard";
 import { Popover, Transition } from "@headlessui/react";
-import { CalendarXIcon, EyeIcon, InfoIcon } from "lucide-react";
+import { CodeIcon, CopyIcon, EyeIcon, InfoIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { twJoin } from "tailwind-merge";
 
 export default function InfoBtn({
-  date,
   views,
   author,
   authorsImage,
@@ -20,19 +21,8 @@ export default function InfoBtn({
   author: string;
   authorsImage: string;
 }) {
-  const [closeOnScroll, setCloseOnScroll] = React.useState(false);
-
-  React.useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  function handleScroll() {
-    setCloseOnScroll(true);
-  }
+  const [_, copy] = useCopyToClipboard();
+  const checkAnimeRef = React.useRef<ExtendedRef | null>(null);
 
   return (
     <Popover className="relative ml-auto">
@@ -72,15 +62,42 @@ export default function InfoBtn({
                   fallbackSrc={`https://ui-avatars.com/api/?name=${author}`}
                   className="col-span-2"
                 />
-                <Link href="#" className="col-span-8 truncate text-ellipsis flex items-center">
+                <Link
+                  href="#"
+                  className="col-span-8 truncate text-ellipsis flex items-center"
+                >
                   {author}
                 </Link>
-                <CalendarXIcon className="col-span-2 text-secondary w-5 h-5" />
-                <span className="col-span-8 text-subText text-sm">{date}</span>
+
+                {/* <CalendarXIcon className="col-span-2 text-secondary w-5 h-5" /> */}
+                {/* <span className="col-span-8 text-subText text-sm">{date}</span> */}
+
                 <EyeIcon className="col-span-2 text-secondary w-5 h-5" />
                 <span className="col-span-8 text-sm text-subText">
                   {nFormatter(views)}
                 </span>
+                <CodeIcon className="col-span-2 text-secondary w-5 h-5" />
+
+                <button
+                  // FIXME: add real eventID
+                  onClick={() => {
+                    copy("lasdkjflasdjflasdjlfjaskldjflkasdjfljasldflasjdfljk");
+                    checkAnimeRef.current?.animateCheckOnClick();
+                  }}
+                  className="col-span-8 text-sm text-subText flex relative"
+                >
+                  <span className="truncate mr-2">
+                    {/* FIXME: add real eventID */}
+                    lasdkjflasdjflasdjlfjaskldjflkasdjfljasldflasjdfljk
+                  </span>
+
+                  <CopyIcon className="text-secondary w-5 h-5" />
+
+                  <CheckAnimation
+                    ref={checkAnimeRef}
+                    className="w-16 h-16 absolute -right-7 -top-5"
+                  />
+                </button>
               </div>
             </Popover.Panel>
           </Transition>

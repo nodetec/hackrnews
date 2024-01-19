@@ -1,3 +1,4 @@
+"use client"
 import ArticleCard from "@/components/article-card";
 
 export default function Page() {

@@ -12,9 +12,11 @@ type StateActionCtx = React.Dispatch<React.SetStateAction<boolean>>;
  * This basicaly means that children of popover can be a React.Node or a function that returns a React.Node
  */
 type PopoverProps = {
-  children:
-  | React.ReactNode
-  | ((open: StateCtx, setOpen: StateActionCtx) => React.ReactNode);
+  children?: React.ReactNode;
+  render?: (props: {
+    open: boolean;
+    setOpen: StateActionCtx;
+  }) => React.ReactNode;
 } & React.HTMLAttributes<HTMLSpanElement>;
 
 const DialogContext = React.createContext<{
@@ -25,13 +27,17 @@ const DialogContext = React.createContext<{
   setOpenCx: () => { },
 });
 
-function Popover({ children, ...props }: PopoverProps) {
+function Popover({ children, render, ...props }: PopoverProps) {
   const [open, setOpen] = React.useState(false);
+
+  if (render) {
+    return render({ open, setOpen });
+  }
 
   return (
     <DialogContext.Provider value={{ openCx: open, setOpenCx: setOpen }}>
       <span {...props} className={props.className}>
-        {typeof children === "function" ? children(open, setOpen) : children}
+        {children}
       </span>
     </DialogContext.Provider>
   );
