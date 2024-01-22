@@ -1,7 +1,10 @@
-"use client"
 import ArticleCard from "@/components/article-card";
+import Feed from "@/utils/actions/main-feed";
 
-export default function Page() {
+export default async function Page() {
+  const feed = new Feed();
+  const posts = await feed.getFeed();
+
   return (
     <div className="mt-8 space-y-4 w-full">
       {mockProps.map((props) => (

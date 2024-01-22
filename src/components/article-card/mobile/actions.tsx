@@ -34,7 +34,7 @@ export default function Actions(props: ArticleCardProps) {
   };
   return (
     <div className="mt-4 flex justify-between items-center">
-      <div className="space-x-2 flex-1 flex justify-start">
+      <div className="flex-1 flex justify-start">
         <Button
           onClick={() => handlevote("upvote")}
           className={twJoin(

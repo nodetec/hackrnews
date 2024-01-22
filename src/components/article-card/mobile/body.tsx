@@ -1,4 +1,4 @@
-import displayTags from "@components/displayTags";
+import displayTags from "@/components/display-tags";
 import { ArticleCardProps } from "..";
 import { LinkIcon } from "lucide-react";
 import Link from "next/link";

@@ -6,6 +6,7 @@ import ImageAvatar from "@/ui/image-avatar";
 import { nFormatter } from "@/utils/fns/number-formatter";
 import { useCopyToClipboard } from "@/utils/hooks/copy-to-clipboard";
 import { Popover, Transition } from "@headlessui/react";
+import anime from "animejs";
 import { CodeIcon, CopyIcon, EyeIcon, InfoIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
@@ -23,14 +24,15 @@ export default function InfoBtn({
 }) {
   const [_, copy] = useCopyToClipboard();
   const checkAnimeRef = React.useRef<ExtendedRef | null>(null);
+  const panelRef = React.useRef<HTMLDivElement>(null);
 
   return (
     <Popover className="relative ml-auto">
       {({ open }) => (
         <>
-          <Popover.Button as="span">
+          <Popover.Button as={"span"}>
             <RoundButton
-              flat={!open}
+              flat
               className={twJoin(
                 "flex items-center rounded-full p-2 hover:bg-surface2/40 active:bg-surface3",
                 open ? "bg-surface3" : "hover:bg-surface2",
@@ -42,16 +44,34 @@ export default function InfoBtn({
 
           <Transition
             as={React.Fragment}
-            enter="transition ease-out duration-100"
-            enterFrom="transform opacity-0 scale-95"
-            enterTo="transform opacity-100 scale-100"
-            leave="transition ease-in duration-75"
-            leaveFrom="transform opacity-100 scale-100"
-            leaveTo="transform opacity-0 scale-95"
+            // enter="transition duration-400"
+            beforeEnter={() => {
+              anime({
+                targets: panelRef.current,
+                opacity: [0, 1],
+                duration: 400,
+                translateX: [40, 0],
+                easing: "easeOutElastic(1, .6)",
+                scale: [0.75, 1],
+              });
+            }}
+            //this leave atrribute is irrelevant but kinda necessary to trigger the anime animation
+            leave="transition duration-300"
+            beforeLeave={() => {
+              anime({
+                targets: panelRef.current,
+                opacity: [1, 0],
+                duration: 300,
+                translateX: [0, 40],
+                easing: "easeInElastic(1, .6)",
+                scale: [1, 0.75],
+              });
+            }}
           >
             <Popover.Panel
+              ref={panelRef}
               className={twJoin(
-                "absolute -top-1/3 right-full mr-2 w-72 origin-top-right",
+                "absolute -top-1/3 right-full mr-2 w-72",
                 "p-4 ring-1 ring-black/10 dark:ring-white/5 shadow bg-surface1 rounded-lg",
               )}
             >

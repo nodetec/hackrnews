@@ -9,7 +9,7 @@ import { twJoin } from "tailwind-merge";
 import { nFormatter } from "@/utils/fns/number-formatter";
 import Image from "next/image";
 import Ranking from "./ranking-desktop";
-import displayTags from "@/components/displayTags";
+import displayTags from "@/components/display-tags";
 
 export type ArticleCardProps = {
   postNr: number;

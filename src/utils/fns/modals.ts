@@ -8,6 +8,11 @@ export function openHandler(id: string, scroll: boolean) {
   dialog.scrollTo(0, 0);
 }
 
+/**
+ * Closes the dialog and restore the scroll
+ * @param {string} id - id of the dialog to close
+ * @param {boolean} scroll - if the scroll should be restored
+ */
 export function closeHandler(id: string, scroll: boolean) {
   if (scroll) toggleScroll(false);
   const dialog = document.getElementById(id) as HTMLDialogElement;

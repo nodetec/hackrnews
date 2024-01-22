@@ -1,3 +1,4 @@
+import React from "react";
 import { twJoin, twMerge } from "tailwind-merge";
 
 type BaseButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -141,6 +142,7 @@ export function OutlineButton({
     warn: twJoin("active:bg-warn/30", "hover:bg-warn/10"),
     ghost: twJoin("active:bg-surface3/30", "hover:bg-surface3/10"),
   };
+
   return (
     <Button
       variant={variant}
