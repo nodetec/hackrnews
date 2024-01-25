@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/navbar2";
+import { twJoin } from "tailwind-merge";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -12,9 +13,9 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div>
+    <main className="">
       <Navbar />
       {children}
-    </div>
+    </main>
   );
 }

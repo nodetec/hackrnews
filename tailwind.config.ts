@@ -31,6 +31,9 @@ const config: Config = {
       animation: {
         wiggle: "wiggle 1s ease-in-out",
       },
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+      },
       colors: {
         primary: "rgb(var(--color-primary)/ <alpha-value>)",
         secondary: "rgb(var(--color-secondary)/ <alpha-value>)",

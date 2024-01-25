@@ -18,6 +18,10 @@ export function Modal({ children }: { children: React.ReactNode }) {
     router.back();
   }
 
+  if (!document) {
+    return null;
+  }
+
   return createPortal(
     <div className="modal-backdrop">
       <dialog ref={dialogRef} className="modal" onClose={onDismiss}>

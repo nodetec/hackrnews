@@ -7,7 +7,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function MenuLinks() {
-  // const pathname = headers().get("next-url") ?? "/";
   const pathname = usePathname();
 
   return (
@@ -18,7 +17,7 @@ export default function MenuLinks() {
             tabIndex={-1}
             flat
             className={twJoin(
-              "gap-3 items-center",
+              "gap-3 items-center text-lg",
               "active:bg-primary/30 items-center justify-center",
             )}
           >

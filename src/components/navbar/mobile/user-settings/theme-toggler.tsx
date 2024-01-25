@@ -1,11 +1,13 @@
+"use client";
+
 import { themes } from "@/utils/themes";
 import { ChevronDownIcon } from "lucide-react";
-import { cookies } from "next/headers";
 import { twJoin } from "tailwind-merge";
-import Select from "./select";
+import { useTheme } from "next-themes";
 
 export default function ThemeSelect() {
-  const currentTheme = cookies().get("theme")?.value ?? "system";
+  const { setTheme, theme : currTheme } = useTheme();
+
   return (
     <div>
       <label htmlFor="theme-btn" className="text-md">
@@ -18,9 +20,27 @@ export default function ThemeSelect() {
         )}
       >
         <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2">
-          {themes.find((theme) => theme.name === currentTheme)?.icon}
+          {themes.find((t) => t.name === currTheme)?.icon}
         </span>
-        <Select currentTheme={currentTheme} />
+
+        <select
+          name="theme-btn"
+          id="theme-btn"
+          className={twJoin(
+            "w-full bg-inherit flex-grow appearance-none",
+            "outline-none pl-10 py-2.5 pr-4 rounded-lg",
+          )}
+          value={currTheme}
+          onChange={async (e) => {
+            setTheme(e.target.value);
+          }}
+        >
+          {themes.map((theme) => (
+            <option key={theme.name} value={theme.name}>
+              {theme.name}
+            </option>
+          ))}
+        </select>
         <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
           <ChevronDownIcon className="w-5 h-5" />
         </span>

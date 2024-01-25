@@ -1,11 +1,13 @@
+"use client";
+
 import { RoundButton } from "@ui/buttons";
 import Divider from "@ui/divider";
 import { MenuIcon } from "lucide-react";
 import React from "react";
 import FloatWrapper from "./float-wrapper";
-import MenuLinks from "./menu-links";
 import Extras from "./extras";
 import UserSettings from "./user-settings";
+import Sidebar from "@/components/sidebar";
 
 const MenuButton = () => (
   <RoundButton flat>
@@ -13,18 +15,22 @@ const MenuButton = () => (
   </RoundButton>
 );
 
-export default function MobileMenu() {
+export default function MenuLinks() {
   const dialogId = React.useId();
 
-  return (
-    <FloatWrapper logo toggleButton={<MenuButton />} dialogId={dialogId}>
-      <MenuLinks dialogId={dialogId} />
+  // return (
+  //   <FloatWrapper logo toggleButton={<MenuButton />} dialogId={dialogId}>
+  //
+  //     <Divider />
+  //
+  //     <Extras dialogId={dialogId}>
+  //       <UserSettings />
+  //     </Extras>
+  //   </FloatWrapper>
+  // );
 
-      <Divider />
+  return 
+  <Sidebar logo>
 
-      <Extras dialogId={dialogId}>
-        <UserSettings />
-      </Extras>
-    </FloatWrapper>
-  );
+  </Sidebar>;
 }

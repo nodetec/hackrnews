@@ -5,7 +5,7 @@ import { layoutType } from "@utils/prefered-layouts";
 import { cookies } from "next/headers";
 
 export default function PreferedLayout() {
-  const currSelected = cookies().get("layout")?.value ?? "wide"
+  // const currSelected = cookies().get("layout")?.value ?? "wide"
 
   return (
     <div>

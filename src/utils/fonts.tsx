@@ -1,7 +1,6 @@
 import {
   Chakra_Petch,
   Josefin_Sans,
-  Pixelify_Sans,
   Silkscreen,
   Space_Grotesk,
   Tourney,
@@ -12,13 +11,6 @@ export const tourney = Tourney({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   variable: "--font-tourney",
-});
-
-// logo
-export const pixelify = Pixelify_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-pixelify",
 });
 
 // Titles
