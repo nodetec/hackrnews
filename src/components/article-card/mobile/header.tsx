@@ -4,9 +4,9 @@ import InfoBtn from "./info-btn";
 
 export default function Header(props: ArticleCardProps) {
   return (
-    <div className="bg-surface1 flex items-center gap-4 py-1 px-2 rounded-lg h-12">
-      <span className="text-md text-primary p-1">#{props.postNr}</span>
-      <span className="text-discreetText">{props.date}</span>
+    <div className="bg-surface1 border border-surface2 flex items-center gap-4 py-1 px-2 rounded-lg h-12">
+      <span className="text-lg text-primary p-1">#{props.postNr}</span>
+      <span className="text-discreetText text-sm">{props.date}</span>
       <InfoBtn
         author={props.author}
         authorsImage={

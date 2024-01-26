@@ -6,10 +6,12 @@ export default async function Page() {
   const posts = await feed.getFeed();
 
   return (
-    <div className="mt-8 space-y-4 w-full">
+    <div className="mt-8 w-full">
       {mockProps.map((props) => (
         // pass the index of the post as postNr
-        <ArticleCard {...props} key={props.postNr} />
+        <div className="hover:bg-surface2/30 dark:hover:bg-surface2/15 py-4 px-2 rounded-lg">
+          <ArticleCard {...props} key={props.postNr} />
+        </div>
       ))}
     </div>
   );

@@ -7,7 +7,7 @@ export default function Logo() {
     <Link href="/">
       <h1
         className={twJoin(
-          "text-lg uppercase",
+          "text-3xl uppercase",
           silkScreen.className,
           // tourney.className,
         )}

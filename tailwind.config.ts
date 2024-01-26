@@ -12,15 +12,15 @@ const config: Config = {
     "./src/utils/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    fontSize: {
-      sm: "var(--font-size-sm)",
-      base: "var(--font-size-base)",
-      md: "var(--font-size-md)",
-      lg: "var(--font-size-lg)",
-      xl: "var(--font-size-xl)",
-      "2xl": "var(--font-size-xxl)",
-      "3xl": "var(--font-size-xxxl)",
-    },
+    // fontSize: {
+    //   sm: "var(--font-size-sm)",
+    //   base: "var(--font-size-base)",
+    //   md: "var(--font-size-md)",
+    //   lg: "var(--font-size-lg)",
+    //   xl: "var(--font-size-xl)",
+    //   "2xl": "var(--font-size-xxl)",
+    //   "3xl": "var(--font-size-xxxl)",
+    // },
     extend: {
       keyframes: {
         wiggle: {
