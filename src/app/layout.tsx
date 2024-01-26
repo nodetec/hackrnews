@@ -13,17 +13,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="bg-background antialiased">
-        <ThemeProvider defaultTheme="dark" attribute="class">
+      <body className="bg-background antialiased h-fit pb-14">
+        <ThemeProvider defaultTheme="dark" enableSystem attribute="class">
           <div
-            vaul-drawer-wrapper="bg-white"
-            className="min-h-[100vh] bg-background"
+            id="body-vaul-drawer-wrapper"
+            // vaul-drawer-wrapper=""
+          // className
           >
             <main
               className={twJoin(
                 "bg-background transition-colors text-textColor container max-w-6xl",
                 "p-4 mx-auto md:p-4",
-                "h-screen",
+                "min-h-[100vh] bg-background",
                 josefinSans.className,
               )}
             >
