@@ -23,95 +23,85 @@ type ButtonProps = BaseButtonProps & {
   | "success"
   | "warn"
   | "ghost";
-  flat?: boolean;
 };
 
-export function Button({
-  children,
-  variant = VARIANT.ghost,
-  flat = false,
-  ...props
-}: ButtonProps) {
-  const { className, ...rest } = props;
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  function Button(
+    { children, variant = VARIANT.ghost, ...props }: ButtonProps,
+    ref,
+  ) {
+    const { className, ...rest } = props;
 
-  const variantStyles = {
-    [VARIANT.primary]: twJoin(
-      "bg-primary",
-      "hover:bg-primary/90",
-      "active:bg-primary/80",
-      !flat && "shadow hover:shadow-lg active:shadow",
-    ),
-    [VARIANT.error]: twJoin(
-      "bg-error",
-      "hover:bg-error/90",
-      "active:bg-error/80",
-      !flat && "shadow hover:shadow-lg active:shadow",
-    ),
-    [VARIANT.info]: twJoin(
-      "bg-info",
-      "hover:bg-info/90",
-      "active:bg-info/80",
-      !flat && "shadow hover:shadow-lg active:shadow",
-    ),
-    [VARIANT.success]: twJoin(
-      "bg-success",
-      "hover:bg-success/90",
-      "active:bg-success/80",
-      !flat && "shadow hover:shadow-lg active:shadow",
-    ),
+    const variantStyles = {
+      [VARIANT.primary]: twJoin(
+        "bg-primary",
+        "hover:bg-primary/90",
+        "active:bg-primary/80",
+      ),
+      [VARIANT.error]: twJoin(
+        "bg-error",
+        "hover:bg-error/90",
+        "active:bg-error/80",
+      ),
+      [VARIANT.info]: twJoin(
+        "bg-info",
+        "hover:bg-info/90",
+        "active:bg-info/80",
+      ),
+      [VARIANT.success]: twJoin(
+        "bg-success",
+        "hover:bg-success/90",
+        "active:bg-success/80",
+      ),
 
-    [VARIANT.warn]: twJoin(
-      "bg-warn",
-      "hover:bg-warn/90",
-      "active:bg-warn/80",
-      !flat && "shadow hover:shadow-lg active:shadow",
-    ),
-    [VARIANT.ghost]: twJoin(
-      "bg-transparent text-textColor",
-      "hover:bg-surface2/50",
-      "active:bg-surface2",
-      !flat && "shadow hover:shadow-lg active:shadow",
-    ),
-  };
+      [VARIANT.warn]: twJoin(
+        "bg-warn",
+        "hover:bg-warn/90",
+        "active:bg-warn/80",
+      ),
+      [VARIANT.ghost]: twJoin(
+        "bg-transparent text-textColor",
+        "hover:bg-surface2/50",
+        "active:bg-surface2",
+      ),
+    };
 
-  return (
-    <button
-      type="button"
-      className={twMerge(
-        twJoin(
-          "block py-2 px-3 rounded cursor-pointer",
-          "text-neutral-950 border-black/5",
-          !flat && "border",
-          "uppercase text-sm font-semibold",
-          "transition ease-out",
-          "inline-flex justify-center items-center gap-2",
-        ),
-        variantStyles[variant],
-        className,
-      )}
-      {...rest}
-    >
-      {children}
-    </button>
-  );
-}
+    return (
+      <button
+        ref={ref}
+        type="button"
+        className={twMerge(
+          twJoin(
+            "block py-2 px-3 rounded cursor-pointer",
+            "text-neutral-950 border-black/5",
+            "border",
+            "text-sm font-semibold",
+            "transition ease-out",
+            "inline-flex justify-center items-center gap-2",
+          ),
+          variantStyles[variant],
+          className,
+        )}
+        {...rest}
+      >
+        {children}
+      </button>
+    );
+  },
+);
 
-type RoundButtonProps = ButtonProps & {
-  flat?: boolean;
-};
+type RoundButtonProps = ButtonProps
 
 export function RoundButton({
   children,
   variant = VARIANT.ghost,
-  flat = false,
   ...props
 }: RoundButtonProps) {
   const { className, ...rest } = props;
   return (
     <Button
       variant={variant}
-      flat={flat}
-      className={twMerge("rounded-full w-fit p-2", className)}
+      className={twMerge("rounded-full w-fit p-1.5", className)}
       {...rest}
     >
       {children}
@@ -122,7 +112,6 @@ export function RoundButton({
 export function OutlineButton({
   children,
   variant = VARIANT.ghost,
-  flat = false,
   ...props
 }: ButtonProps) {
   const { className, ...rest } = props;
@@ -146,7 +135,6 @@ export function OutlineButton({
   return (
     <Button
       variant={variant}
-      flat={flat}
       className={twMerge("bg-transparent", hoverBgStyles[variant], className)}
       style={{
         border: borderColor,
