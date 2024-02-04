@@ -9,7 +9,7 @@ import RelayPreferences from "./relay-preferences";
 import { RoundButton } from "@/ui/buttons";
 
 export default function DesktopDrawer() {
-  const [open, setOpen] = useState<boolean>(true);
+  const [open, setOpen] = useState<boolean>(false);
   const content = React.useRef<HTMLDivElement>(null);
 
   return (

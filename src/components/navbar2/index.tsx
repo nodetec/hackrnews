@@ -7,7 +7,6 @@ import React from "react";
 import { cookies } from "next/headers";
 import ThemeMenu from "./theme-menu";
 import MobileDrawer from "./mobile-drawer";
-import Settings from "../navbar/settings";
 import DesktopDrawer from "./desktop-drawer"
 
 export default function Navbar() {
@@ -16,7 +15,6 @@ export default function Navbar() {
 
   return (
     <>
-      {/* <div className="w-full fixed top-0 inset-x-0 h-[5.5rem] backdrop-blur z-10" /> */}
       <nav
         className={twJoin(
           "bg-surface1 ring-1 ring-black/5 drop-shadow-md rounded-3xl p-4 px-6",

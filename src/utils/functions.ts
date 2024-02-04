@@ -73,6 +73,5 @@ export function closeOnScreenSize(stateToggler: () => void) {
 
   return () => {
     window.removeEventListener("resize", listener);
-    console.log("removed listener");
   };
 }
