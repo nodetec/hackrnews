@@ -17,3 +17,7 @@ export async function setPreferenceCookie(
 
   revalidatePath(path);
 }
+
+export async function getPreferenceCookie(key: string) {
+  return cookies().get(key)?.value;
+}

@@ -27,9 +27,32 @@ const config: Config = {
           "0%, 100%": { transform: "rotate(-3deg)" },
           "50%": { transform: "rotate(3deg)" },
         },
+        slideDownAndFade: {
+          from: { opacity: 0, transform: "translateY(-2px)" },
+          to: { opacity: 1, transform: "translateY(0)" },
+        },
+        slideLeftAndFade: {
+          from: { opacity: 0, transform: "translateX(2px)" },
+          to: { opacity: 1, transform: "translateX(0)" },
+        },
+        slideUpAndFade: {
+          from: { opacity: 0, transform: "translateY(2px)" },
+          to: { opacity: 1, transform: "translateY(0)" },
+        },
+        slideRightAndFade: {
+          from: { opacity: 0, transform: "translateX(-2px)" },
+          to: { opacity: 1, transform: "translateX(0)" },
+        },
       },
       animation: {
         wiggle: "wiggle 1s ease-in-out",
+        slideDownAndFade:
+          "slideDownAndFade 600ms cubic-bezier(0.16, 1, 0.3, 1)",
+        slideLeftAndFade:
+          "slideLeftAndFade 600ms cubic-bezier(0.16, 1, 0.3, 1)",
+        slideUpAndFade: "slideUpAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)",
+        slideRightAndFade:
+          "slideRightAndFade 600ms cubic-bezier(0.16, 1, 0.3, 1)",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

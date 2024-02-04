@@ -15,9 +15,7 @@ export default function Home() {
       <Button variant="warn">warn</Button>
       <Button variant="info">info</Button>
       <Button variant="ghost">ghost</Button>
-      <Button variant="ghost" flat>
-        ghost
-      </Button>
+      <Button variant="ghost">ghost</Button>
 
       <RoundButton>
         <ThumbsUpIcon className="w-5 h-5" />
@@ -28,7 +26,7 @@ export default function Home() {
       <RoundButton variant="warn">
         <ThumbsUpIcon className="w-5 h-5" />
       </RoundButton>
-      <RoundButton variant="ghost" flat>
+      <RoundButton variant="ghost">
         <ThumbsUpIcon className="w-5 h-5" />
       </RoundButton>
 
@@ -36,12 +34,7 @@ export default function Home() {
       <OutlineButton variant="error">error</OutlineButton>
       <OutlineButton>ghost</OutlineButton>
       <OutlineButton variant="warn">warn</OutlineButton>
-      <OutlineButton flat variant="warn">
-        flat
-      </OutlineButton>
-      <OutlineButton flat variant="primary">
-        primary
-      </OutlineButton>
+      <OutlineButton variant="primary">primary</OutlineButton>
     </div>
   );
 }

@@ -3,7 +3,7 @@
 import CheckAnimation, { ExtendedRef } from "@/ui/animated-check";
 import { RoundButton } from "@/ui/buttons";
 import ImageAvatar from "@/ui/image-avatar";
-import { nFormatter } from "@/utils/fns/number-formatter";
+import { nFormatter } from "@/utils/functions";
 import { useCopyToClipboard } from "@/utils/hooks/copy-to-clipboard";
 import { Popover, Transition } from "@headlessui/react";
 import anime from "animejs";
@@ -32,7 +32,6 @@ export default function InfoBtn({
         <>
           <Popover.Button as={"span"}>
             <RoundButton
-              flat
               className={twJoin(
                 "flex items-center rounded-full p-2 hover:bg-surface2/40 active:bg-surface3",
                 open ? "bg-surface3" : "hover:bg-surface2",

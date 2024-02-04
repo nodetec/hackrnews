@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/ui/buttons";
-import { nFormatter } from "@/utils/fns/number-formatter";
+import { nFormatter } from "@/utils/functions";
 import anime from "animejs";
 import { ArrowDownIcon, ArrowUpIcon } from "lucide-react";
 import React from "react";
@@ -35,7 +35,6 @@ export default function Ranking(props: {
   return (
     <div className="hidden lg:flex flex-col bg-surface1 rounded-xl">
       <Button
-        flat
         className={twJoin(
           "text-success rounded-t-xl py-1.5 normal-case px-0 gap-0 text-sm justify-between",
           voted === "upvote" && "hover:bg-success/10 bg-success/20",
@@ -55,7 +54,6 @@ export default function Ranking(props: {
       </h2>
 
       <Button
-        flat
         className={twJoin(
           "text-error rounded-b-xl py-1.5 normal-case px-0 gap-0 text-sm justify-between",
           voted === "downvote" && "hover:bg-error/10 bg-error/20",

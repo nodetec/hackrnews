@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    font-size: 14px;
+    font-size: 16px;
     --color-primary: 249 117 22;
     --color-secondary: 24 158 115;
     --color-warn: 234 178 8;
@@ -26,6 +26,25 @@
     /* --font-size-xl: clamp(1.95rem, 1.56vw + 1.56rem, 2.81rem); */
     /* --font-size-xxl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem); */
     /* --font-size-xxxl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem); */
+  }
+
+  html,
+  body {
+    transition:
+      background-color 0.6s ease,
+      color 0.6s ease;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* For IE, Edge and Firefox */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
   }
 
   html.dark {

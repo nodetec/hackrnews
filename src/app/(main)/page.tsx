@@ -9,7 +9,7 @@ export default async function Page() {
     <div className="mt-8 w-full">
       {mockProps.map((props) => (
         // pass the index of the post as postNr
-        <div className="hover:bg-surface2/30 dark:hover:bg-surface2/15 py-4 px-2 rounded-lg">
+        <div key={props.postNr} className="hover:bg-surface2/30 dark:hover:bg-surface2/15 py-4 px-2 rounded-lg">
           <ArticleCard {...props} key={props.postNr} />
         </div>
       ))}

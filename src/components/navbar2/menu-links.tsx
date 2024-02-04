@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/ui/buttons";
-import { closeHandler } from "@/utils/fns/modals";
 import { routes } from "@/utils/routes";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -38,7 +37,6 @@ export default function MenuLinks({
               router.push(route.path);
             }}
             tabIndex={-1}
-            flat
             className={buttonClasses}
           >
             {route.icon}

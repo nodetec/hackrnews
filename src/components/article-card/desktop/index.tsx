@@ -1,12 +1,8 @@
 import React from "react";
 import { Button } from "@/ui/buttons";
-import {
-  LinkIcon,
-  MessagesSquareIcon,
-  ZapIcon,
-} from "lucide-react";
+import { LinkIcon, MessagesSquareIcon, ZapIcon } from "lucide-react";
 import { twJoin } from "tailwind-merge";
-import { nFormatter } from "@/utils/fns/number-formatter";
+import { nFormatter } from "@/utils/functions";
 import Image from "next/image";
 import Ranking from "./ranking-desktop";
 import displayTags from "@/components/display-tags";
@@ -30,15 +26,19 @@ export default function DesktopCard(props: ArticleCardProps) {
     <div className="grid-rows-2 hidden lg:grid grid-cols-12 gap-y-4">
       {/* Post Nr, Upvotes, Downvotes */}
       <div className="col-span-1 row-span-2">
-        <Ranking upvotes={props.upvotes} downvotes={props.downvotes} postNr={props.postNr} />
+        <Ranking
+          upvotes={props.upvotes}
+          downvotes={props.downvotes}
+          postNr={props.postNr}
+        />
       </div>
 
       {/* Article title - Header */}
       <div className="col-span-11 row-span-1 flex items-end gap-2 ml-2 pr-2">
-        <h2 className="text-lg whitespace-nowrap">{props.title}</h2>
+        <h2 className="whitespace-nowrap">{props.title}</h2>
         <div
           className={twJoin(
-            "grow overflow-hidden text-ellipsis whitespace-nowrap gap-1 text-link",
+            "grow overflow-hidden text-ellipsis whitespace-nowrap gap-1 text-link text-sm",
             "underline underline-offset-2 cursor-pointer",
           )}
         >
@@ -49,22 +49,19 @@ export default function DesktopCard(props: ArticleCardProps) {
 
       {/* Article button bar */}
       <div className="col-span-11 row-span-1 ml-2 flex items-center gap-4">
-        <Button flat className="py-0.5 px-1 gap-1 text-subText">
+        <Button className="py-0.5 px-1 gap-1 text-subText">
           <MessagesSquareIcon className="w-5 h-5" />
           {nFormatter(props.comments || 0)}
         </Button>
 
-        <Button flat className="py-0.5 px-1 gap-1 text-subText">
+        <Button className="py-0.5 px-1 gap-1 text-subText">
           <ZapIcon className="text-warn w-5 h-5" />
           {nFormatter(props.sats)}
         </Button>
 
         <h4 className="text-sm text-discreetText font-bold">{props.date}</h4>
 
-        <Button
-          className="text-info flex items-center gap-1 p-0 pr-1 rounded-l-full text-sm normal-case"
-          flat
-        >
+        <Button className="text-info flex items-center gap-1 p-0 pr-1 rounded-l-full text-sm normal-case">
           <Image
             alt={"avatar of " + props.author}
             width={25}

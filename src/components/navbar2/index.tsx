@@ -1,13 +1,14 @@
 import Divider from "@ui/divider";
 import Logo from "@components/logo";
 import { twJoin } from "tailwind-merge";
-import { Settings } from "lucide-react";
 import Accounts from "@components/navbar/accounts";
 import MenuLinks from "./menu-links";
 import React from "react";
 import { cookies } from "next/headers";
 import ThemeMenu from "./theme-menu";
-import MobileMenu from "./mobile";
+import MobileDrawer from "./mobile-drawer";
+import Settings from "../navbar/settings";
+import DesktopDrawer from "./desktop-drawer"
 
 export default function Navbar() {
   const isPinned = cookies().get("pinned")?.value === "true" ?? false;
@@ -26,7 +27,7 @@ export default function Navbar() {
         <Logo />
         <MenuLinks />
         <div className="lg:hidden ml-auto">
-          <MobileMenu />
+          <MobileDrawer />
         </div>
         <div className={twJoin("hidden ml-auto mr-6", isPinned && "lg:block")}>
           {isPinned && <ThemeMenu currTheme={currTheme} />}
@@ -36,7 +37,7 @@ export default function Navbar() {
           <Accounts />
           <Divider vertical />
 
-          <Settings />
+          <DesktopDrawer />
         </div>
       </nav>
     </>

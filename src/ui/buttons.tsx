@@ -90,24 +90,43 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   },
 );
 
-type RoundButtonProps = ButtonProps
+type RoundButtonProps = ButtonProps;
 
-export function RoundButton({
-  children,
-  variant = VARIANT.ghost,
-  ...props
-}: RoundButtonProps) {
-  const { className, ...rest } = props;
+export const RoundButton = React.forwardRef<
+  HTMLButtonElement,
+  RoundButtonProps
+>(function RoundButton(
+  { children, variant = VARIANT.ghost, ...props }: RoundButtonProps,
+  ref,
+) {
   return (
     <Button
+      ref={ref}
       variant={variant}
-      className={twMerge("rounded-full w-fit p-1.5", className)}
-      {...rest}
+      className={twMerge("rounded-full w-fit p-1.5", props.className)}
+      {...props}
     >
       {children}
     </Button>
   );
-}
+});
+
+// export function RoundButton({
+//   children,
+//   variant = VARIANT.ghost,
+//   ...props
+// }: RoundButtonProps) {
+//   const { className, ...rest } = props;
+//   return (
+//     <Button
+//       variant={variant}
+//       className={twMerge("rounded-full w-fit p-1.5", className)}
+//       {...rest}
+//     >
+//       {children}
+//     </Button>
+//   );
+// }
 
 export function OutlineButton({
   children,

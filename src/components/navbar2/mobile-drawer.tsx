@@ -14,9 +14,9 @@ import { twJoin } from "tailwind-merge";
 import { routes } from "@/utils/routes";
 import { Button, RoundButton } from "@/ui/buttons";
 import { usePathname } from "next/navigation";
-import { isMobile } from "@/utils/functions";
 import ThemeToggler from "./theme-toggler";
 import RelayPreferences from "./relay-preferences";
+import { closeOnScreenSize } from "@utils/functions";
 
 // NOTE: Setting the snap array to 0 as initial value is a hack
 // to prevent the drawer from closing on initial render.
@@ -30,17 +30,12 @@ const snapPoints = [0, 0.35, 1];
 
 export default function MobileDrawer() {
   const [snap, setSnap] = useState<number | string | null>(snapPoints[0]);
-  const [device, setDevice] = useState<string>("");
   const [open, setOpen] = useState<boolean>(false);
-  const content = React.useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (isMobile()) {
-      setDevice("mobile");
-    } else {
-      setDevice("desktop");
-    }
-  });
+    const unmount = closeOnScreenSize(() => setOpen(false));
+    return unmount;
+  }, []);
 
   useEffect(() => {
     if (snap === 0) {
@@ -58,7 +53,7 @@ export default function MobileDrawer() {
       setActiveSnapPoint={setSnap}
       preventScrollRestoration={false}
       onClose={() => (document.body.style.backgroundColor = "")}
-      direction={window.matchMedia("(max-width: 1024px)").matches ? "bottom" : "right"}
+    // direction={window.matchMedia("(max-width: 1024px)").matches ? "bottom" : "right"}
     >
       <Drawer.Trigger
         onClick={() => setSnap(snapPoints[1])}
@@ -72,7 +67,6 @@ export default function MobileDrawer() {
           className="fixed inset-0 bg-black/40 z-[999]"
         />
         <Drawer.Content
-          ref={content}
           className={twJoin(
             "h-full max-h-[95%] bg-background flex flex-col rounded-t-3xl border",
             "border-surface2 focus:outline-none border-b-none w-[98%] fixed bottom-0 inset-x-1",
@@ -90,8 +84,8 @@ export default function MobileDrawer() {
             />
             <div
               className={twJoin(
-                "max-w-md mx-auto space-y-10 max-h-[95%] pb-10",
-                snap === 1 && "overflow-y-auto",
+                "max-w-md mx-auto space-y-10 max-h-[95%] pb-10 snap-y",
+                snap === 1 && "overflow-y-auto scrollbar-hide",
                 snap !== 1 && "overflow-hidden",
               )}
             >
@@ -124,7 +118,6 @@ export default function MobileDrawer() {
 
               {/* THEME TOGGLER */}
               <ThemeToggler />
-
               {/* RELAY PREFERENCES */}
               <RelayPreferences />
             </div>
@@ -150,11 +143,9 @@ function DrawerLink({
 
   return (
     <Link href={route.path} className={className}>
-      {/* <Link href={"/"}> */}
       <Button
         onClick={callback}
         variant="ghost"
-        // onTouchStart={() => console.log(route)}
         className={twJoin(
           "bg-surface1 text-subText py-4 px-4 border-none w-full rounded-xl",
           snap === 1 ? "justify-center min-w-full flex-col" : "gap-3",

@@ -9,7 +9,7 @@ import {
   MessagesSquareIcon,
   ZapIcon,
 } from "lucide-react";
-import { nFormatter } from "@/utils/fns/number-formatter";
+import { nFormatter } from "@/utils/functions";
 import anime from "animejs";
 import { twJoin } from "tailwind-merge";
 
@@ -41,7 +41,6 @@ export default function Actions(props: ArticleCardProps) {
             "px-2 py-1 gap-0.5 text-success",
             voted === "upvote" && "hover:bg-success/10 bg-success/20",
           )}
-          flat
         >
           <span ref={upvoteRef}>
             <ArrowUpIcon className="w-5 h-5" />
@@ -55,7 +54,6 @@ export default function Actions(props: ArticleCardProps) {
             "px-2 py-1 gap-0.5 text-error",
             voted === "downvote" && "hover:bg-error/10 bg-error/20",
           )}
-          flat
         >
           <span ref={downvoteRef}>
             <ArrowDownIcon className="w-5 h-5" />
@@ -64,13 +62,13 @@ export default function Actions(props: ArticleCardProps) {
         </Button>
       </div>
       <div className="flex-1 flex justify-center">
-        <Button className="px-2 py-1 gap-1 text-subText" flat>
+        <Button className="px-2 py-1 gap-1 text-subText">
           <MessagesSquareIcon className="w-5 h-5 text-textColor" />
           {nFormatter(props.comments ?? 0)}
         </Button>
       </div>
       <div className="flex-1 flex justify-end">
-        <Button className="px-2 py-1 gap-1 text-subText" flat>
+        <Button className="px-2 py-1 gap-1 text-subText">
           <ZapIcon className="w-5 h-5 text-warn" />
           {nFormatter(props.sats)}
         </Button>

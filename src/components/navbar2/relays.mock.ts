@@ -11,8 +11,4 @@ export const RELAYS_MOCK = [
     displayName: "relay.example/simple.com",
     avatar: "https://picsum.photos/200",
   },
-  {
-    displayName: "relay.example/simple.net",
-    avatar: "https://picsum.photos/200",
-  },
 ];

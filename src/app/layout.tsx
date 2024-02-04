@@ -13,28 +13,31 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="bg-background antialiased h-fit pb-14">
-        <ThemeProvider defaultTheme="dark" enableSystem attribute="class">
-          <div
-            id="body-vaul-drawer-wrapper"
-            // vaul-drawer-wrapper=""
-          // className
+      <body id="root" className="bg-background antialiased">
+        <ThemeProvider defaultTheme="system" attribute="class">
+          <main
+            className={twJoin(
+              "bg-background text-textColor",
+              "bg-background",
+              josefinSans.className,
+            )}
           >
-            <main
-              className={twJoin(
-                "bg-background transition-colors text-textColor container max-w-6xl",
-                "p-4 mx-auto md:p-4",
-                "min-h-[100vh] bg-background",
-                josefinSans.className,
-              )}
-            >
+            <Container>
               {children}
               {authModal}
-            </main>
-            <div id="modal-root" />
-          </div>
+            </Container>
+          </main>
+          <div id="modal-root" />
         </ThemeProvider>
       </body>
     </html>
+  );
+}
+
+function Container({ children }: { children: React.ReactNode[] }) {
+  return (
+    <div className="max-w-6xl mx-auto container p-4 min-h-[100dvh]">
+      {children}
+    </div>
   );
 }

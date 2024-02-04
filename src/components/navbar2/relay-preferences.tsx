@@ -10,27 +10,34 @@ import Switch from "@/ui/switch";
 export default function RelayPreferences() {
   // <div className="rounded-xl max-h-[80%] sticky top-0 border border-green-500 overflow-y-auto">
   return (
-    <div>
-      <Drawer.Title className="text-xl font-bold font-mono w-3/4 mx-auto mb-2">
+    <div className="h-full flex flex-col snap-center">
+      <Drawer.Title className="text-lg font-bold font-mono w-3/4 mx-auto mb-2">
         Relay Preferences
       </Drawer.Title>
 
-      <div className="rounded-xl p-2 bg-surface1 space-y-4">
+      <div className="rounded-xl p-2 bg-surface1 space-y-4 overflow-y-hidden">
         <div className="w-full flex">
           <input
-            className="grow rounded-l-xl px-2 py-1 rounded-r-none focus:outline-primary"
+            className="grow rounded-l-xl px-2 py-1 rounded-r-none focus:outline-none 
+            placeholder:italic focus:placeholder:text-transparent"
             type="text"
             placeholder="search..."
           />
-          <Button className="rounded-r-xl bg-surface2 rounded-l-none" type="submit">
+          <Button
+            className="rounded-r-xl bg-surface2 rounded-l-none"
+            type="submit"
+          >
             <SearchIcon className="w-5 h-5" />
           </Button>
         </div>
-        <div className="flex flex-col gap-2 px-4">
+        <div className="flex flex-col gap-2 px-4 h-full overflow-y-auto pb-20 overscroll-auto">
           {RELAYS_MOCK.map((relay) => (
             <div
               key={relay.displayName}
-              className={twJoin("bg-surface2/80 space-y-5 rounded-lg", "p-6")}
+              className={twJoin(
+                "bg-surface2/80 space-y-5 rounded-lg",
+                "px-4 py-4 h-full snap-center",
+              )}
             >
               {/* Header */}
               <div className={twJoin("flex items-center")}>
@@ -41,7 +48,7 @@ export default function RelayPreferences() {
                   height={200}
                   className="w-10 h-10 rounded-full"
                 />
-                <p className="ml-4 font-bold">{relay.displayName}</p>
+                <p className="ml-4 font-bold text-sm">{relay.displayName}</p>
               </div>
 
               <form className="flex justify-between">
