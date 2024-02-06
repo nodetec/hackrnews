@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Navbar from "@/components/navbar2";
-import { twJoin } from "tailwind-merge";
+import Navbar from "@/components/navbar";
 
 export const metadata: Metadata = {
   title: "Create Next App",

@@ -1,33 +1,43 @@
-'use client'
-import Divider from "@/ui/divider";
-import Logo from "@/components/logo";
+import Divider from "@ui/divider";
+import Logo from "@components/logo";
 import { twJoin } from "tailwind-merge";
-import Accounts from "./accounts";
 import MenuLinks from "./menu-links";
-import MobileMenu from "./mobile";
-import Settings from "./settings";
-import ThemeSwitch from "./theme-menu";
+import React from "react";
+import { cookies } from "next/headers";
+import ThemeMenu from "./theme-menu";
+import MobileDrawer from "./mobile-drawer";
+import DesktopDrawer from "./desktop-drawer"
+import Accounts from "./accounts";
 
 export default function Navbar() {
-  return (
-    <nav
-      className={twJoin(
-        "w-full bg-surface1 ring-1 ring-black/5 drop-shadow-md rounded-3xl",
-        "md:p-[1rem] md:px-[2rem]",
-        "flex items-center justify-between sticky top-0 z-50",
-        "dark:ring-white/5",
-      )}
-    >
-      <Logo />
-      {/* <MobileMenu /> */}
-      {/* <MenuLinks /> */}
-      {/* <ThemeSwitch /> */}
-      <div className="hidden gap-4 justify-center items-center lg:flex">
-        <Accounts />
-        <Divider vertical />
+  const isPinned = cookies().get("pinned")?.value === "true" ?? false;
 
-        <Settings />
-      </div>
-    </nav>
+  return (
+    <>
+      <nav
+        className={twJoin(
+          "bg-surface1 drop-shadow-md rounded-3xl p-4 px-6",
+          "md:p-[1rem] md:px-[2rem] flex items-center",
+          "sticky top-0 z-10 float-border",
+          
+        )}
+      >
+        <Logo />
+        <MenuLinks />
+        <div className="lg:hidden ml-auto">
+          <MobileDrawer />
+        </div>
+        <div className={twJoin("hidden ml-auto mr-6", isPinned && "lg:block")}>
+          {isPinned && <ThemeMenu />}
+        </div>
+
+        <div className="hidden gap-4 justify-center items-center lg:flex">
+          <Accounts />
+          <Divider vertical />
+
+          <DesktopDrawer />
+        </div>
+      </nav>
+    </>
   );
 }

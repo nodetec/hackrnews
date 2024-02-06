@@ -1,0 +1,4 @@
+// this component prevents error.tsx from working properly
+export default function Default() {
+  return null;
+}

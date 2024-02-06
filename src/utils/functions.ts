@@ -63,6 +63,12 @@ export const preventMobileScrollListener = (e: TouchEvent) => {
   e.preventDefault();
 };
 
+/**
+ * Closes the drawer on screen size
+ * @param stateToggler - function to toggle the state
+ * @returns
+ *
+ */
 export function closeOnScreenSize(stateToggler: () => void) {
   const listener = () => {
     if (window.matchMedia("(max-width: 1024px)").matches) {

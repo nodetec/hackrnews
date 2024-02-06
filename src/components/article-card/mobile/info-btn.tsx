@@ -1,16 +1,16 @@
 "use client";
 
+import * as Popover from "@radix-ui/react-popover";
 import CheckAnimation, { ExtendedRef } from "@/ui/animated-check";
 import { RoundButton } from "@/ui/buttons";
 import ImageAvatar from "@/ui/image-avatar";
 import { nFormatter } from "@/utils/functions";
 import { useCopyToClipboard } from "@/utils/hooks/copy-to-clipboard";
-import { Popover, Transition } from "@headlessui/react";
-import anime from "animejs";
 import { CodeIcon, CopyIcon, EyeIcon, InfoIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { twJoin } from "tailwind-merge";
+import { floatClasses } from "@/ui/prestyled";
 
 export default function InfoBtn({
   views,
@@ -25,103 +25,81 @@ export default function InfoBtn({
   const [_, copy] = useCopyToClipboard();
   const checkAnimeRef = React.useRef<ExtendedRef | null>(null);
   const panelRef = React.useRef<HTMLDivElement>(null);
+  const [open, setOpen] = React.useState(false);
 
   return (
-    <Popover className="relative ml-auto">
-      {({ open }) => (
-        <>
-          <Popover.Button as={"span"}>
-            <RoundButton
-              className={twJoin(
-                "flex items-center rounded-full p-2 hover:bg-surface2/40 active:bg-surface3",
-                open ? "bg-surface3" : "hover:bg-surface2",
-              )}
+    <Popover.Root open={open} onOpenChange={setOpen}>
+      <Popover.Trigger asChild>
+        <RoundButton
+          className={twJoin(
+            "relative ml-auto",
+            "flex items-center rounded-full hover:bg-surface2 p-2 active:bg-surface3",
+            open && "bg-surface3",
+          )}
+        >
+          <InfoIcon className="text-info w-5 h-5" />
+        </RoundButton>
+      </Popover.Trigger>
+
+      <Popover.Portal>
+        <Popover.Content
+          side="left"
+          sideOffset={5}
+          className={twJoin(
+            "w-72",
+            "p-4 ring-1 ring-surface3 shadow bg-background rounded-lg",
+            floatClasses,
+          )}
+        >
+          <div className="grid grid-cols-10 gap-y-2 border-surface3">
+            <ImageAvatar
+              src={authorsImage}
+              alt="Author"
+              fallbackSrc={`https://ui-avatars.com/api/?name=${author}`}
+              className="col-span-2"
+            />
+            <Link
+              href="#"
+              className="col-span-8 truncate text-ellipsis flex items-center"
             >
-              <InfoIcon className="text-info w-5 h-5" />
-            </RoundButton>
-          </Popover.Button>
+              {author}
+            </Link>
 
-          <Transition
-            as={React.Fragment}
-            // enter="transition duration-400"
-            beforeEnter={() => {
-              anime({
-                targets: panelRef.current,
-                opacity: [0, 1],
-                duration: 400,
-                translateX: [40, 0],
-                easing: "easeOutElastic(1, .6)",
-                scale: [0.75, 1],
-              });
-            }}
-            //this leave atrribute is irrelevant but kinda necessary to trigger the anime animation
-            leave="transition duration-300"
-            beforeLeave={() => {
-              anime({
-                targets: panelRef.current,
-                opacity: [1, 0],
-                duration: 300,
-                translateX: [0, 40],
-                easing: "easeInElastic(1, .6)",
-                scale: [1, 0.75],
-              });
-            }}
-          >
-            <Popover.Panel
-              ref={panelRef}
-              className={twJoin(
-                "absolute -top-1/3 right-full mr-2 w-72",
-                "p-4 ring-1 ring-black/10 dark:ring-white/5 shadow bg-surface1 rounded-lg",
-              )}
+            <EyeIcon className="col-span-2 text-secondary w-5 h-5" />
+            <span className="col-span-8 text-sm text-subText">
+              {nFormatter(views)}
+            </span>
+            <span className="col-span-3 text-secondary flex items-center text-xs font-bold">
+              {/* <CodeIcon className="w-3 h-3" /> */}
+              &lt;event&gt;
+            </span>
+
+            <button
+              // FIXME: add real eventID
+              onClick={() => {
+                copy("lasdkjflasdjflasdjlfjaskldjflkasdjfljasldflasjdfljk");
+                checkAnimeRef.current?.animateCheckOnClick();
+              }}
+              className="col-span-7 text-sm text-subText flex relative outline-none"
             >
-              <div className="grid grid-cols-10 gap-y-4">
-                <ImageAvatar
-                  src={authorsImage}
-                  alt="Author"
-                  fallbackSrc={`https://ui-avatars.com/api/?name=${author}`}
-                  className="col-span-2"
-                />
-                <Link
-                  href="#"
-                  className="col-span-8 truncate text-ellipsis flex items-center"
-                >
-                  {author}
-                </Link>
+              <span className="truncate mr-2">
+                {/* FIXME: add real eventID */}
+                lasdkjflasdjflasdjlfjaskldjflkasdjfljasldflasjdfljk
+              </span>
 
-                {/* <CalendarXIcon className="col-span-2 text-secondary w-5 h-5" /> */}
-                {/* <span className="col-span-8 text-subText text-sm">{date}</span> */}
+              <CopyIcon className="text-secondary w-5 h-5" />
 
-                <EyeIcon className="col-span-2 text-secondary w-5 h-5" />
-                <span className="col-span-8 text-sm text-subText">
-                  {nFormatter(views)}
-                </span>
-                <CodeIcon className="col-span-2 text-secondary w-5 h-5" />
+              <CheckAnimation
+                ref={checkAnimeRef}
+                className="w-16 h-16 absolute -right-7 -top-5"
+              />
+            </button>
+          </div>
 
-                <button
-                  // FIXME: add real eventID
-                  onClick={() => {
-                    copy("lasdkjflasdjflasdjlfjaskldjflkasdjfljasldflasjdfljk");
-                    checkAnimeRef.current?.animateCheckOnClick();
-                  }}
-                  className="col-span-8 text-sm text-subText flex relative"
-                >
-                  <span className="truncate mr-2">
-                    {/* FIXME: add real eventID */}
-                    lasdkjflasdjflasdjlfjaskldjflkasdjfljasldflasjdfljk
-                  </span>
-
-                  <CopyIcon className="text-secondary w-5 h-5" />
-
-                  <CheckAnimation
-                    ref={checkAnimeRef}
-                    className="w-16 h-16 absolute -right-7 -top-5"
-                  />
-                </button>
-              </div>
-            </Popover.Panel>
-          </Transition>
-        </>
-      )}
-    </Popover>
+          <Popover.Arrow className="fill-background" />
+        </Popover.Content>
+      </Popover.Portal>
+    </Popover.Root>
   );
 }
+

@@ -1,16 +1,22 @@
 "use client";
 
-import { ChevronsRightIcon, Settings, XIcon } from "lucide-react";
-import React, { useState } from "react";
+import { ChevronsRightIcon, Settings } from "lucide-react";
+import React, { useEffect, useState } from "react";
 import { Drawer } from "vaul";
 import { twJoin } from "tailwind-merge";
 import ThemeToggler from "./theme-toggler";
 import RelayPreferences from "./relay-preferences";
 import { RoundButton } from "@/ui/buttons";
+import { closeOnScreenSize } from "@/utils/functions";
 
 export default function DesktopDrawer() {
   const [open, setOpen] = useState<boolean>(false);
   const content = React.useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const unmount = closeOnScreenSize(() => setOpen(false));
+    return unmount;
+  });
 
   return (
     <Drawer.Root
@@ -30,7 +36,7 @@ export default function DesktopDrawer() {
         <Drawer.Content
           ref={content}
           className={twJoin(
-            "bg-background z-[999] flex flex-col rounded-l-xl h-[90%] w-[400px] fixed inset-y-0", 
+            "bg-background z-[999] flex flex-col rounded-l-xl h-[90%] w-[400px] fixed inset-y-0",
             "right-0 my-auto focus:outline-none",
           )}
         >

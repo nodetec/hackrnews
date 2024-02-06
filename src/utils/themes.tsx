@@ -7,30 +7,11 @@ export const themes = [
   },
   {
     name: "light",
-    icon: <SunIcon className="w-5 h-5" />,
+    icon: <SunIcon className="w-5 h-5 text-warn" />,
   },
   {
     name: "dark",
-    icon: <MoonIcon className="w-5 h-5" />,
+    icon: <MoonIcon className="w-5 h-5 text-info" />,
   },
 ];
 
-export function handleSystemTheme(isSystem: boolean) {
-  const themeListener = (e: MediaQueryListEvent | MediaQueryList) => {
-    if (e.matches) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  };
-
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
-
-  if (isSystem) {
-    themeListener(prefersDark);
-    prefersDark.addEventListener("change", themeListener);
-    return;
-  }
-
-  prefersDark.removeEventListener("change", themeListener);
-}

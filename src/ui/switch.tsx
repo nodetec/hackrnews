@@ -14,7 +14,7 @@ export default function Switch({
         className,
       )}
     >
-      <label className="relative inline-flex cursor-pointer items-center h-8 p-1 hover:bg-surface2 rounded-lg">
+      <label className="relative inline-flex cursor-pointer items-center h-7 p-1 hover:bg-surface2 rounded-lg">
         <input id="switch-3" type="checkbox" className="peer sr-only" />
         <label htmlFor="switch-3" className="hidden">
           Enable this relay
@@ -22,7 +22,7 @@ export default function Switch({
         <div
           className={twJoin(
             "peer h-2 w-10 rounded border dark:border-black bg-slate-300 dark:bg-neutral-700 after:absolute",
-            "after:bottom-1.5 after:left-1 after:h-5 after:w-5 after:rounded-md after:border",
+            "after:bottom-1 after:left-1 after:h-5 after:w-5 after:rounded-md after:border",
             "after:border-surface3 dark:after-border-black after:bg-white dark:after:bg-neutral-500",
             "after:transition-all after:content-[''] peer-checked:after:bg-success",
             "peer-checked:after:translate-x-full peer-focus:ring-secundary",
@@ -30,7 +30,7 @@ export default function Switch({
           )}
         />
       </label>
-      <label className="text-sm font-thin text-discreetText pointer-events-none">
+      <label className="text-xs text-subText pointer-events-none">
         {label}
       </label>
     </div>

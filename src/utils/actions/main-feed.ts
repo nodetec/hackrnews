@@ -30,7 +30,7 @@ export default class Feed {
           // posts.push(event);
         },
         oneose() {
-          console.log("closing");
+          // console.log("closing");
           resolve(posts);
           sub.close();
         },

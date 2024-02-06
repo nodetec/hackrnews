@@ -61,7 +61,7 @@ export default function Sidebar(props: {
                 >
                   <div className="flex justify-between items-center">
                     {props.logo && <Logo />}
-                    <RoundButton flat onClick={closeModal}>
+                    <RoundButton onClick={closeModal}>
                       <XIcon className="w-5 h-5" />
                     </RoundButton>
                   </div>

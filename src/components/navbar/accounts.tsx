@@ -1,15 +1,12 @@
 "use client";
-
 import { Button, OutlineButton } from "@ui/buttons";
 import { User2Icon } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
-
 // TODO: Add real login functionality
 export default function Accounts() {
   const [mockLogin, setMockLogin] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
   const AcountMock = [
     {
       displayName: "damus.io",
@@ -24,7 +21,6 @@ export default function Accounts() {
       avatar: "https://picsum.photos/200",
     },
   ];
-
   function handleLogin() {
     setIsLoading(true);
     setTimeout(() => {
@@ -32,11 +28,10 @@ export default function Accounts() {
       setMockLogin(true);
     }, 2000);
   }
-
   return (
     <>
       {mockLogin ? (
-        <Button flat variant="ghost" className="flex -space-x-4">
+        <Button variant="ghost" className="flex -space-x-4">
           {AcountMock.map((account) => (
             <Image
               key={account.displayName}
@@ -66,7 +61,6 @@ export default function Accounts() {
     </>
   );
 }
-
 const SpinningLoader = () => {
   return (
     <svg
@@ -92,3 +86,4 @@ const SpinningLoader = () => {
     </svg>
   );
 };
+

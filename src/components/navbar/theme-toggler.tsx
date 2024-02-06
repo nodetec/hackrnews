@@ -59,26 +59,28 @@ export default function ThemeToggler() {
         <Drawer.Title className="text-lg font-bold font-mono">
           Theme Preferences
         </Drawer.Title>
-        <Tooltip
-          trigger={
-            <RoundButton
-              onClick={() => {
-                setPreferenceCookie("pinned", String(!isPinned));
-                setIsPinned(!isPinned);
-              }}
-            >
-              {isPinned ? (
-                <PinIcon className="w-4 h-4 text-textColor fill-warn" />
-              ) : (
-                <PinOffIcon className="w-4 h-4 [&>not(:peer-checked)]:text-primary" />
-              )}
-            </RoundButton>
-          }
-        >
-          <p className="text-xs">
-            {isPinned ? "Unpin from the Menu Bar" : "Pin to the Menu Bar"}
-          </p>
-        </Tooltip>
+        <div className="hidden lg:block">
+          <Tooltip
+            trigger={
+              <RoundButton
+                onClick={() => {
+                  setPreferenceCookie("pinned", String(!isPinned));
+                  setIsPinned(!isPinned);
+                }}
+              >
+                {isPinned ? (
+                  <PinIcon className="w-4 h-4 text-textColor fill-warn" />
+                ) : (
+                  <PinOffIcon className="w-4 h-4 [&>not(:peer-checked)]:text-primary" />
+                )}
+              </RoundButton>
+            }
+          >
+            <p className="text-xs">
+              {isPinned ? "Unpin from the Menu Bar" : "Pin to the Menu Bar"}
+            </p>
+          </Tooltip>
+        </div>
       </div>
       <fieldset>
         <div className="rounded-xl p-2 bg-surface1">

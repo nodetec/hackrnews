@@ -68,13 +68,13 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <button
+        {...rest}
         ref={ref}
         type="button"
         className={twMerge(
           twJoin(
             "block py-2 px-3 rounded cursor-pointer",
-            "text-neutral-950 border-black/5",
-            "border",
+            "text-neutral-950",
             "text-sm font-semibold",
             "transition ease-out",
             "inline-flex justify-center items-center gap-2",
@@ -82,7 +82,6 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           variantStyles[variant],
           className,
         )}
-        {...rest}
       >
         {children}
       </button>
@@ -103,8 +102,8 @@ export const RoundButton = React.forwardRef<
     <Button
       ref={ref}
       variant={variant}
-      className={twMerge("rounded-full w-fit p-1.5", props.className)}
       {...props}
+      className={twMerge("rounded-full w-fit p-1.5", props.className)}
     >
       {children}
     </Button>

@@ -18,7 +18,7 @@ export default function Ranking(props: {
   const handlevote = (input: "upvote" | "downvote") => {
     anime({
       targets: input === "upvote" ? upvoteRef.current : downvoteRef.current,
-      translateY: [(input === "upvote" ? -5 : 5), 0],
+      translateY: [input === "upvote" ? -5 : 5, 0],
       translateX: [5.7, 0],
       scale: [1.4, 1],
       duration: 500,
@@ -33,7 +33,7 @@ export default function Ranking(props: {
   };
 
   return (
-    <div className="hidden lg:flex flex-col bg-surface1 rounded-xl">
+    <div className="hidden lg:flex flex-col bg-surface1 rounded-xl float-border">
       <Button
         className={twJoin(
           "text-success rounded-t-xl py-1.5 normal-case px-0 gap-0 text-sm justify-between",

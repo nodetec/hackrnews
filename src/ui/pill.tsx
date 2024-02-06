@@ -10,7 +10,7 @@ export default function Pill(props: PillProps) {
   return (
     <span
       className={twJoin(
-        "inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium",
+        "inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium",
         "border border-primary cursor-pointer",
         props.variant === "primary"
           ? "bg-primary text-surface1"

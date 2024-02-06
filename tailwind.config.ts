@@ -44,6 +44,10 @@ const config: Config = {
           to: { opacity: 1, transform: "translateX(0)" },
         },
       },
+      screens: {
+        tall: { raw: "(min-height: 800px)" },
+        // => @media (min-height: 800px) { ... }
+      },
       animation: {
         wiggle: "wiggle 1s ease-in-out",
         slideDownAndFade:

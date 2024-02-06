@@ -1,25 +1,43 @@
 "use client";
 
-import { routes } from "@utils/routes";
-import { twJoin } from "tailwind-merge";
-import { Button } from "@ui/buttons";
+import { Button } from "@/ui/buttons";
+import { routes } from "@/utils/routes";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { twJoin } from "tailwind-merge";
 
-export default function MenuLinks() {
+export default function MenuLinks({
+  isMobile,
+  setIsOpen,
+}: {
+  isMobile?: boolean;
+  setIsOpen?: (open: boolean) => void;
+}) {
   const pathname = usePathname();
+  const router = useRouter();
+
+  const buttonClasses = twJoin(
+    "gap-3 active:bg-primary/30",
+    isMobile ? "justify-start w-full" : "justify-center items-center",
+  );
 
   return (
-    <div className="ml-6 xl:ml-12 hidden lg:flex xl:gap-4 grow">
+    <div
+      className={twJoin(
+        "lg:ml-6 xl:ml-12 gap-2 lg:gap-1 xl:gap-4",
+        "focus-within:ring-primary lg:grow",
+        isMobile ? "flex flex-col" : "hidden lg:flex ",
+      )}
+    >
       {routes.map((route) => (
-        <Link key={route.name} href={route.path}>
+        <Link href={route.path} key={route.name}>
           <Button
+            onClick={() => {
+              setIsOpen?.(false);
+              router.push(route.path);
+            }}
             tabIndex={-1}
-            flat
-            className={twJoin(
-              "gap-3 items-center text-lg",
-              "active:bg-primary/30 items-center justify-center",
-            )}
+            className={buttonClasses}
           >
             {route.icon}
             <span
