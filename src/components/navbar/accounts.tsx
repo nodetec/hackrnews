@@ -35,7 +35,7 @@ export default function Accounts() {
           {AcountMock.map((account) => (
             <Image
               key={account.displayName}
-              className="inline-block h-8 w-8 rounded-full object-cover ring-2 ring-success"
+              className="inline-block h-6 w-6 rounded-full object-cover ring-2 ring-success"
               width={8}
               height={8}
               src={account.avatar}

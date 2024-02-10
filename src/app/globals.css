@@ -25,12 +25,16 @@
     --sub-text: 113 113 122;
   }
 
-  html,
-  body {
-    transition:
-      background-color 0.6s ease,
-      color 0.6s ease;
-  }
+  * {
+  transition: background-color 500ms ease-in-out;
+}
+
+  /* html, */
+  /* body { */
+  /*   transition: */
+  /*     background-color 0.6s ease, */
+  /*     color 0.6s ease; */
+  /* } */
 
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
