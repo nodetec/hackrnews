@@ -18,7 +18,7 @@ export default function RootLayout({
           <main
             className={twJoin(
               "bg-background text-textColor",
-              "bg-background",
+              "bg-background transition-colors duration-200 ease-linear",
               josefinSans.className,
             )}
           >

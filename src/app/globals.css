@@ -25,10 +25,6 @@
     --sub-text: 113 113 122;
   }
 
-  * {
-  transition: background-color 500ms ease-in-out;
-}
-
   /* html, */
   /* body { */
   /*   transition: */
