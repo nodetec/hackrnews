@@ -1,7 +1,10 @@
 "use client";
+import auth from "@/utils/models/auth";
+import { DEFAULT_RELAYS, pool } from "@/utils/nostr";
 import { Button, OutlineButton } from "@ui/buttons";
 import { User2Icon } from "lucide-react";
 import Image from "next/image";
+import { Filter, kinds, nip19 } from "nostr-tools";
 import { useState } from "react";
 // TODO: Add real login functionality
 export default function Accounts() {
@@ -21,12 +24,14 @@ export default function Accounts() {
       avatar: "https://picsum.photos/200",
     },
   ];
-  function handleLogin() {
+  async function handleLogin() {
     setIsLoading(true);
-    setTimeout(() => {
+    try {
+      const profiles = await auth.loginWithExtension();
+      console.log(profiles);
+    } finally {
       setIsLoading(false);
-      setMockLogin(true);
-    }, 2000);
+    }
   }
   return (
     <>
@@ -86,4 +91,3 @@ const SpinningLoader = () => {
     </svg>
   );
 };
-
