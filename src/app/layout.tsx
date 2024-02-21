@@ -13,12 +13,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body id="root" className="bg-background antialiased">
+      <body id="root" className="body-gradient2 antialiased">
         <ThemeProvider defaultTheme="system" attribute="class">
           <main
             className={twJoin(
-              "bg-background text-textColor",
-              "bg-background transition-colors duration-200 ease-linear",
+              "text-textColor",
+              "transition-colors duration-200 ease-linear",
               josefinSans.className,
             )}
           >

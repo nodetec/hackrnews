@@ -23,6 +23,7 @@
     --text-color: 28 25 23;
     --discreet-text: 137 134 134;
     --sub-text: 113 113 122;
+    --bg-dots-transparency: 14%;
   }
 
   /* html, */
@@ -62,5 +63,43 @@
     --text-color: 250 250 249;
     --discreet-text: 163 163 163;
     --sub-text: 190 190 200;
+    --bg-dots-transparency: 5%;
+  }
+
+  /* .gradient { */
+  /*   background: linear-gradient(130deg, #9c5ff8 40%, #fa4d88 60%); */
+  /*   -webkit-background-clip: text; */
+  /*   background-clip: text; */
+  /*   -webkit-text-fill-color: transparent; */
+  /* } */
+
+  .body-gradient {
+    /* Option 1 */
+    /* background-image: radial-gradient(circle at center, */
+    /*     rgb(255, 255, 255, 0.005) 0, */
+    /*     rgba(255, 255, 255, 0.005) 1px, */
+    /*     transparent 1px), */
+    /*   linear-gradient(to right, rgba(255, 255, 255, 0.01) 1px, transparent 1px), */
+    /*   linear-gradient(to bottom, rgba(255, 255, 255, 0.01) 1px, transparent 1px); */
+
+    /* Option 2 */
+    background-image: radial-gradient(circle at center,
+        rgb(var(--surface-3) / 30%) 0,
+        rgb(var(--surface-3) / 30%) 1px,
+        transparent 1px);
+
+    background-size: 20px 20px;
+    /* sets the size of the grid */
+    background-attachment: fixed;
+    background-color: var(--background-color);
+  }
+
+  .body-gradient2 {
+    background-image: radial-gradient(rgb(var(--color-primary)/ var(--bg-dots-transparency)) 1px, transparent 1px),
+      radial-gradient(rgb(var(--color-primary)/ var(--bg-dots-transparency)) 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-position:
+      0px 0px,
+      10px 10px;
   }
 }
