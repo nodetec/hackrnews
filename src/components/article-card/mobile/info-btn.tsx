@@ -4,7 +4,7 @@ import * as Popover from "@radix-ui/react-popover";
 import CheckAnimation, { ExtendedRef } from "@/ui/animated-check";
 import { RoundButton } from "@/ui/buttons";
 import ImageAvatar from "@/ui/image-avatar";
-import { nFormatter } from "@/utils/functions";
+import { nFormatter } from "@/utils/misc";
 import { useCopyToClipboard } from "@/utils/hooks/copy-to-clipboard";
 import { CodeIcon, CopyIcon, EyeIcon, InfoIcon } from "lucide-react";
 import Link from "next/link";

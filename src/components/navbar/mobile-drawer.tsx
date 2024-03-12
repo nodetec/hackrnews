@@ -1,5 +1,8 @@
 "use client";
 
+import { Button, RoundButton } from "@/ui/buttons";
+import { closeOnScreenSize, isMobile } from "@/utils/misc";
+import { routes } from "@/utils/routes";
 import {
   ChevronDown,
   ChevronUp,
@@ -7,18 +10,15 @@ import {
   Settings,
   UserIcon,
 } from "lucide-react";
-import React, { useEffect, useRef, useState } from "react";
-import { Drawer } from "vaul";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import React, { useEffect, useRef, useState } from "react";
 import { twJoin } from "tailwind-merge";
-import { routes } from "@/utils/routes";
-import { Button, RoundButton } from "@/ui/buttons";
-import { usePathname } from "next/navigation";
-import ThemeToggler from "./theme-toggler";
+import { Drawer } from "vaul";
 import RelayPreferences from "./relay-preferences";
-import { closeOnScreenSize } from "@utils/functions";
+import ThemeToggler from "./theme-toggler";
 
-// NOTE: Setting the snap array to 0 as initial value is a hack
+// INFO: Setting the snap array to 0 as initial value is a hack
 // to prevent the drawer from closing on initial render.
 // details of what was happening:
 // 1 - user would go to page and click the drawer
@@ -32,12 +32,18 @@ let snapPoints = [0, 0.35, 1];
 export default function MobileDrawer() {
   const [snap, setSnap] = useState<number | string | null>(snapPoints[0]);
   const [open, setOpen] = useState<boolean>(false);
-  //NOTE: this is not div, but I honestly don't know the type
+  const [link, setLink] = useState<string | null>(null);
+
+  const router = useRouter();
   const scrollableRef = useRef<HTMLDivElement>(null);
 
+  //TODO: This event doesn't work on safari mobile, because the drawer component triggers the
+  //url bar, which triggers a screen size chaged event. This means that the listener will be
+  //triggered.
   useEffect(() => {
-    const unmount = closeOnScreenSize(() => setOpen(false));
-    return unmount;
+    if (!isMobile()) {
+      return closeOnScreenSize(() => setOpen(false));
+    }
   }, []);
 
   useEffect(() => {
@@ -54,9 +60,41 @@ export default function MobileDrawer() {
       fadeFromIndex={1}
       activeSnapPoint={snap}
       setActiveSnapPoint={setSnap}
-      preventScrollRestoration={false}
-      onClose={() => (document.body.style.backgroundColor = "")}
-      scrollLockTimeout={0}
+      onClose={() => {
+        // document.body.style.backgroundColor = "";
+
+        // WARN: super weird code below. I so regret using this component with links.
+        // if you are trying to fix this, please let me know (I would love to know a better
+        // solutuion for this problem).
+        // Read the explanation below.
+        setTimeout(() => {
+          if (link) {
+            router.push(link);
+            setLink(null);
+          }
+        }, 450);
+        // INFO: Exaplanation: The way the browser history() api (or the nextJS router() api) works
+        // is that it will add to the current history stack the new link. This means that the
+        // current page position - scrollY, clientY, etc. - are retrieved and put in the object that
+        // goes to the stack along with other info like previous path and so on. So
+        // if you go back in history, the browser will scroll to that position. However, vaul drawer
+        // had to be abnormal and it limits the size of the body to the current size of the screen,
+        // which means whatever position you were on Y would be lost = 0 -> no bueno!!! 👿
+        // So to fix this, I had to write all this component in a hacky way
+        // 1st - The menu-links are not links... They simply set the link state to the next page.
+        // 2nd - After clicking the menu-links, the drawer will close. Which means that the onClose
+        // attr will be triggered, and the link state will be set to null, after pushing the
+        // state to the router (for soft-linking). However, after long time debating why this doesn't
+        // work I finally came up with this, yet another, hacky solution which leads to the,
+        // 3rd - The onClose runs before the actual unMount... That means that I have to set the
+        // timeout so the actual linking happens then. The whole wait for the drawer to close is
+        // just so vaul restores the body state and size, so the history/router apis can get the
+        // current Y position and scroll back on history.back() or something like that.
+        //
+        // INFO: what would I have done? I would have created a component on the top level of the
+        // html tree, that is fixed to the bottom of the screen, so you could expand from there
+        // without touching the size of the body.
+      }}
     >
       <Drawer.Trigger
         onClick={() => setSnap(snapPoints[1])}
@@ -108,7 +146,10 @@ export default function MobileDrawer() {
               >
                 {routes.map((route) => (
                   <DrawerLink
-                    callback={() => setOpen(false)}
+                    callback={() => {
+                      setLink(route.path);
+                      setOpen(false);
+                    }}
                     route={route}
                     key={route.name}
                     className="flex-auto"
@@ -116,7 +157,10 @@ export default function MobileDrawer() {
                   />
                 ))}
                 <DrawerLink
-                  callback={() => setOpen(false)}
+                  callback={() => {
+                    setLink("/login");
+                    setOpen(false);
+                  }}
                   route={{
                     name: "Login",
                     path: "/login",
@@ -152,8 +196,10 @@ function DrawerLink({
 }) {
   const path = usePathname();
 
+  //TODO: instead of link, this will store the link where to go, which will be used after closing the drawer
   return (
-    <Link href={route.path} className={className}>
+    // <Link href={route.path} scroll={true} className={className}>
+    <span className={className}>
       <Button
         onClick={callback}
         variant="ghost"
@@ -178,11 +224,11 @@ function DrawerLink({
               snap === 1 ? "top-1 right-1" : "left-1",
               route.accent,
             )}
-          >
-          </span>
+          ></span>
         )}
       </Button>
-    </Link>
+    </span>
+    //</Link>
   );
 }
 

@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/ui/buttons";
-import { nFormatter } from "@/utils/functions";
+import { nFormatter } from "@/utils/misc";
 import anime from "animejs";
 import { ArrowDownIcon, ArrowUpIcon } from "lucide-react";
 import React from "react";
@@ -36,7 +36,7 @@ export default function Ranking(props: {
     <div className="hidden lg:flex flex-col bg-surface1 rounded-xl float-border">
       <Button
         className={twJoin(
-          "text-success rounded-t-xl py-1.5 normal-case px-0 gap-0 text-sm justify-between",
+          "text-success rounded-t-xl py-1.5 normal-case px-0 gap-0 text-xs justify-between",
           voted === "upvote" && "hover:bg-success/10 bg-success/20",
         )}
         onClick={() => handlevote("upvote")}
@@ -55,7 +55,7 @@ export default function Ranking(props: {
 
       <Button
         className={twJoin(
-          "text-error rounded-b-xl py-1.5 normal-case px-0 gap-0 text-sm justify-between",
+          "text-error rounded-b-xl py-1.5 normal-case px-0 gap-0 text-xs justify-between",
           voted === "downvote" && "hover:bg-error/10 bg-error/20",
         )}
         onClick={() => handlevote("downvote")}

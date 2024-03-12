@@ -1,6 +1,5 @@
 import { Button, OutlineButton, RoundButton } from "@/ui/buttons";
 import { ThumbsUpIcon } from "lucide-react";
-import React from "react";
 
 export default function Home() {
   return (

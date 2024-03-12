@@ -7,7 +7,7 @@ import { twJoin } from "tailwind-merge";
 import ThemeToggler from "./theme-toggler";
 import RelayPreferences from "./relay-preferences";
 import { RoundButton } from "@/ui/buttons";
-import { closeOnScreenSize } from "@/utils/functions";
+import { closeOnScreenSize } from "@/utils/misc";
 
 export default function DesktopDrawer() {
   const [open, setOpen] = useState<boolean>(false);
@@ -36,9 +36,13 @@ export default function DesktopDrawer() {
         <Drawer.Content
           ref={content}
           className={twJoin(
-            "bg-background z-[999] flex flex-col rounded-l-xl h-[90%] w-[400px] fixed inset-y-0",
+            "bg-background z-[999] flex flex-col rounded-l-xl h-[90%] w-[400px] inset-y-0",
             "right-0 my-auto focus:outline-none",
           )}
+        // className={twJoin(
+        //   "bg-background z-[999] flex flex-col rounded-l-xl h-[90%] w-[400px] fixed inset-y-0",
+        //   "right-0 my-auto focus:outline-none",
+        // )}
         >
           <div className="pt-3 pl-3">
             <RoundButton onClick={() => setOpen(false)}>

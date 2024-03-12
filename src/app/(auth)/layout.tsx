@@ -8,7 +8,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div>
+    <div className='h-full'>
       <Link href="/">
         <RoundButton variant="primary">
           <ArrowLeftIcon className="w-5 h-5" />

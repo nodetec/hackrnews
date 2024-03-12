@@ -34,16 +34,17 @@ export function nFormatter(num: number, digits = 1) {
  * Checks if the user is on mobile
  */
 export function isMobile() {
-  // This below is great but only if I wanna know the type of device, in this case I just want
-  // to know if the size is mobile alike
+  // below is to detect the type of device
   // const regex =
   //   /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
   // return regex.test(navigator.userAgent);
-
   return window.matchMedia("(max-width: 1024px)").matches;
 }
 
-export function toggleScroll(scroll: boolean) {
+/** if it should block scroll or not
+ * @param scroll - boolean
+ */
+export function lockScroll(scroll: boolean) {
   if (scroll) {
     document.body.style.overflowY = "hidden";
     document.body.addEventListener("touchmove", preventMobileScrollListener, {

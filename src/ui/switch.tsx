@@ -1,5 +1,7 @@
+import { useId } from "react";
 import { twJoin, twMerge } from "tailwind-merge";
 
+// FIXME: not working
 export default function Switch({
   label,
   className,
@@ -8,15 +10,13 @@ export default function Switch({
   className?: string;
 }) {
   return (
-    <div
-      className={twMerge(
-        "space-x-2 disabled:opacity-40",
-        className,
-      )}
-    >
-      <label className="relative inline-flex cursor-pointer items-center h-7 p-1 hover:bg-surface2 rounded-lg">
+    <div className={twMerge("space-x-2 disabled:opacity-40", className)}>
+      <label
+        id="switch-3-label"
+        className="relative inline-flex cursor-pointer items-center h-7 p-1 hover:bg-surface2 rounded-lg"
+      >
         <input id="switch-3" type="checkbox" className="peer sr-only" />
-        <label htmlFor="switch-3" className="hidden">
+        <label htmlFor="switch-3" className="sr-only">
           Enable this relay
         </label>
         <div
@@ -29,9 +29,9 @@ export default function Switch({
             "peer-disabled:opacity-40 peer-disabled:cursor-not-allowed pointer-events-auto",
           )}
         />
-      </label>
-      <label className="text-xs text-subText pointer-events-none">
-        {label}
+        <label htmlFor="switch-3" className="text-xs text-subText">
+          {label}
+        </label>
       </label>
     </div>
   );

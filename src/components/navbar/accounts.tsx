@@ -1,49 +1,53 @@
 "use client";
-import auth from "@/utils/models/auth";
-import { DEFAULT_RELAYS, pool } from "@/utils/nostr";
+
+import { Profile, retrieveProfile } from "@/utils/actions/auth";
+import { getProviders } from "@/utils/nostr";
 import { Button, OutlineButton } from "@ui/buttons";
 import { User2Icon } from "lucide-react";
-import Image from "next/image";
-import { Filter, kinds, nip19 } from "nostr-tools";
-import { useState } from "react";
-// TODO: Add real login functionality
-export default function Accounts() {
-  const [mockLogin, setMockLogin] = useState(false);
+import { useEffect, useState } from "react";
+
+export default function Accounts({ profiles }: { profiles: Profile[] | null }) {
   const [isLoading, setIsLoading] = useState(false);
-  const AcountMock = [
-    {
-      displayName: "damus.io",
-      avatar: "https://picsum.photos/200",
-    },
-    {
-      displayName: "relay.example/wellord.com",
-      avatar: "https://picsum.photos/200",
-    },
-    {
-      displayName: "relay.example/simple.com",
-      avatar: "https://picsum.photos/200",
-    },
-  ];
-  async function handleLogin() {
+
+  useEffect(() => {
+    if (profiles) console.log("profiles: ", profiles);
+  });
+
+  async function loginWithExtension() {
     setIsLoading(true);
     try {
-      const profiles = await auth.loginWithExtension();
-      console.log(profiles);
+      const { webln, nostr } = await getProviders();
+      // Enabling the lightning network
+      if (!webln.enabled) {
+        await webln.enable();
+        console.info("webln enabled!!");
+      }
+
+      // Get publicKey
+      const publickey = await nostr.getPublicKey();
+      console.log("public key:", publickey);
+
+      await retrieveProfile(publickey);
+    } catch (error) {
+      // TODO: handle error properly
+      console.error("There was an error while loggin in -> ", error);
+      throw error;
     } finally {
       setIsLoading(false);
     }
   }
+
   return (
     <>
-      {mockLogin ? (
+      {profiles ? (
         <Button variant="ghost" className="flex -space-x-4">
-          {AcountMock.map((account) => (
-            <Image
-              key={account.displayName}
+          {profiles.map((account) => (
+            <img
+              key={account.relay}
               className="inline-block h-6 w-6 rounded-full object-cover ring-2 ring-success"
               width={8}
               height={8}
-              src={account.avatar}
+              src={account.picture}
               alt="Profile Picus"
             />
           ))}
@@ -51,11 +55,10 @@ export default function Accounts() {
       ) : (
         <OutlineButton
           variant="primary"
-          onClick={handleLogin}
+          onClick={loginWithExtension}
           className="flex -space-x-4"
         >
           {isLoading ? (
-            //<LoaderIcon className="h-5 w-5 animate-spin text-gradient-to-r from-primary to-background" />
             <SpinningLoader />
           ) : (
             <User2Icon className="h-5 w-5" />

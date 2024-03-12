@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "@/ui/buttons";
 import { LinkIcon, MessagesSquareIcon, ZapIcon } from "lucide-react";
 import { twJoin } from "tailwind-merge";
-import { nFormatter } from "@/utils/functions";
+import { nFormatter } from "@/utils/misc";
 import Image from "next/image";
 import Ranking from "./ranking-desktop";
 import displayTags from "@/components/display-tags";

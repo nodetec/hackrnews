@@ -1,11 +1,11 @@
 import React from "react";
 import { Modal } from "./modal";
+import Login from "@/components/login";
 
-export default function Login() {
-  console.log("modal run")
+export default function Page() {
   return (
     <Modal>
-      login modal
+      <Login></Login>
     </Modal>
   );
 }

@@ -30,7 +30,7 @@ export default function RelayPreferences() {
             <SearchIcon className="w-5 h-5" />
           </Button>
         </div>
-        <div className="flex flex-col gap-2 px-4 py-1 h-full overflow-y-auto pb-20 overscroll-auto">
+        <div className="flex flex-col gap-2 px-4 py-1 h-full overflow-y-auto pb-20">
           {RELAYS_MOCK.map((relay) => (
             <div
               key={relay.displayName}

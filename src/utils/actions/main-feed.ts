@@ -1,9 +1,9 @@
 import { DEFAULT_RELAYS, pool } from "../nostr";
 
+// FIXME: Tis won't work because nextjs team it's all about functional bros.
+// even though fking js is not the language for that. -> convert this to function
 // TODO: ask chris what are the best filters for this
-const FILTERS = [
-  { kinds: [1070], limit: 3 },
-];
+const FILTERS = [{ kinds: [1070], limit: 3 }];
 
 export default class Feed {
   private posts: NostrEvent[] = [];
@@ -43,4 +43,3 @@ export default class Feed {
     console.log("eventIds", this.eventIds);
   }
 }
-

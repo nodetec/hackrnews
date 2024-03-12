@@ -9,7 +9,7 @@ import {
   MessagesSquareIcon,
   ZapIcon,
 } from "lucide-react";
-import { nFormatter } from "@/utils/functions";
+import { nFormatter } from "@/utils/misc";
 import anime from "animejs";
 import { twJoin } from "tailwind-merge";
 
