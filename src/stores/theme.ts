@@ -5,12 +5,12 @@ import { create } from "zustand";
 type Actions = {
   setPinned: (pin: boolean) => void;
   setTheme: (theme: string) => void;
-}
+};
 
 type State = {
-  pinned: boolean,
-  theme: (typeof themes)[number]
-}
+  pinned: boolean;
+  theme: (typeof themes)[number];
+};
 
 export const themeStore = create<State & Actions>()((set) => ({
   pinned: false,

@@ -39,14 +39,15 @@ export default function Navbar() {
         </div>
 
         <div className="hidden gap-4 justify-center items-center lg:flex">
-          {!profilesVal ? (
-            <Login />
-          ) : (
-            <Suspense fallback={<div>Loading...</div>}>
-              <Accounts profiles={profilesVal} />
-            </Suspense>
-          )}
-          {/* <Accounts profiles={profilesVal} /> */}
+          {/* {!profilesVal ? ( */}
+          {/*   <Login /> */}
+          {/* ) : ( */}
+          {/*   <Suspense fallback={<div>Loading...</div>}> */}
+          {/*     <Accounts profiles={profilesVal} /> */}
+          {/*   </Suspense> */}
+          {/* )} */}
+
+          <Accounts profiles={profilesVal} />
           <Divider vertical />
 
           <DesktopDrawer />

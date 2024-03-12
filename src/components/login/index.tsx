@@ -1,9 +1,14 @@
 import { Button, OutlineButton } from "@ui/buttons";
 import Logo from "@components/logo";
 import Divider from "@ui/divider";
-import { LogInIcon, ThumbsUpIcon } from "lucide-react";
+import {
+  AlertTriangleIcon,
+  HelpCircleIcon,
+  LogInIcon,
+  ThumbsUpIcon,
+} from "lucide-react";
 import PrivkeyInput from "./privkey-input";
-import { twJoin } from "tailwind-merge";
+import DangerWrapper from "@/ui/danger-wrapper";
 
 export default function Login() {
   return (
@@ -19,20 +24,19 @@ export default function Login() {
 
         <Button variant="primary" className="w-full">
           Login with extension
+          <HelpCircleIcon className="w-5 h-5 justify-self-end" />
         </Button>
       </div>
       <Divider />
 
       <form className="flex flex-col">
+        <DangerWrapper className="mb-2 relative">
+          <div className="flex gap-2 py-2 px-4 justify-between items-center">
+            <AlertTriangleIcon className="w-6 h-6 fill-warn" />
+            <h4 className="grow font-bold">Login with private key</h4>
+          </div>
+        </DangerWrapper>
         <PrivkeyInput></PrivkeyInput>
-        {/* <input */}
-        {/*   className={twJoin( */}
-        {/*     "w-full rounded-md border border-secondary text-secondary px-4 py-2 cursor-pointer", */}
-        {/*     "hover:bg-secondary/5 focus:bg-secondary/10 transition-colors", */}
-        {/*   )} */}
-        {/*   type="submit" */}
-        {/*   value="Login" */}
-        {/* /> */}
         <OutlineButton variant="success" type="submit">
           <LogInIcon />
           Login

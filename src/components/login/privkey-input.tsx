@@ -1,24 +1,31 @@
 "use client";
 
-import { Button } from "@/ui/buttons";
+import { Button, RoundButton } from "@/ui/buttons";
 import { Input } from "@/ui/input";
-import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { EyeIcon, EyeOffIcon, KeyRoundIcon } from "lucide-react";
 import React, { useState } from "react";
+import { twJoin } from "tailwind-merge";
 
 export default function PrivkeyInput() {
   const [isShow, setIsShow] = useState<boolean>(false);
   return (
-    <div className="flex">
+    <div className="flex items-center border-b border-surface3 my-6 px-2.5">
+      <div
+        className={twJoin("rounded-r-none ", "rounded-md")}
+      >
+        <KeyRoundIcon className="w-5 h-5 self-center text-subText" />
+      </div>
+
       <span className="flex-grow">
         <Input
           type={isShow ? "text" : "password"}
-          className="rounded-r-none border-r-transparent bg-backgroun"
+          className="border-none"
           label="Private Key"
         />
       </span>
-      <Button
+      <RoundButton
         title="Toggle key visibility"
-        className="rounded-l-none my-2 bg-surface2 border border-surface3 border-l-transparent"
+        className="bg-surface2/50"
         onClick={() => setIsShow(!isShow)}
       >
         {isShow ? (
@@ -26,7 +33,7 @@ export default function PrivkeyInput() {
         ) : (
           <EyeIcon className="w-5 h-5" />
         )}
-      </Button>
+      </RoundButton>
     </div>
   );
 }

@@ -10,7 +10,7 @@ export interface InputProps
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, label = "label", ...props }, ref) => {
     return (
-      <div className={`relative my-2 ${styles.input}`}>
+      <div className={`relative ${styles.input}`}>
         <div className="relative float-label-input">
           <input
             ref={ref}
@@ -18,7 +18,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             className={twMerge(
               twJoin(
                 "peer block bg-transparent w-full focus:outline-none focus:shadow-outline border",
-                "border-surface3 rounded-md py-2.5 px-3  appearance-none leading-normal",
+                "border-surface3 rounded-md py-2.5 px-3 appearance-none leading-normal",
                 "disabled:border-opacity-40 disabled:cursor-not-allowed",
                 "disabled:text-opacity-40",
               ),
@@ -29,8 +29,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           />
           <label
             className={twJoin(
-              "absolute top-3 left-0 text-base text-subText pointer-events-none transition duration-200",
-              "ease-in-out bg-inherit px-2 peer-disabled:opacity-40 peer-focus:text-black rounded-xl",
+              "absolute top-3 left-0 text-base pointer-events-none transition duration-200",
+              "ease-in-out px-2 peer-disabled:opacity-40 peer-focus:text-subText rounded-xl",
             )}
           >
             {label}

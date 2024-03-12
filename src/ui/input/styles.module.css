@@ -1,6 +1,7 @@
 .input:focus-within label,
 .input input:not(:placeholder-shown)+label {
   transform: translateY(-1.5rem) scale(0.85);
-  background-color: rgb(var(--color-primary) / 1);
-  color: black;
+  /* background-color: rgb(var(--color-primary) / 1); */
+  background-color: transparent;
+  color: rgb(var(--color-sub-text) / 1);
 }

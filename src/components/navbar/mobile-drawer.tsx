@@ -10,7 +10,6 @@ import {
   Settings,
   UserIcon,
 } from "lucide-react";
-import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { twJoin } from "tailwind-merge";
@@ -52,6 +51,15 @@ export default function MobileDrawer() {
     }
   }, [snap]);
 
+  useEffect(() => {
+    return () => {
+      if (link) {
+        router.push(link);
+        setLink(null);
+      }
+    };
+  });
+
   return (
     <Drawer.Root
       open={open}
@@ -67,12 +75,12 @@ export default function MobileDrawer() {
         // if you are trying to fix this, please let me know (I would love to know a better
         // solutuion for this problem).
         // Read the explanation below.
-        setTimeout(() => {
-          if (link) {
-            router.push(link);
-            setLink(null);
-          }
-        }, 450);
+        // setTimeout(() => {
+        //   if (link) {
+        //     router.push(link);
+        //     setLink(null);
+        //   }
+        // }, 450);
         // INFO: Exaplanation: The way the browser history() api (or the nextJS router() api) works
         // is that it will add to the current history stack the new link. This means that the
         // current page position - scrollY, clientY, etc. - are retrieved and put in the object that
@@ -90,6 +98,7 @@ export default function MobileDrawer() {
         // timeout so the actual linking happens then. The whole wait for the drawer to close is
         // just so vaul restores the body state and size, so the history/router apis can get the
         // current Y position and scroll back on history.back() or something like that.
+        //
         //
         // INFO: what would I have done? I would have created a component on the top level of the
         // html tree, that is fixed to the bottom of the screen, so you could expand from there

@@ -1,6 +1,5 @@
 import ArticleCard from "@/components/article-card";
 import Feed from "@/utils/actions/main-feed";
-import Link from "next/link";
 
 export default async function Page() {
   const feed = new Feed();
@@ -17,8 +16,6 @@ export default async function Page() {
           <ArticleCard {...props} key={props.postNr} />
         </div>
       ))}
-
-      <Link href="/login">Login</Link>
     </div>
   );
 }
