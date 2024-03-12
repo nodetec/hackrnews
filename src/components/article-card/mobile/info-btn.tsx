@@ -96,7 +96,7 @@ export default function InfoBtn({
             </button>
           </div>
 
-          <Popover.Arrow className="fill-background" />
+          <Popover.Arrow className="fill-background drop-shadow-[0_1px_0px_theme(colors.surface3)]" />
         </Popover.Content>
       </Popover.Portal>
     </Popover.Root>
