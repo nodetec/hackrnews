@@ -32,15 +32,17 @@ export default function Login() {
       <form className="flex flex-col">
         <DangerWrapper className="mb-2 relative">
           <div className="flex gap-2 py-2 px-4 justify-between items-center">
-            <AlertTriangleIcon className="w-6 h-6 fill-warn" />
+            <AlertTriangleIcon className="w-6 h-6 fill-warn text-black" />
             <h4 className="grow font-bold">Login with private key</h4>
           </div>
         </DangerWrapper>
         <PrivkeyInput></PrivkeyInput>
-        <OutlineButton variant="success" type="submit">
+        <Button 
+          className="w-full bg-surface2"
+          type="submit">
           <LogInIcon />
           Login
-        </OutlineButton>
+        </Button>
       </form>
     </div>
   );

@@ -1,5 +1,5 @@
 import { RoundButton } from "@/ui/buttons";
-import { ArrowLeftIcon } from "lucide-react";
+import { HomeIcon } from "lucide-react";
 import Link from "next/link";
 
 export default function RootLayout({
@@ -11,7 +11,7 @@ export default function RootLayout({
     <div className='h-full'>
       <Link href="/">
         <RoundButton variant="primary">
-          <ArrowLeftIcon className="w-5 h-5" />
+          <HomeIcon className="w-5 h-5" />
         </RoundButton>
       </Link>
       {children}

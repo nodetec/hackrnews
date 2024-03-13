@@ -40,7 +40,9 @@ export default function Accounts({ profiles }: { profiles: Profile[] | null }) {
   return (
     <>
       {profiles ? (
-        <Button variant="ghost" className="flex -space-x-4">
+        <Button variant="ghost" className="flex -space-x-4"
+          onClick={() => console.log("profile: ", profiles)}
+        >
           {profiles.map((account) => (
             <img
               key={account.relay}
