@@ -1,7 +1,7 @@
 "use client";
 
 import Create from "@/components/create";
-import Modal from "@/components/modal";
+import Modal from "@/components/server-modal";
 import { usePathname } from "next/navigation";
 
 export default function Page() {
