@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/ui/buttons";
-import { routes } from "@/utils/routes";
+import { ROUTES } from "@/utils/routes";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { twJoin } from "tailwind-merge";
@@ -29,7 +29,7 @@ export default function MenuLinks({
         isMobile ? "flex flex-col" : "hidden lg:flex ",
       )}
     >
-      {routes.map((route) => (
+      {ROUTES.map((route) => (
         <Link href={route.path} key={route.name}>
           <Button
             onClick={() => {
@@ -39,7 +39,7 @@ export default function MenuLinks({
             tabIndex={-1}
             className={buttonClasses}
           >
-            {route.icon}
+            {route.Icon}
             <span
               className={twJoin(
                 pathname === route.path &&
