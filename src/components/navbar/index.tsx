@@ -2,7 +2,6 @@ import Divider from "@ui/divider";
 import Logo from "@components/logo";
 import { twJoin } from "tailwind-merge";
 import MenuLinks from "./menu-links";
-import React, { Suspense } from "react";
 import { cookies } from "next/headers";
 import ThemeMenu from "./theme-menu";
 import MobileDrawer from "./mobile-drawer";

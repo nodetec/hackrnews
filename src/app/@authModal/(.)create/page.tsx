@@ -1,10 +1,10 @@
-import Login from "@/components/login";
+import Create from "@/components/create";
 import Modal from "@/components/modal";
 
 export default function Page() {
   return (
     <Modal>
-      <Login />
+      <Create />
     </Modal>
   );
 }

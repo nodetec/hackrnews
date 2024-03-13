@@ -12,9 +12,11 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="">
+    <main>
       <Navbar />
-      {children}
+      <div className="mt-6">
+        {children}
+      </div>
     </main>
   );
 }

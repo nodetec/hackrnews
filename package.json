@@ -15,7 +15,7 @@
     "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-tooltip": "^1.0.7",
     "animejs": "^3.2.1",
-    "lucide-react": "^0.292.0",
+    "lucide-react": "^0.356.0",
     "next": "14.0.3",
     "next-themes": "^0.2.1",
     "nostr-tools": "^2.1.4",

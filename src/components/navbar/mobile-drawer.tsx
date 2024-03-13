@@ -2,7 +2,7 @@
 
 import { Button, RoundButton } from "@/ui/buttons";
 import { closeOnScreenSize, isMobile } from "@/utils/misc";
-import { routes } from "@/utils/routes";
+import { ROUTES } from "@/utils/routes";
 import {
   ChevronDown,
   ChevronUp,
@@ -153,7 +153,7 @@ export default function MobileDrawer() {
                   snap !== 1 && "min-h-[15%] content-start",
                 )}
               >
-                {routes.map((route) => (
+                {ROUTES.map((route) => (
                   <DrawerLink
                     callback={() => {
                       setLink(route.path);
@@ -174,7 +174,7 @@ export default function MobileDrawer() {
                     name: "Login",
                     path: "/login",
                     accent: "bg-error",
-                    icon: <UserIcon className="w-5 h-5 text-error" />,
+                    Icon: <UserIcon className="w-5 h-5 text-error" />,
                   }}
                   snap={snap}
                   className="border-primary rounded flex-grow"
@@ -198,7 +198,7 @@ function DrawerLink({
   callback,
   className,
 }: {
-  route: (typeof routes)[number];
+  route: (typeof ROUTES)[number];
   snap: number | string | null;
   callback: () => void;
   className?: string;
@@ -218,7 +218,7 @@ function DrawerLink({
           path === route.path && `${route.accent} bg-opacity-10`,
         )}
       >
-        <span>{route.icon}</span>
+        <span>{route.Icon}</span>
         <span
           className={twJoin(
             path === route.path && "underline underline-offset-2 decoration-2",
