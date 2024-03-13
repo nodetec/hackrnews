@@ -5,7 +5,7 @@ import {
 	NewspaperIcon,
 	CirclePlusIcon,
 } from "lucide-react";
-import { Route } from "./types";
+import { IRoute } from "./types";
 import { twJoin } from "tailwind-merge";
 
 const iconSize = "size-8";
@@ -62,4 +62,4 @@ export const CREATE_ROUTES = [
 			/>
 		),
 	},
-] satisfies Route[];
+] satisfies IRoute[];

@@ -7,9 +7,11 @@ import { XIcon } from "lucide-react";
 import { ElementRef, useEffect, useRef } from "react";
 import { twJoin } from "tailwind-merge";
 import anime from "animejs";
+import { useModalRefStore } from "@/stores/modal";
 
 export default function Modal({ children }: { children: React.ReactNode }) {
 	const router = useRouter();
+	const { setModalRef } = useModalRefStore();
 	const dialogRef = useRef<ElementRef<"dialog">>(null);
 
 	useEffect(() => {
@@ -26,6 +28,10 @@ export default function Modal({ children }: { children: React.ReactNode }) {
 			});
 		}
 	}, []);
+
+	useEffect(() => {
+		setModalRef(dialogRef);
+	}, [dialogRef, setModalRef]);
 
 	function close() {
 		router.back();

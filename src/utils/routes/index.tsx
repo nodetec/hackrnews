@@ -1,5 +1,5 @@
 import { Briefcase, Home, InfoIcon, MessageSquarePlusIcon } from "lucide-react";
-import { Route } from "./types";
+import { IRoute } from "./types";
 
 export const ROUTES = [
 	{
@@ -45,4 +45,4 @@ export const ROUTES = [
 	//   color: "primary",
 	//   icon: <Home className="w-5 h-5" strokeWidth={2} />,
 	// },
-] satisfies Route[];
+] satisfies IRoute[];
