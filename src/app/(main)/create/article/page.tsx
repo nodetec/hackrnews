@@ -1,10 +1,49 @@
+"use client";
+
+import { ElementRef, useEffect, useRef, useState } from "react";
+
+import { EditorState } from "@codemirror/state";
+import { EditorView, keymap } from "@codemirror/view";
+import { vim } from "@replit/codemirror-vim";
+import { defaultKeymap } from "@codemirror/commands";
+import { Vim } from "@replit/codemirror-vim";
+import sample from "./sample";
+
 export default function Page() {
+	const editor = useRef<ElementRef<"div"> | null>(null);
+  const [vimMode, setVimMode] = useState(false);
+
+	useEffect(() => {
+    const extensions = [keymap.of(defaultKeymap)];
+    if (vimMode) {
+      extensions.unshift(vim());
+    }
+
+		const startState = EditorState.create({
+			doc: sample,
+			extensions,
+		});
+
+		Vim.map("jj", "<Esc>", "insert");
+
+		const view = new EditorView({
+			state: startState,
+			parent: editor.current!,
+		});
+
+		return () => {
+			view.destroy();
+		};
+	}, [vimMode]);
+
+  function toggleVim() {
+    setVimMode(current => !current)
+  }
+
 	return (
 		<div>
-			create article Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-			Adipisci nulla facilis obcaecati, voluptatem aperiam facere delectus
-			nostrum magni explicabo, ducimus quibusdam impedit! Dignissimos cupiditate
-			similique vitae tempora provident harum repudiandae?
+			<button onClick={toggleVim}>vim</button>
+			<div ref={editor} />;
 		</div>
 	);
 }
