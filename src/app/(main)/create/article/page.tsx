@@ -10,7 +10,10 @@ export default function Page() {
 	return (
 		<div>
 			<button onClick={toggleVim}>vim</button>
-			<div ref={editorRef} />
+			<div
+				className="float-border overflow-auto bg-surface1 h-screen min-h-[10rem] max-h-[70vh]"
+				ref={editorRef}
+			/>
 		</div>
 	);
 }

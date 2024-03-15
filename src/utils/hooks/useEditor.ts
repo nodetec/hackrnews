@@ -52,6 +52,10 @@ const useEditor = (ref: MutableRefObject<HTMLDivElement | null>) => {
 		value: editorValue,
 		theme,
 		onChange,
+    basicSetup: {
+      lineNumbers: false,
+      foldGutter: false,
+    },
 	});
 
 	const toggleVim = () => {

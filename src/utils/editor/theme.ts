@@ -1,5 +1,5 @@
-import { createTheme } from "thememirror";
 import { tags as t } from "@lezer/highlight";
+import { createTheme } from "mirrorshades";
 
 const palette = {
 	colorPrimary: "rgb(var(--color-primary))",
@@ -19,14 +19,15 @@ const palette = {
 };
 
 const theme = createTheme({
-	variant: "light",
+	theme: "light",
 	settings: {
-		background: palette.backgroundColor,
+		background: palette.surface1,
 		foreground: palette.textColor,
 		caret: palette.colorPrimary,
-		selection: palette.colorSecondary,
-		lineHighlight: palette.surface1,
-		gutterBackground: palette.backgroundColor,
+    fatCursor: palette.colorPrimary,
+		selection: palette.surface3,
+		lineHighlight: palette.surface3,
+		gutterBackground: palette.surface1,
 		gutterForeground: palette.discreetText,
 	},
 	styles: [
@@ -36,55 +37,55 @@ const theme = createTheme({
 		},
 		{
 			tag: t.variableName,
-			color: palette.textColor,
+			color: palette.colorWarn,
 		},
 		{
 			tag: [t.string, t.special(t.brace)],
-			color: palette.textColor,
+			color: palette.colorSecondary,
 		},
 		{
 			tag: t.number,
-			color: palette.textColor,
+			color: palette.colorPrimary,
 		},
 		{
 			tag: t.bool,
-			color: palette.textColor,
+			color: palette.colorPrimary,
 		},
 		{
 			tag: t.null,
-			color: palette.textColor,
+			color: palette.colorPrimary,
 		},
 		{
 			tag: t.keyword,
-			color: palette.textColor,
+			color: palette.colorPrimary,
 		},
 		{
 			tag: t.operator,
-			color: palette.textColor,
+			color: palette.colorError,
 		},
 		{
 			tag: t.className,
-			color: palette.textColor,
+			color: palette.colorInfo,
 		},
 		{
 			tag: t.definition(t.typeName),
-			color: palette.textColor,
+			color: palette.colorWarn,
 		},
 		{
 			tag: t.typeName,
-			color: palette.textColor,
+			color: palette.colorInfo,
 		},
 		{
 			tag: t.angleBracket,
-			color: palette.textColor,
+			color: palette.colorInfo,
 		},
 		{
 			tag: t.tagName,
-			color: palette.textColor,
+			color: palette.colorInfo,
 		},
 		{
 			tag: t.attributeName,
-			color: palette.textColor,
+			color: palette.colorError,
 		},
 	],
 });
