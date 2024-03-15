@@ -6,12 +6,14 @@ import { MutableRefObject, useCallback, useEffect, useMemo } from "react";
 import { Extension, ViewUpdate, useCodeMirror } from "@uiw/react-codemirror";
 import { useLocalStorage } from "usehooks-ts";
 import EDITOR_DEFAULT_VALUE from "@/utils/editor";
-import useEditorTheme from "./useEditorTheme";
+import useEditorTheme from "@/utils/hooks/useEditorTheme";
+import useEditorOptions from "@/utils/hooks/useEditorOptions";
 const stateFields = { history: historyField };
 const mdExt = markdown({ base: markdownLanguage, codeLanguages: languages });
 
 const useEditor = (ref: MutableRefObject<HTMLDivElement | null>) => {
 	const { themeName, themes, themeNames, setThemeName } = useEditorTheme();
+	const { options, toggleOption } = useEditorOptions();
 	const [editorState, setEditorState] = useLocalStorage(
 		"HACKRNEWS_EDITOR_STATE",
 		undefined,
@@ -50,10 +52,7 @@ const useEditor = (ref: MutableRefObject<HTMLDivElement | null>) => {
 		value: editorValue,
 		theme: themes[themeName],
 		onChange,
-		basicSetup: {
-			lineNumbers: false,
-			foldGutter: false,
-		},
+		basicSetup: options,
 	});
 
 	const toggleVimMode = () => {
@@ -73,6 +72,7 @@ const useEditor = (ref: MutableRefObject<HTMLDivElement | null>) => {
 		themeName,
 		themeNames,
 		setThemeName,
+    toggleOption,
 	};
 };
 
