@@ -1,4 +1,4 @@
-const sample = `# Header 1 #
+const EDITOR_DEFAULT_VALUE = `# Header 1 #
 ## Header 2 ##
 ### Header 3 ###             (Hashes on right are optional)
 ## Markdown plus h2 with a custom ID ##   {#id-goes-here}
@@ -104,4 +104,4 @@ Pop
 *[ABBR]: Markdown plus abbreviations (produces an <abbr> tag)
 `;
 
-export default sample;
+export default EDITOR_DEFAULT_VALUE;
