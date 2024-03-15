@@ -24,8 +24,8 @@ const theme = createTheme({
 		background: palette.backgroundColor,
 		foreground: palette.textColor,
 		caret: palette.colorPrimary,
-		selection: "rgba(5, 150, 104, 0.15)", // Assuming you want to use colorSuccess with some transparency
-		lineHighlight: "rgba(137, 134, 134, 0.1)", // Assuming you want to use discreetText with some transparency
+		selection: palette.colorSecondary,
+		lineHighlight: palette.surface1,
 		gutterBackground: palette.backgroundColor,
 		gutterForeground: palette.discreetText,
 	},
