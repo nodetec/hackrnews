@@ -49,8 +49,9 @@ import {
 	boysAndGirls,
 	rosePineDawn,
 } from "thememirror";
+import { useLocalStorage } from "usehooks-ts";
 
-const THEMES = {
+const themes = {
 	"Hackr News": hackrNews,
 	"Birds Of Paradise": birdsOfParadise,
 	"Ayu Light": ayuLight,
@@ -110,6 +111,21 @@ const THEMES = {
 	"Xcode Dark": xcodeDark,
 };
 
-export const THEME_NAMES = Object.keys(THEMES).toSorted();
+const themeNames = Object.keys(themes).toSorted();
 
-export default THEMES;
+const defaultTheme = "Hackr News" as keyof typeof themes;
+
+export default function useEditorTheme() {
+	const [themeName, setThemeName] = useLocalStorage(
+		"HACKRNEWS_EDITOR_THEME",
+		defaultTheme,
+	);
+
+	return {
+		themes,
+		themeNames,
+    themeName,
+    setThemeName,
+    defaultTheme,
+	};
+}

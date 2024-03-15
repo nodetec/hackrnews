@@ -5,19 +5,19 @@ import { ElementRef, useRef } from "react";
 
 export default function Page() {
 	const editorRef = useRef<ElementRef<"div"> | null>(null);
-	const { toggleVimMode, selectedTheme, themes, setTheme } =
+	const { toggleVimMode, themeName, themeNames, setThemeName } =
 		useEditor(editorRef);
 
 	return (
 		<div>
 			<button onClick={toggleVimMode}>vim</button>
 			<select
-				value={selectedTheme}
-				onChange={(e) => setTheme(e.target.value as typeof selectedTheme)}
+				value={themeName}
+				onChange={(e) => setThemeName(e.target.value as typeof themeName)}
 			>
-				{themes.map((theme) => (
+				{themeNames.map((theme) => (
 					<option key={theme} value={theme}>
-            {theme}
+						{theme}
 					</option>
 				))}
 			</select>
