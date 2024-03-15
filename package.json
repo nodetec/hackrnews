@@ -10,6 +10,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@codemirror/lang-markdown": "^6.2.4",
     "@dotlottie/react-player": "^1.6.13",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
     "@radix-ui/react-popover": "^1.0.7",
@@ -25,6 +26,7 @@
     "react-dom": "^18",
     "react-modal-sheet": "^2.2.0",
     "tailwind-merge": "^2.0.0",
+    "thememirror": "^2.0.1",
     "vaul": "^0.8.9",
     "zustand": "^4.4.7"
   },
