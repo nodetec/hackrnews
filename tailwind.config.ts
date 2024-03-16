@@ -111,6 +111,6 @@ const config: Config = {
   //     transitionTimingFunction: ["open"],
   //   },
   // },
-  plugins: [],
+	plugins: [require("@tailwindcss/typography")],
 };
 export default config;
