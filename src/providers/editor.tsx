@@ -45,7 +45,7 @@ const stateFields = { history: historyField };
 
 interface IEditorContext
 	extends ReturnType<typeof useEditorTheme>,
-		ReturnType<typeof useEditorSettings>,
+		Omit<ReturnType<typeof useEditorSettings>, "extensions">,
 		ReturnType<typeof useEditorOptions> {
 	editorRef: MutableRefObject<HTMLDivElement | null>;
 	editorValue: string;
