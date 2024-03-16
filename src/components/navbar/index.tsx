@@ -11,6 +11,7 @@ import Link from "next/link";
 import { OutlineButton } from "@/ui/buttons";
 import { Profile } from "@/utils/actions/auth";
 import { User2Icon } from "lucide-react";
+import { Suspense } from "react";
 
 export default function Navbar() {
   const isPinned = cookies().get("pinned")?.value === "true" ?? false;
