@@ -23,17 +23,33 @@
 
 "use client";
 
+import Preview from "./Preview";
+import CodeMirror from "./CodeMirror";
 import { useEditor } from "@/providers/editor";
-import Markdown from "react-markdown";
+import clsx from "clsx";
+import Titlebar from "./Titlebar";
 
-export default function Preview() {
-	const { editorValue, preview } = useEditor();
-
-	if (!preview) return null;
+export default function Window() {
+	const { fullscreen, preview, horizntalPreview } = useEditor();
 
 	return (
-		<div className="w-full border-l border-surface3 p-4">
-			<Markdown className="prose dark:prose-invert">{editorValue}</Markdown>
+		<div
+			className={clsx("bg-surface1 float-border", {
+				"fixed w-full inset-0 z-30": fullscreen,
+				"rounded-lg": !fullscreen,
+			})}
+		>
+			<Titlebar />
+			<div
+				className={clsx("grid overflow-auto h-full", {
+					"max-h-[75vh]": !fullscreen,
+          "grid-cols-2": preview,
+          "grid-cols-1": horizntalPreview,
+				})}
+			>
+				<CodeMirror />
+				<Preview />
+			</div>
 		</div>
 	);
 }

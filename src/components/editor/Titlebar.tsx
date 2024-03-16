@@ -24,16 +24,18 @@
 "use client";
 
 import { useEditor } from "@/providers/editor";
-import Markdown from "react-markdown";
 
-export default function Preview() {
-	const { editorValue, preview } = useEditor();
-
-	if (!preview) return null;
+export default function Titlebar() {
+	const { toggleSetting } = useEditor();
 
 	return (
-		<div className="w-full border-l border-surface3 p-4">
-			<Markdown className="prose dark:prose-invert">{editorValue}</Markdown>
+		<div className="flex items-center gap-2 p-2">
+			<button className="w-3 h-3 rounded-full bg-red-500" />
+			<button className="w-3 h-3 rounded-full bg-yellow-500" />
+			<button
+				className="w-3 h-3 rounded-full bg-green-500"
+				onClick={() => toggleSetting("fullscreen")}
+			/>
 		</div>
 	);
 }

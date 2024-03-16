@@ -1,3 +1,26 @@
+/**
+ * Sovereign Computing For a Brighter Future
+ * Copyright (C) 2024 Nodetec.co
+ *
+ * This file is part of HackrNews.
+ *
+ * HackrNews is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * HackrNews is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with HackrNews. If not, see <https://www.gnu.org/licenses/>.
+ *
+ * Contact information:
+ * luis..f.carvalho20+hackrnews@gmail.com
+ */
+
 "use client";
 
 import { historyField } from "@codemirror/commands";
@@ -20,17 +43,17 @@ import {
 	useMemo,
 	useRef,
 } from "react";
+import useEditorSettings from "@/utils/hooks/useEditorSettings";
 
 const stateFields = { history: historyField };
 const mdExt = markdown({ base: markdownLanguage, codeLanguages: languages });
 
 interface IEditorContext
 	extends ReturnType<typeof useEditorTheme>,
+		ReturnType<typeof useEditorSettings>,
 		ReturnType<typeof useEditorOptions> {
 	editorRef: MutableRefObject<HTMLDivElement | null>;
 	editorValue: string;
-	vimMode: boolean;
-	toggleVimMode: () => void;
 }
 
 const EditorContext = createContext<IEditorContext | null>(null);
@@ -39,10 +62,12 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
 	const editorRef = useRef<ElementRef<"div"> | null>(null);
 	const editorTheme = useEditorTheme();
 	const editorOptions = useEditorOptions();
+	const editorSettings = useEditorSettings();
 	const [editorState, setEditorState] = useLocalStorage(
 		"HACKRNEWS_EDITOR_STATE",
 		undefined,
 		{
+			initializeWithValue: false,
 			deserializer: (value) => ({
 				json: JSON.parse(value),
 				fields: stateFields,
@@ -52,8 +77,13 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
 	const [editorValue, setEditorValue] = useLocalStorage(
 		"HACKRNEWS_EDITOR_VALUE",
 		EDITOR_DEFAULT_VALUE,
+		{
+			initializeWithValue: false,
+		},
 	);
-	const [vimMode, setVimMode] = useLocalStorage("HACKRNEWS_VIM_MODE", false);
+	const currentTheme = editorTheme.themes[editorTheme.themeName];
+
+	const vimMode = editorSettings.vimMode;
 
 	const extensions = useMemo(() => {
 		const exts: Extension[] = [mdExt];
@@ -76,23 +106,10 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
 		initialState: editorState,
 		extensions,
 		value: editorValue,
-		theme: editorTheme.themes[editorTheme.themeName],
+		theme: currentTheme,
 		onChange: debouncedOnChangeCallback,
 		basicSetup: editorOptions.options,
 	});
-
-	const toggleVimMode = useCallback(() => {
-		setVimMode((current) => !current);
-	}, [setVimMode]);
-
-	/* const injectExtension = useCallback(
-		(ex: Extension) => {
-			view?.dispatch({
-				effects: StateEffect.appendConfig.of(ex),
-			});
-		},
-		[view],
-	); */
 
 	/* useEffect(() => {
 		return view?.destroy;
@@ -108,10 +125,9 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
 		<EditorContext.Provider
 			value={{
 				editorRef,
-				vimMode,
-				toggleVimMode,
 				editorValue,
 				...editorTheme,
+				...editorSettings,
 				...editorOptions,
 			}}
 		>
