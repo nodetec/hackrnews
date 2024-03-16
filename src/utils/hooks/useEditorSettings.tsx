@@ -21,14 +21,21 @@
  * luis..f.carvalho20+hackrnews@gmail.com
  */
 
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { useLocalStorage } from "usehooks-ts";
+import { markdown, markdownLanguage } from "@codemirror/lang-markdown";
+import { languages } from "@codemirror/language-data";
+import { Extension } from "@uiw/react-codemirror";
+import { vim } from "@replit/codemirror-vim";
+import { lineNumbersRelative } from "@uiw/codemirror-extensions-line-numbers-relative";
+
+const mdExt = markdown({ base: markdownLanguage, codeLanguages: languages });
 
 const defaultSettings = {
 	vimMode: false,
 	preview: true,
-	horizntalPreview: true,
-  fullscreen: false,
+	fullscreen: false,
+	relativenumber: false,
 };
 
 const useEditorSettings = () => {
@@ -39,6 +46,15 @@ const useEditorSettings = () => {
 			initializeWithValue: false,
 		},
 	);
+
+	const { vimMode, relativenumber } = settings;
+
+	const extensions = useMemo(() => {
+		const exts: Extension[] = [mdExt];
+		if (vimMode) exts.unshift(vim());
+		if (relativenumber) exts.unshift(lineNumbersRelative);
+		return exts;
+	}, [vimMode, relativenumber]);
 
 	const toggleSetting = useCallback(
 		(setting: keyof typeof defaultSettings) => {
@@ -61,7 +77,8 @@ const useEditorSettings = () => {
 
 	return {
 		...settings,
-    getSetting,
+		extensions,
+		getSetting,
 		toggleSetting,
 	};
 };

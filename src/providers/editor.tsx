@@ -24,10 +24,7 @@
 "use client";
 
 import { historyField } from "@codemirror/commands";
-import { markdown, markdownLanguage } from "@codemirror/lang-markdown";
-import { languages } from "@codemirror/language-data";
-import { vim } from "@replit/codemirror-vim";
-import { Extension, ViewUpdate, useCodeMirror } from "@uiw/react-codemirror";
+import { ViewUpdate, useCodeMirror } from "@uiw/react-codemirror";
 import { useDebounceCallback, useLocalStorage } from "usehooks-ts";
 import EDITOR_DEFAULT_VALUE from "@/utils/editor";
 import useEditorTheme from "@/utils/hooks/useEditorTheme";
@@ -40,13 +37,11 @@ import {
 	useCallback,
 	useContext,
 	useEffect,
-	useMemo,
 	useRef,
 } from "react";
 import useEditorSettings from "@/utils/hooks/useEditorSettings";
 
 const stateFields = { history: historyField };
-const mdExt = markdown({ base: markdownLanguage, codeLanguages: languages });
 
 interface IEditorContext
 	extends ReturnType<typeof useEditorTheme>,
@@ -62,7 +57,7 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
 	const editorRef = useRef<ElementRef<"div"> | null>(null);
 	const editorTheme = useEditorTheme();
 	const editorOptions = useEditorOptions();
-	const editorSettings = useEditorSettings();
+	const { extensions, ...editorSettings } = useEditorSettings();
 	const [editorState, setEditorState] = useLocalStorage(
 		"HACKRNEWS_EDITOR_STATE",
 		undefined,
@@ -82,13 +77,6 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
 		},
 	);
 	const currentTheme = editorTheme.themes[editorTheme.themeName];
-
-	const vimMode = editorSettings.vimMode;
-
-	const extensions = useMemo(() => {
-		const exts: Extension[] = [mdExt];
-		return vimMode ? [vim(), ...exts] : exts;
-	}, [vimMode]);
 
 	const onChange = useCallback(
 		(val: string, viewUpdate: ViewUpdate) => {

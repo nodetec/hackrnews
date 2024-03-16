@@ -46,6 +46,12 @@ export default function Controls() {
 				toggle lineNumbers
 			</Button>
 			<Button
+				variant={getSetting("relativenumber") ? "primary" : "ghost"}
+				onClick={() => toggleSetting("relativenumber")}
+			>
+				toggle relativenumber
+			</Button>
+			<Button
 				variant={getSetting("vimMode") ? "primary" : "ghost"}
 				onClick={() => toggleSetting("vimMode")}
 			>

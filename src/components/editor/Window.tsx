@@ -30,7 +30,7 @@ import clsx from "clsx";
 import Titlebar from "./Titlebar";
 
 export default function Window() {
-	const { fullscreen, preview, horizntalPreview } = useEditor();
+	const { fullscreen, preview } = useEditor();
 
 	return (
 		<div
@@ -43,8 +43,7 @@ export default function Window() {
 			<div
 				className={clsx("grid overflow-auto h-full", {
 					"max-h-[75vh]": !fullscreen,
-          "grid-cols-2": preview,
-          "grid-cols-1": horizntalPreview,
+					"grid-cols-2": preview,
 				})}
 			>
 				<CodeMirror />

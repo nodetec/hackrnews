@@ -17,6 +17,7 @@
     "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-tooltip": "^1.0.7",
     "@replit/codemirror-vim": "^6.2.0",
+    "@uiw/codemirror-extensions-line-numbers-relative": "^4.21.24",
     "@uiw/codemirror-theme-abcdef": "^4.21.24",
     "@uiw/codemirror-theme-abyss": "^4.21.24",
     "@uiw/codemirror-theme-androidstudio": "^4.21.24",
