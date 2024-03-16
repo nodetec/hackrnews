@@ -85,6 +85,19 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
 		setVimMode((current) => !current);
 	}, [setVimMode]);
 
+	/* const injectExtension = useCallback(
+		(ex: Extension) => {
+			view?.dispatch({
+				effects: StateEffect.appendConfig.of(ex),
+			});
+		},
+		[view],
+	); */
+
+	/* useEffect(() => {
+		return view?.destroy;
+	}, [view]); */
+
 	useEffect(() => {
 		if (editorRef.current) {
 			setContainer(editorRef.current);

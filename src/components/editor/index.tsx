@@ -8,7 +8,7 @@ export default function Editor() {
 		<EditorProvider>
 			<div>
 				<Controls />
-				<div className="flex">
+				<div className="flex rounded-lg bg-surface1 float-border">
 					<CodeMirror />
 					<Preview />
 				</div>
