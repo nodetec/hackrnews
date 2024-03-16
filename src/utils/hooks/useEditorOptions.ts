@@ -22,14 +22,16 @@
  */
 
 import { BasicSetupOptions } from "@uiw/react-codemirror";
+import { useCallback } from "react";
 import { useLocalStorage } from "usehooks-ts";
 
 const defaultOptions = {
-  lineNumbers: false,
+	lineNumbers: false,
 	foldGutter: false,
-  highlightActiveLine: true,
-  highlightActiveLineGutter: true,
-  autocompletion: true,
+	highlightActiveLine: true,
+	highlightActiveLineGutter: true,
+	autocompletion: true,
+	tabSize: 2,
 } satisfies BasicSetupOptions;
 
 const useEditorOptions = () => {
@@ -38,15 +40,31 @@ const useEditorOptions = () => {
 		defaultOptions,
 	);
 
-	function toggleOption(option: keyof typeof defaultOptions) {
-		if (typeof defaultOptions[option] === "boolean") {
-			setOptions((current) => ({ ...current, [option]: !current[option] }));
-		}
-	}
+	const toggleOption = useCallback(
+		(option: keyof typeof defaultOptions) => {
+			if (typeof defaultOptions[option] === "boolean") {
+				setOptions((current) => ({ ...current, [option]: !current[option] }));
+			}
+		},
+		[setOptions],
+	);
+
+	const setTabSize = useCallback(
+		(n: number) => {
+			setOptions((current) => ({ ...current, tabSize: n }));
+		},
+		[setOptions],
+	);
+
+	const resetOptions = useCallback(() => {
+		setOptions(defaultOptions);
+	}, [setOptions]);
 
 	return {
 		options,
 		toggleOption,
+		resetOptions,
+    setTabSize,
 	};
 };
 
