@@ -38,6 +38,9 @@ const useEditorOptions = () => {
 	const [options, setOptions] = useLocalStorage(
 		"HACKRNEWS_EDITOR_OPTIONS",
 		defaultOptions,
+		{
+			initializeWithValue: false,
+		},
 	);
 
 	const toggleOption = useCallback(
@@ -47,6 +50,13 @@ const useEditorOptions = () => {
 			}
 		},
 		[setOptions],
+	);
+
+	const getOption = useCallback(
+		(option: keyof typeof defaultOptions) => {
+			return options[option];
+		},
+		[options],
 	);
 
 	const setTabSize = useCallback(
@@ -62,9 +72,10 @@ const useEditorOptions = () => {
 
 	return {
 		options,
+		getOption,
 		toggleOption,
 		resetOptions,
-    setTabSize,
+		setTabSize,
 	};
 };
 

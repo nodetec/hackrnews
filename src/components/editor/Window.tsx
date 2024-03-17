@@ -21,32 +21,36 @@
  * luis..f.carvalho20+hackrnews@gmail.com
  */
 
-const EDITOR_DEFAULT_VALUE = `# HackrNews
+"use client";
 
-## Thank you for using **HackrNews**!
+import Preview from "./Preview";
+import CodeMirror from "./CodeMirror";
+import { useEditor } from "@/providers/editor";
+import clsx from "clsx";
+import Titlebar from "./Titlebar";
 
-- if you like **HackrNews**, don't forget to start us on GitHub:
+export default function Window() {
+	const { fullscreen, preview } = useEditor();
 
-  - [https://github.com/nodetec/hackrnews/](https://github.com/nodetec/hackrnews/)
-
-- to report bugs, request new features:  
-
-  - [https://github.com/nodetec/hackrnews/issues](https://github.com/nodetec/hackrnews/issues)
-
-- say Hi!
-
-  - [https://discord.gg/XWXXY5SKhs](https://discord.gg/XWXXY5SKhs)
-
-- this is [codemirror](https://codemirror.net/docs) editor, with additional extensions:
-
-  - @uiw/react-codemirror
-  - @codemirror/lang-markdown
-  - @codemirror/language-data
-  - @replit/codemirror-vim
-  - @uiw/codemirror-themes
-  - @uiw/codemirror-extensions-line-numbers-relative
-  - thememirror
-  - mirrorshades
-`;
-
-export default EDITOR_DEFAULT_VALUE;
+	return (
+		<div
+			className={clsx("bg-surface1 float-border", {
+				"fixed w-full inset-0 z-30 pb-6": fullscreen,
+				"rounded-lg w-[96vw] -translate-x-1/2": !fullscreen,
+			})}
+			style={{
+				marginLeft: fullscreen ? "0" : "50%",
+			}}
+		>
+			<Titlebar />
+			<div
+				className={clsx("grid h-full", {
+					"grid-cols-2": preview,
+				})}
+			>
+				<CodeMirror />
+				<Preview />
+			</div>
+		</div>
+	);
+}
