@@ -35,14 +35,16 @@ export default function Window() {
 	return (
 		<div
 			className={clsx("bg-surface1 float-border", {
-				"fixed w-full inset-0 z-30": fullscreen,
-				"rounded-lg": !fullscreen,
+				"fixed w-full inset-0 z-30 pb-6": fullscreen,
+				"rounded-lg w-[96vw] -translate-x-1/2": !fullscreen,
 			})}
+			style={{
+				marginLeft: fullscreen ? "0" : "50%",
+			}}
 		>
 			<Titlebar />
 			<div
-				className={clsx("grid overflow-auto h-full", {
-					"max-h-[75vh]": !fullscreen,
+				className={clsx("grid h-full", {
 					"grid-cols-2": preview,
 				})}
 			>

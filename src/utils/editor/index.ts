@@ -21,110 +21,32 @@
  * luis..f.carvalho20+hackrnews@gmail.com
  */
 
-const EDITOR_DEFAULT_VALUE = `# Header 1 #
-## Header 2 ##
-### Header 3 ###             (Hashes on right are optional)
-## Markdown plus h2 with a custom ID ##   {#id-goes-here}
-[Link back to H2](#id-goes-here)
+const EDITOR_DEFAULT_VALUE = `# HackrNews
 
-\`\`\`js
-var x = "string";
-function f() {
-  return x;
-}
-\`\`\`
+## Thank you for using **HackrNews**!
 
-<!-- html madness -->
-<div class="custom-class" markdown="1">
-  <div>
-    nested div
-  </div>
-  <script type='text/x-koka'>
-    function( x: int ) { return x*x; }
-  </script>
-  This is a div _with_ underscores
-  and a & <b class="bold">bold</b> element.
-  <style>
-    body { font: "Consolas" }
-  </style>
-</div>
+- if you like **HackrNews**, don't forget to start us on GitHub:
 
-* Bullet lists are easy too
-- Another one
-+ Another one
+  - [https://github.com/nodetec/hackrnews/](https://github.com/nodetec/hackrnews/)
 
-This is a paragraph, which is text surrounded by
-whitespace. Paragraphs can be on one
-line (or many), and can drone on for hours.
+- to report bugs, request new features:  
 
-Now some inline markup like _italics_,  **bold**,
-and \`code()\`. Note that underscores
-in_words_are ignored.
+  - [https://github.com/nodetec/hackrnews/issues](https://github.com/nodetec/hackrnews/issues)
 
-\`\`\`\`application/json
-  { value: ["or with a mime type"] }
-\`\`\`\`
+- say Hi!
 
-> Blockquotes are like quoted text in email replies
->> And, they can be nested
+  - [https://discord.gg/XWXXY5SKhs](https://discord.gg/XWXXY5SKhs)
 
-1. A numbered list
-2. Which is numbered
-3. With periods and a space
+- this is [codemirror](https://codemirror.net/docs) editor, with additional extensions:
 
-And now some code:
-
-    // Code is just text indented a bit
-    which(is_easy) to_remember();
-
-And a block
-
-~~~
-// Markdown extra adds un-indented code blocks too
-
-if (this_is_more_code == true && !indented) {
-    // tild wrapped code blocks, also not indented
-}
-~~~
-
-Text with
-two trailing spaces
-(on the right)
-can be used
-for things like poems
-
-### Horizontal rules
-
-* * * *
-****
---------------------------
-
-![picture alt](/images/photo.jpeg "Title is optional")
-
-## Markdown plus tables ##
-
-| Header | Header | Right  |
-| ------ | ------ | -----: |
-|  Cell  |  Cell  |   $10  |
-|  Cell  |  Cell  |   $20  |
-
-* Outer pipes on tables are optional
-* Colon used for alignment (right versus left)
-
-## Markdown plus definition lists ##
-
-Bottled water
-: $ 1.25
-: $ 1.55 (Large)
-
-Milk
-Pop
-: $ 1.75
-
-* Multiple definitions and terms are possible
-* Definitions can include multiple paragraphs too
-
-*[ABBR]: Markdown plus abbreviations (produces an <abbr> tag)
+  - @uiw/react-codemirror
+  - @codemirror/lang-markdown
+  - @codemirror/language-data
+  - @replit/codemirror-vim
+  - @uiw/codemirror-themes
+  - @uiw/codemirror-extensions-line-numbers-relative
+  - thememirror
+  - mirrorshades
 `;
 
 export default EDITOR_DEFAULT_VALUE;

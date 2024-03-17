@@ -24,15 +24,20 @@
 "use client";
 
 import { useEditor } from "@/providers/editor";
+import clsx from "clsx";
 import Markdown from "react-markdown";
 
 export default function Preview() {
-	const { editorValue, preview } = useEditor();
+	const { editorValue, preview, fullscreen } = useEditor();
 
 	if (!preview) return null;
 
 	return (
-		<div className="w-full border-l border-surface3 p-4">
+		<div
+			className={clsx("overflow-auto w-full border-l border-surface3 p-4", {
+				"h-[75vh]": !fullscreen,
+			})}
+		>
 			<Markdown className="prose dark:prose-invert">{editorValue}</Markdown>
 		</div>
 	);

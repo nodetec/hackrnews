@@ -24,12 +24,17 @@
 "use client";
 
 import { useEditor } from "@/providers/editor";
+import clsx from "clsx";
 
 export default function CodeMirror() {
-	const { editorRef } = useEditor();
+	const { editorRef, fullscreen } = useEditor();
 
 	return (
-		<div className="h-full">
+		<div
+			className={clsx("h-full overflow-auto", {
+				"h-[75vh]": !fullscreen,
+			})}
+		>
 			<div ref={editorRef} />
 		</div>
 	);

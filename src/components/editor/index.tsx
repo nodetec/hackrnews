@@ -30,7 +30,7 @@ export default function Editor() {
 		<EditorProvider>
 			<div className="flex flex-col gap-4">
 				<Controls />
-        <Window />
+				<Window />
 			</div>
 		</EditorProvider>
 	);

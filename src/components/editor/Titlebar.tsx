@@ -30,10 +30,16 @@ export default function Titlebar() {
 
 	return (
 		<div className="flex items-center gap-2 p-2">
-			<button className="w-3 h-3 rounded-full bg-red-500" />
-			<button className="w-3 h-3 rounded-full bg-yellow-500" />
 			<button
-				className="w-3 h-3 rounded-full bg-green-500"
+				className="w-3 h-3 rounded-full bg-discreetText/50 hover:bg-error"
+				onClick={() => toggleSetting("fullscreen")}
+			/>
+			<button
+				className="w-3 h-3 rounded-full bg-discreetText/50 hover:bg-warn"
+				onClick={() => toggleSetting("fullscreen")}
+			/>
+			<button
+				className="w-3 h-3 rounded-full bg-discreetText/50 hover:bg-success"
 				onClick={() => toggleSetting("fullscreen")}
 			/>
 		</div>
